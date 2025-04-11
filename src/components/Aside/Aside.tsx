@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import MenuButton from '../MenuButton/MenuButton';
+import NavButtons from './components/NavButtons/NavButtons';
 import './Aside.css';
 
 function Aside() {
-    const [ isVisible, setIsVisible ] = useState(true);
+    const [ isAbove, setIsAbove ] = useState(false);
 
     return(
         <aside
-            onMouseEnter={() => setIsVisible(false)}
-            onMouseLeave={() => setIsVisible(true)}
+            onMouseEnter={() => setIsAbove(true)}
+            onMouseLeave={() => setIsAbove(false)}
         >
-            <MenuButton isVisible={isVisible} />
+            <MenuButton isAbove={isAbove} />
+            <NavButtons/>
         </aside>
     );
 }
