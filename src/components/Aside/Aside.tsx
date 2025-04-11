@@ -11,8 +11,8 @@ function Aside() {
             onMouseEnter={() => setIsAbove(true)}
             onMouseLeave={() => setIsAbove(false)}
         >
-            <MenuButton isAbove={isAbove} />
-            <NavButtons/>
+            <MenuButton isAbove={isAbove}/>
+            <NavButtons isAbove={isAbove}/>
         </aside>
     );
 }
