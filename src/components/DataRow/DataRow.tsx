@@ -1,17 +1,14 @@
-import { Tenant } from '../../models/dataModels/tenant';
+import { DataRowProps } from '../../models/propertyModels/componentsProperties';
 import './DataRow.css';
-type DataRowProps = {
-    data: Tenant
-}
 
 function DataRow({data}: DataRowProps) {
 
     return(
-        <div className='table-header'>
+        <div className='table-row'>
             <p>{data.tenantName}</p>
             <p>{data.cif}</p>
-            <p>{data.email}</p>
             <p>{data.phone}</p>
+            <p>{data.email}</p>
             <p>{data.numberOfClubs}</p>
         </div>
     );
