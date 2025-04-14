@@ -1,8 +1,5 @@
+import { NavButtonsProps } from '../../../../models/propertyModels/componentsProperties';
 import './NavButtons.css';
-
-type NavButtonsProps = {
-    isAbove: boolean;
-}
 
 function NavButtons({ isAbove }: NavButtonsProps) {
     

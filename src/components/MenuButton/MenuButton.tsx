@@ -1,9 +1,6 @@
 import './MenuButton.css';
+import { MenuButtonProps } from '../../models/propertyModels/componentsProperties';
 import menuIcon from './../../assets/icons/Menu-displayer.svg';
-
-type MenuButtonProps = {
-    isAbove: boolean;
-};
 
 function MenuButton({isAbove}: MenuButtonProps) {
 
