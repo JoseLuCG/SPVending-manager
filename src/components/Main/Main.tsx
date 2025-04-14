@@ -4,6 +4,7 @@ import { Tenant, TenantList } from '../../models/dataModels/tenant';
 import Aside from './../Aside/Aside';
 import { useEffect, useState } from 'react';
 import DataRow from '../DataRow/DataRow';
+import TableHeader from '../TableHeader/TableHeader';
 
 function Main() {
   //States:
@@ -42,14 +43,7 @@ function Main() {
                     <button className='addButton'>+ Add tenant</button>
                     <input className='searcher' type="text" placeholder='Buscar...'/>
                 </div>
-                <div className='table-header'>
-                    <p>Name</p>
-                    <p>CIF</p>
-                    <p>Phone</p>
-                    <p>Email</p>
-                    <p>Clubs</p>
-                    <p>Actions</p>
-                </div>
+                <TableHeader/>
                 {
                    tenants.map(
                     (tenantData: Tenant) => <DataRow data={tenantData} />

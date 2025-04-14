@@ -50,15 +50,3 @@ p.infText {
     padding: 0 20px;
     text-align: center;
 }
-
-/* ---------- Table Heaader CSS ---------- */
-
-.table-header p {
-    display: inline;
-    padding: 20px;
-    margin-right: 82px;
-}
-
-.table-header p:last-child {
-    margin-right: 0px;
-}
