@@ -14,10 +14,14 @@ function Main() {
   function createArrayOfTenantsExamples() {
       const tenantsArray: TenantList = [];
       const tenantExample: Tenant= {
+        tenantId: "a81bc81b-dead-4e5d-abff-90865d1e13b1",
         tenantName: "PadelPrix",
         cif: 123456789,
+        address: "Example address N2 45",
         phone: 611222333,
         email: "padelprix@gmail.com",
+        remark: "empty",
+        micronId: "12345678",
         numberOfClubs: 4
       };
 
