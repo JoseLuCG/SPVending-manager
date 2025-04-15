@@ -51,10 +51,6 @@ p.infText {
     text-align: center;
 }
 
-.headerRow {
-    padding: 10px;
-}
-
 .table-row td,
 .p-datatable-thead > tr > th {
     padding: 10px 15px;
