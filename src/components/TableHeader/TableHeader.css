@@ -1,9 +1,0 @@
-.table-header p {
-    display: inline;
-    padding: 20px;
-    margin-right: 82px;
-}
-
-.table-header p:last-child {
-    margin-right: 0px;
-}
