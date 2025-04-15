@@ -1,15 +1,18 @@
 import './App.css';
-import Main from './components/Main/Main';
-import Header from './components/Header/Header';
+import { Route, Routes } from 'react-router';
+import TenantsPage from './pages/TenantsPage/TenantsPage';
+import ClubsPage from './pages/ClubsPage/ClubsPage';
 
 function App() {
 
-  return (
-    <>
-        <Header/>
-        <Main/>
-    </>
-  )
+	return (
+		<>
+			<Routes>
+				<Route path='/tenants' element={<TenantsPage/>}/>
+				<Route path='/clubs' element={<ClubsPage/>}/>
+			</Routes>			
+		</>
+	)
 }
 
 export default App
