@@ -1,4 +1,5 @@
 import { Tenant } from '../../models/dataModels/tenant';
+import { InfoDisplay } from './genericModels';
 
 export type DataRowProps = {
     data: Tenant
@@ -11,3 +12,7 @@ export type NavButtonsProps = {
 export type MenuButtonProps = {
     isAbove: boolean;
 };
+
+export type MainProps = {
+    infoDisplay: InfoDisplay
+}
