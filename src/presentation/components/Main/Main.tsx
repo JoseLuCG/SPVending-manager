@@ -16,44 +16,6 @@ function Main({infoDisplay}: MainProps) {
 	const [ clubs, setClubs ] = useState<ClubList>([]);
 
 	//Functions:
-	function createArrayOfTenantsExamplesOrClubExamples() {
-		const tenantsArray: TenantList = [];
-		const clubsArray: ClubList = [];
-		const clubExample: Club = {
-			clubId: "a81bc81b-dead-4e5d-abff-90865d1e13b1",
-			clubName: "PadelPrix Ourense",
-			cif: 123456789,
-			address: "Rua Camiños N34 P4D",
-			phone: 622333444,
-			email: "clubou@gmail.com",
-			remark: "emtpy",
-			micronId: "VFW1234",
-			accountingId: "HOLAMUNDO",
-			tenantName: "PadelPrix",
-			numberOfMachines: 5
-		}
-		
-		const tenantExample: Tenant = {
-			tenantId: "a81bc81b-dead-4e5d-abff-90865d1e13b1",
-			tenantName: "PadelPrix",
-			cif: 123456789,
-			address: "Example address N2 45",
-			phone: 611222333,
-			email: "padelprix@gmail.com",
-			remark: "empty",
-			micronId: "12345678",
-			numberOfClubs: 4
-		};
-
-		for (let idx = 0; idx < 5; idx++) {
-			clubsArray.push(clubExample);
-		}
-		for (let idx = 0; idx < 5; idx++) {
-			tenantsArray.push(tenantExample);
-		}
-		setTenants(tenantsArray);
-		setClubs(clubsArray);
-	}
 
 	// ----- Styles -----
 	const rowClassName = () => {
@@ -74,7 +36,7 @@ function Main({infoDisplay}: MainProps) {
 
 	useEffect(
 		() => {
-			createArrayOfTenantsExamplesOrClubExamples();			
+					
 		}, []
 	);
 	
