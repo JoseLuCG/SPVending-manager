@@ -1,4 +1,4 @@
-import { Tenant } from '../../models/dataModels/tenant';
+import { Tenant } from '../models/tenant';
 import { InfoDisplay } from './genericModels';
 
 export type DataRowProps = {

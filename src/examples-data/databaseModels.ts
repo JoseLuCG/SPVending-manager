@@ -1,4 +1,4 @@
-import { User } from "../models/dataModels/user";
+import { User } from "../domain/entities/models/user";
 
 // ---------- Tenants Model ----------
 export const tenantsModel = [
