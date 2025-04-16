@@ -3,16 +3,19 @@ import { Route, Routes } from 'react-router';
 import TenantsPage from './pages/TenantsPage/TenantsPage';
 import ClubsPage from './pages/ClubsPage/ClubsPage';
 import MachinesPage from './pages/MachinesPage/MachinesPage';
+import UsersPage from './pages/UsersPage/UsersPage';
+import { appRoutes } from './utilities/defines/routes';
 
 function App() {
 
 	return (
 		<>
 			<Routes>
-				<Route path='/tenants' element={<TenantsPage/>}/>
-				<Route path='/clubs' element={<ClubsPage/>}/>
-				<Route path='/machines' element={<MachinesPage/>}/>
-			</Routes>			
+				<Route path={appRoutes.tenantsRoute} element={<TenantsPage/>}/>
+				<Route path={appRoutes.clubsRoute} element={<ClubsPage/>}/>
+				<Route path={appRoutes.machinesRoute} element={<MachinesPage/>}/>
+				<Route path={appRoutes.usersRoute} element={<UsersPage/>} />
+			</Routes>
 		</>
 	)
 }
