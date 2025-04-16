@@ -43,3 +43,26 @@ export const infoDisplayClub = {
         header: "Phone"
     }
 };
+
+export const infoDisplayMachines = {
+    column1: {
+        field: "",
+        header: ""
+    },
+    column2: {
+        field: "",
+        header: ""
+    },
+    column3: {
+        field: "",
+        header: ""
+    },
+    column4: {
+        field: "",
+        header: ""
+    },
+    column5: {
+        field: "",
+        header: ""
+    }
+};
