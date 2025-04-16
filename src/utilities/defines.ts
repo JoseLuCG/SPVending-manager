@@ -47,22 +47,22 @@ export const infoDisplayClub = {
 export const infoDisplayMachines = {
     column1: {
         field: "",
-        header: ""
+        header: "Machine Code"
     },
     column2: {
         field: "",
-        header: ""
+        header: "Club"
     },
     column3: {
         field: "",
-        header: ""
+        header: "Tenant"
     },
     column4: {
         field: "",
-        header: ""
+        header: "Attendant"
     },
     column5: {
         field: "",
-        header: ""
+        header: "State"
     }
 };
