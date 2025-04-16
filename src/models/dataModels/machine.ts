@@ -8,5 +8,6 @@ export type Machine = {
     tnaSerialNumber: string
     rustdeskId: string,
     rustdeskPass: string,
-    clubName: string
+    clubName: string,
+    state: boolean
 }
