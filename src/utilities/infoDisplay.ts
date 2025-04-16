@@ -66,3 +66,26 @@ export const infoDisplayMachines = {
         header: "State"
     }
 };
+
+export const infoDisplayUsers = {
+    column1: {
+        field: "",
+        header: "Name"
+    },
+    column2: {
+        field: "",
+        header: "Rol"
+    },
+    column3: {
+        field: "",
+        header: "Tenant"
+    },
+    column4: {
+        field: "",
+        header: "Club"
+    },
+    column5: {
+        field: "",
+        header: "X"
+    }
+};
