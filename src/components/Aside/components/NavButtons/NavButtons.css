@@ -32,3 +32,8 @@ nav > ul > li:hover {
     background-color: #0A3072;
     color: #FFFFFF;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
