@@ -1,9 +1,9 @@
 import './App.css';
 import { Route, Routes } from 'react-router';
-import TenantsPage from './pages/TenantsPage/TenantsPage';
-import ClubsPage from './pages/ClubsPage/ClubsPage';
-import MachinesPage from './pages/MachinesPage/MachinesPage';
-import UsersPage from './pages/UsersPage/UsersPage';
+import TenantsPage from './presentation/pages/TenantsPage/TenantsPage';
+import ClubsPage from './presentation/pages/ClubsPage/ClubsPage';
+import MachinesPage from './presentation/pages/MachinesPage/MachinesPage';
+import UsersPage from './presentation/pages/UsersPage/UsersPage';
 import { appRoutes } from './utilities/defines/routes';
 
 function App() {

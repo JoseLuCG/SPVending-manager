@@ -1,5 +1,5 @@
 import './Header.css';
-import userIcon from './../../assets/icons/UserIcon.svg';
+import userIcon from './../../../assets/icons/UserIcon.svg';
 import { useState } from 'react';
 
 function Header() {

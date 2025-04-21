@@ -1,7 +1,7 @@
-import { NavButtonsProps } from '../../../../models/propertyModels/componentsProperties';
+import { NavButtonsProps } from './../../../../../domain/entities/property-models/componentsProperties';
 import { Link } from 'react-router';
 import './NavButtons.css';
-import { appRoutes } from '../../../../utilities/defines/routes';
+import { appRoutes } from '../../../../../utilities/defines/routes';
 
 function NavButtons({ isAbove }: NavButtonsProps) {
     
