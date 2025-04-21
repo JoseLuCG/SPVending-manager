@@ -1,0 +1,9 @@
+import { Tenant } from "../entities/models/tenant";
+
+export interface TenantRepository {
+    getAllTenants() : Promise<Tenant[]>;
+    findTenantByUuid( tenantUuid : string ) : Promise<Tenant | null >;
+    addTenant( tenant : Tenant ) : Promise<void>;
+    modifyTenant( tenant : Tenant) : Promise<void>;
+    deleteTenant( uuid : string ) : Promise<void>;
+}
