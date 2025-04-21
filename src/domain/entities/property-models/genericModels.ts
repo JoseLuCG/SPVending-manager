@@ -4,6 +4,7 @@ type TableColumn = {
 } 
 
 export type InfoDisplay = {
+    list: string,
     column1: TableColumn,
     column2: TableColumn,
     column3: TableColumn,

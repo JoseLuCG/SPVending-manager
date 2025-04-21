@@ -9,5 +9,3 @@ export type Tenant = {
   micronId: string
   numberOfClubs: number
 }
-
-export type TenantList = Tenant[];

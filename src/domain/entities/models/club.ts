@@ -11,5 +11,3 @@ export type Club = {
     tenantName: string,
     numberOfMachines: number
 }
-
-export type ClubList = Club[];
