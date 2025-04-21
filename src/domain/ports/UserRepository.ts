@@ -5,5 +5,5 @@ export interface UserRepository {
     findUserByUuid( userUuid : string ) : Promise< User | null >;
     addUser( user : User ) : Promise<void>;
     modifyUser( user :User) : Promise<void>;
-    deleteUser(uuid: string) : Promise<void>
+    deleteUser(userUuid: string) : Promise<void>
 }
