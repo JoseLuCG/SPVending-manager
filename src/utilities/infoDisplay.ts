@@ -1,4 +1,5 @@
 export const infoDisplayTenant = {
+    list: "Tenant",
     column1: {
         field: "tenantName",
         header: "Name"
@@ -22,6 +23,7 @@ export const infoDisplayTenant = {
 };
 
 export const infoDisplayClub = {
+    list: "Club",
     column1: {
         field: "clubName",
         header: "Name"
@@ -45,6 +47,7 @@ export const infoDisplayClub = {
 };
 
 export const infoDisplayMachines = {
+    list: "Machines",
     column1: {
         field: "",
         header: "Machine Code"
@@ -68,6 +71,7 @@ export const infoDisplayMachines = {
 };
 
 export const infoDisplayUsers = {
+    list: "Users",
     column1: {
         field: "",
         header: "Name"

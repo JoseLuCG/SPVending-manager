@@ -1,6 +1,6 @@
 import './Main.css';
-import { Tenant, TenantList } from '../../models/dataModels/tenant';
-import { Club, ClubList } from '../../models/dataModels/club';
+import { Tenant } from '../../../domain/entities/models/tenant';
+import { Club } from '../../../domain/entities/models/club';
 //import searchIcon from './../../assets/icons/Search-more.svg';
 import Aside from './../Aside/Aside';
 import { useEffect, useState } from 'react';
@@ -8,12 +8,12 @@ import { useEffect, useState } from 'react';
 //import TableHeader from '../TableHeader/TableHeader';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { MainProps } from '../../models/propertyModels/componentsProperties';
+import { MainProps } from './../../../domain/entities/property-models/componentsProperties';
 
 function Main({infoDisplay}: MainProps) {
 	//States:
-	const [ tenants, setTenants ] = useState<TenantList>([]);
-	const [ clubs, setClubs ] = useState<ClubList>([]);
+	const [ tenants, setTenants ] = useState<Tenant[]>([]);
+	const [ clubs, setClubs ] = useState<Club[]>([]);
 
 	//Functions:
 
@@ -47,7 +47,7 @@ function Main({infoDisplay}: MainProps) {
 			<section>
 				<div className='table-contents'>
 					<div className='header-content'>
-						<p className='infText'>Tenant List</p>
+						<p className='infText'>{infoDisplay.list} List</p>
 						<button className='addButton'>+ Add tenant</button>
 						<input className='searcher' type="text" placeholder='Buscar...' />
 					</div>
