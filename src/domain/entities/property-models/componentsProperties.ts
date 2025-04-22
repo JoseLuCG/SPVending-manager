@@ -1,5 +1,8 @@
+import { Club } from '../models/club';
+import { Machine } from '../models/machine';
 import { Tenant } from '../models/tenant';
-import { InfoDisplay } from './genericModels';
+import { User } from '../models/user';
+import { Handler, InfoDisplay } from './genericModels';
 
 export type DataRowProps = {
     data: Tenant
@@ -14,5 +17,11 @@ export type MenuButtonProps = {
 };
 
 export type MainProps = {
-    infoDisplay: InfoDisplay
+    infoDisplay: InfoDisplay,
+    dataToDisplay : Tenant[] | Club[] | Machine[] | User[]
+}
+
+export type TenantRegisterModalProps = {
+    isOpen: boolean,
+    onClose: Handler
 }

@@ -11,3 +11,7 @@ export type InfoDisplay = {
     column4: TableColumn,
     column5: TableColumn
 }
+
+export type Handler = {
+    (): void
+}
