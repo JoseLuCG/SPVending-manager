@@ -2,7 +2,7 @@ import { Club } from '../models/club';
 import { Machine } from '../models/machine';
 import { Tenant } from '../models/tenant';
 import { User } from '../models/user';
-import { Handler, InfoDisplay } from './genericModels';
+import { InfoDisplay } from './genericModels';
 
 export type DataRowProps = {
     data: Tenant
@@ -23,5 +23,5 @@ export type MainProps = {
 
 export type TenantRegisterModalProps = {
     isOpen: boolean,
-    onClose: Handler
+    onClose: () => void
 }
