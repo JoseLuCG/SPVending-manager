@@ -1,7 +1,8 @@
 import { TenantRepository } from "../../../domain/ports/TenantRepository";
 import { Tenant } from "../../../domain/entities/models/tenant";
 import { BASE_URL_SERVER, TENANT_PREFIX } from "../../../utilities/defines/api/api-routes";
-import { mapTenantFromApi } from "../../mappers/TenantMapper";
+import { mapTenantFromApi } from "../../mappers/FromApi/TenantMapper";
+import { mapTenantToApi } from "../../mappers/ToApi/TenantMapperToApi";
 
 export class TenantRepositoryHttp implements TenantRepository {
     private BASEURL = BASE_URL_SERVER + TENANT_PREFIX;
@@ -18,11 +19,14 @@ export class TenantRepositoryHttp implements TenantRepository {
     }
 
     async addTenant(tenant: Tenant): Promise<void> {
+        const body = mapTenantToApi(tenant);
+        console.log(body);
         const response = await fetch(
             this.BASEURL,
             {
+                mode: 'no-cors',
                 method: "POST",
-                body: JSON.stringify(tenant),
+                body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
             }
         );
