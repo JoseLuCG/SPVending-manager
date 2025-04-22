@@ -1,22 +1,11 @@
 import './Main.css';
-import { Tenant } from '../../../domain/entities/models/tenant';
-import { Club } from '../../../domain/entities/models/club';
 //import searchIcon from './../../assets/icons/Search-more.svg';
 import Aside from './../Aside/Aside';
-import { useEffect, useState } from 'react';
-//import DataRow from '../DataRow/DataRow';
-//import TableHeader from '../TableHeader/TableHeader';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { MainProps } from './../../../domain/entities/property-models/componentsProperties';
 
-function Main({infoDisplay}: MainProps) {
-	//States:
-	const [ tenants, setTenants ] = useState<Tenant[]>([]);
-	const [ clubs, setClubs ] = useState<Club[]>([]);
-
-	//Functions:
-
+function Main({infoDisplay, dataToDisplay}: MainProps) {
 	// ----- Styles -----
 	const rowClassName = () => {
 		return {
@@ -24,22 +13,6 @@ function Main({infoDisplay}: MainProps) {
 			"p-datatable-thead": true
 		};
 	};
-
-	// ----- Functions -----
-	function result() {
-		if (infoDisplay.column1.field == "tenantName") {
-			return tenants;
-		} else {
-			return clubs;
-		}
-	}
-
-	useEffect(
-		() => {
-					
-		}, []
-	);
-	
 
 	return (
 		<main>
@@ -51,7 +24,7 @@ function Main({infoDisplay}: MainProps) {
 						<button className='addButton'>+ Add tenant</button>
 						<input className='searcher' type="text" placeholder='Buscar...' />
 					</div>
-					<DataTable value={result()} selectionMode="single" rowClassName={rowClassName}>
+					<DataTable value={dataToDisplay} selectionMode="single" rowClassName={rowClassName}>
 						<Column field={infoDisplay.column1.field} header={infoDisplay.column1.header}></Column>
 						<Column field={infoDisplay.column2.field} header={infoDisplay.column2.header}></Column>
 						<Column field={infoDisplay.column3.field} header={infoDisplay.column3.header}></Column>
