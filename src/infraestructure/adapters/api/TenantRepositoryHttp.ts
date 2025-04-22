@@ -1,10 +1,10 @@
 import { TenantRepository } from "../../../domain/ports/TenantRepository";
 import { Tenant } from "../../../domain/entities/models/tenant";
-import { BASE_URL_SERVER, PREFIX } from "../../../utilities/defines/api/api-routes";
+import { BASE_URL_SERVER, TENANT_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapTenantFromApi } from "../../mappers/TenantMapper";
 
 export class TenantRepositoryHttp implements TenantRepository {
-    private BASEURL = BASE_URL_SERVER + PREFIX;
+    private BASEURL = BASE_URL_SERVER + TENANT_PREFIX;
 
     async findTenantByUuid(tenantUuid: string): Promise<Tenant | null> {
         const response = await fetch(`${this.BASEURL}/${tenantUuid}`);
