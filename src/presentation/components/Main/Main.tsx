@@ -4,9 +4,14 @@ import Aside from './../Aside/Aside';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { MainProps } from './../../../domain/entities/property-models/componentsProperties';
+import TenantRegisterModal from '../Modals/TenantRegisterModal/TenantRgisterModal';
+import { useState } from 'react';
 
 function Main({infoDisplay, dataToDisplay}: MainProps) {
-	// ----- Styles -----
+	// ---------- States ----------
+	const [ showTenantModal, setShowTenantModal ] = useState(false);
+
+	// ---------- Styles ----------
 	const rowClassName = () => {
 		return {
 			"table-row": true,
@@ -21,7 +26,8 @@ function Main({infoDisplay, dataToDisplay}: MainProps) {
 				<div className='table-contents'>
 					<div className='header-content'>
 						<p className='infText'>{infoDisplay.list} List</p>
-						<button className='addButton'>+ Add tenant</button>
+						<button className='addButton' onClick={() => setShowTenantModal(true) }>+ Add tenant</button>
+						<TenantRegisterModal isOpen={showTenantModal} onClose={() => setShowTenantModal(false) }/>
 						<input className='searcher' type="text" placeholder='Buscar...' />
 					</div>
 					<DataTable value={dataToDisplay} selectionMode="single" rowClassName={rowClassName}>
