@@ -1,7 +1,7 @@
 export const infoDisplayTenant = {
     list: "Tenant",
     column1: {
-        field: "tenantName",
+        field: "name",
         header: "Name"
     },
     column2: {
@@ -17,7 +17,7 @@ export const infoDisplayTenant = {
         header: "Email"
     },
     column5: {
-        field: "numberOfClubs",
+        field: "clubsCount",
         header: "Clubs"
     }
 };
