@@ -8,7 +8,7 @@ function UsersPage() {
 	return (
 		<>
 			<Header />
-			<Main infoDisplay={ infoDisplayUsers } />
+			<Main textInfoDisplay={ infoDisplayUsers } />
 		</>
 	)
 }

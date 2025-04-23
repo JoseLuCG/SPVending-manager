@@ -8,7 +8,7 @@ function ClubsPage() {
 	return (
 		<>
 			<Header />
-			<Main infoDisplay={infoDisplayClub} />
+			<Main textInfoDisplay={infoDisplayClub} />
 		</>
 	)
 }
