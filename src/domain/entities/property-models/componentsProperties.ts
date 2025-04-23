@@ -1,6 +1,6 @@
 import { Club } from '../models/club';
 import { Machine } from '../models/machine';
-import { Tenant } from '../models/tenant';
+import { Tenant, TenantInfoDisplay } from '../models/tenant';
 import { User } from '../models/user';
 import { InfoDisplay } from './genericModels';
 
@@ -17,8 +17,8 @@ export type MenuButtonProps = {
 };
 
 export type MainProps = {
-    infoDisplay: InfoDisplay,
-    dataToDisplay : Tenant[] | Club[] | Machine[] | User[]
+    textInfoDisplay: InfoDisplay,
+    dataToDisplay : TenantInfoDisplay[] | Club[] | Machine[] | User[]
 }
 
 export type TenantRegisterModalProps = {
