@@ -1,10 +1,6 @@
-import { Tenant } from "../../../domain/entities/models/tenant";
+import { TenantApiResponse } from "../../../domain/entities/api-models/apiResponse";
+import { TenantInfoDisplay } from "../../../domain/entities/models/tenant";
 
-export async function mapTenantFromApi(apiData: unknown): Tenant[] {
-    const data = await apiData.json();
-
-    console.log(data);
-    
-
+export function mapTenantFromApi(apiData: TenantApiResponse): TenantInfoDisplay[] {
     return apiData.content;
 }

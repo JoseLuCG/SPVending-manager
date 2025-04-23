@@ -1,7 +1,7 @@
-import { Tenant } from "../entities/models/tenant";
+import { Tenant, TenantInfoDisplay } from "../entities/models/tenant";
 
 export interface TenantRepository {
-    getAllTenants() : Promise<Tenant[]>;
+    getAllTenants() : Promise<TenantInfoDisplay[]>;
     findTenantByUuid( tenantUuid : string ) : Promise<Tenant | null >;
     addTenant( tenant : Tenant ) : Promise<void>;
     modifyTenant( tenant : Tenant) : Promise<void>;

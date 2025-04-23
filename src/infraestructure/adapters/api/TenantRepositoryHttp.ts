@@ -1,5 +1,5 @@
 import { TenantRepository } from "../../../domain/ports/TenantRepository";
-import { Tenant } from "../../../domain/entities/models/tenant";
+import { Tenant, TenantInfoDisplay } from "../../../domain/entities/models/tenant";
 import { BASE_URL_SERVER, TENANT_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapTenantFromApi } from "../../mappers/FromApi/TenantMapper";
 import { mapTenantToApi } from "../../mappers/ToApi/TenantMapperToApi";
@@ -13,9 +13,10 @@ export class TenantRepositoryHttp implements TenantRepository {
         return response.json();
     }
 
-    async getAllTenants(): Promise<Tenant[]> {
+    async getAllTenants(): Promise<TenantInfoDisplay[]> {
         const response = await fetch(this.BASEURL);
-        return mapTenantFromApi(response);
+        const json = await response.json();
+        return mapTenantFromApi(json);
     }
 
     async addTenant(tenant: Tenant): Promise<void> {
