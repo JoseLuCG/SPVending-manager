@@ -24,7 +24,6 @@ export class TenantRepositoryHttp implements TenantRepository {
         const response = await fetch(
             this.BASEURL,
             {
-                mode: 'no-cors',
                 method: "POST",
                 body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
