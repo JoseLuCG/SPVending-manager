@@ -48,7 +48,7 @@ function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
     return(
         <div className="modal-overlay">
             <div className="modal">
-                <h2>Registrar Tenant</h2>
+                <h2>Registrar club</h2>
                 <form onSubmit={submitHandler} className="form">
                     <input name="clubName" placeholder="Nombre" value={clubFormData.clubName} onChange={changeHandler} required />
                     <input name="cif" placeholder="CIF" value={clubFormData.cif || ""} onChange={changeHandler} type="number" required />
