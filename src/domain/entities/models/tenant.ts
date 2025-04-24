@@ -18,3 +18,8 @@ export type TenantInfoDisplay = {
 	email: string;
 	clubsCount: number;
 }
+
+export type PotentialTenant = {
+	tenantId: string,
+	name: string
+}
