@@ -4,6 +4,7 @@ import { ModalProps } from "../../../../domain/entities/property-models/componen
 import { Club } from "../../../../domain/entities/models/club";
 import { ClubRepositoryHttp } from "../../../../infraestructure/adapters/api/ClubRepositoryHttp";
 import { CreateClub } from "../../../../application/usecases/ClubUseCases/CreateClub";
+import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
 
 
 const clubRepo = new ClubRepositoryHttp();
@@ -20,7 +21,7 @@ function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
         remark: "",
         micronId: "",
         accountingId: "",
-        tenantName: "",
+        tenantId: "",
     });
 
     // Handlers
@@ -58,7 +59,8 @@ function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
                     <input name="remark" placeholder="Observaciones" value={clubFormData.remark} onChange={changeHandler} />
                     <input name="micronId" placeholder="Micron ID" value={clubFormData.micronId} onChange={changeHandler} required />
                     <input name="accountingId" placeholder="Cuenta ID" value={clubFormData.accountingId} onChange={changeHandler} required />
-                    <input name="tenantName" placeholder="Tenant al que pertenece" value={clubFormData.tenantName} onChange={changeHandler} type="text" />
+                    <SelectTenantOptions/>
+                    <br/>
 
                     <button type="submit">Registrar</button>
                     <button type="button" onClick={onClose}>Cancelar</button>
