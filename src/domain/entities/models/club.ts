@@ -8,6 +8,6 @@ export type Club = {
     remark: string,
     micronId: string,
     accountingId: string
-    tenantName: string,
+    tenantId: string,
     numberOfMachines: number
 }
