@@ -47,7 +47,7 @@ export const infoDisplayClub = {
 };
 
 export const infoDisplayMachines = {
-    list: "Machines",
+    list: "Machine",
     column1: {
         field: "",
         header: "Machine Code"
@@ -71,7 +71,7 @@ export const infoDisplayMachines = {
 };
 
 export const infoDisplayUsers = {
-    list: "Users",
+    list: "User",
     column1: {
         field: "",
         header: "Name"
