@@ -31,3 +31,7 @@ export type GenericModalProps = {
     isOpen: boolean,
     onClose: () => void
 }
+
+export type SelectTenantOptionProps = {
+    onSelectTenant: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+}
