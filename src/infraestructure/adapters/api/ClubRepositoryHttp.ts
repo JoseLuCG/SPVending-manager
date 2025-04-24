@@ -1,8 +1,10 @@
 import { ClubRepository } from "../../../domain/ports/ClubRepository";
 import { Club } from "../../../domain/entities/models/club";
+import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
+import { mapClubToApi } from "../../mappers/ToApi/ClubMapperToApi";
 
 export class ClubRepositoryHttp implements ClubRepository {
-    private BASEURL = "https://api.example.com/";
+    private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.clubPath;
 
     async findClubByUuid(clubUuid: string): Promise<Club | null> {
         const response = await fetch(`${this.BASEURL}/${clubUuid}`);
@@ -16,11 +18,12 @@ export class ClubRepositoryHttp implements ClubRepository {
     }
 
     async addClub(club: Club): Promise<void> {
+        const body = mapClubToApi(club);
         const response = await fetch(
             this.BASEURL,
             {
                 method: "POST",
-                body: JSON.stringify(club),
+                body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
             }
         );
