@@ -21,7 +21,13 @@ export type MainProps = {
     dataToDisplay : TenantInfoDisplay[] | Club[] | Machine[] | User[]
 }
 
-export type TenantRegisterModalProps = {
+export type ModalProps = {
+    isOpen: boolean,
+    onClose: () => void
+}
+
+export type GenericModalProps = {
+    typeModal: string
     isOpen: boolean,
     onClose: () => void
 }
