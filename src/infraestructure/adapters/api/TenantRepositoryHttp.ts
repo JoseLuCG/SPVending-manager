@@ -1,5 +1,5 @@
 import { TenantRepository } from "../../../domain/ports/TenantRepository";
-import { Tenant, TenantInfoDisplay } from "../../../domain/entities/models/tenant";
+import { PotentialTenant, Tenant, TenantInfoDisplay } from "../../../domain/entities/models/tenant";
 import { BASE_URL_SERVER, API_PREFIX, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapTenantFromApi } from "../../mappers/FromApi/TenantMapper";
 import { mapTenantToApi } from "../../mappers/ToApi/TenantMapperToApi";
@@ -48,5 +48,11 @@ export class TenantRepositoryHttp implements TenantRepository {
     async deleteTenant(uuid: string): Promise<void> {
         const response = await fetch(`${this.BASEURL}/${uuid}`);
         if (!response.ok) throw new Error("Error deleting tenant");
+    }
+
+    async getPotentialTenants(): Promise<PotentialTenant[]> {
+        const response = await fetch(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`);
+        const data = await response.json();
+        return data;
     }
 }
