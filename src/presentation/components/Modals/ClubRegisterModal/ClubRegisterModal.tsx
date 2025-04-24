@@ -25,7 +25,7 @@ function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
     });
 
     // Handlers
-    function changeHandler( event:React.ChangeEvent<HTMLInputElement> ) {
+    function changeHandler( event:React.ChangeEvent<HTMLInputElement | HTMLSelectElement > ) {
         const { name , value } = event.target;
         setClubFormData({
             ...clubFormData,
@@ -59,7 +59,7 @@ function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
                     <input name="remark" placeholder="Observaciones" value={clubFormData.remark} onChange={changeHandler} />
                     <input name="micronId" placeholder="Micron ID" value={clubFormData.micronId} onChange={changeHandler} required />
                     <input name="accountingId" placeholder="Cuenta ID" value={clubFormData.accountingId} onChange={changeHandler} required />
-                    <SelectTenantOptions/>
+                    <SelectTenantOptions onSelectTenant={changeHandler}/>
                     <br/>
 
                     <button type="submit">Registrar</button>
