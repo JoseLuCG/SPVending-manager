@@ -2,11 +2,12 @@ import { useState } from "react";
 import { PotentialTenant } from "../../../domain/entities/models/tenant";
 import { TenantRepositoryHttp } from "../../../infraestructure/adapters/api/TenantRepositoryHttp";
 import { GetPotentialTenants } from "../../../application/usecases/TenantUseCases/GetPotentialTenants";
+import { SelectTenantOptionProps } from "../../../domain/entities/property-models/componentsProperties";
 
 const tenantRepo = new TenantRepositoryHttp();
 const getPotentialTenant = new GetPotentialTenants(tenantRepo);
 
-function SelectTenantOptions() {
+function SelectTenantOptions({onSelectTenant}: SelectTenantOptionProps) {
     // States:
     const [ potentialTenants, setPotentialTenants ] = useState<PotentialTenant[]>([]);
     const [ selectOpen, setSelectOpen ] = useState(false);
@@ -28,7 +29,7 @@ function SelectTenantOptions() {
         <>
             <label htmlFor="tenants">Choose a tenant:</label>
             <br/>
-            <select name="tenants" id="tenants" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)}>
+            <select name="tenantId" id="tenants" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectTenant}>
                 {
                     potentialTenants.map(
                         (t) => <option key={t.tenantId} value={t.tenantId}>{t.name}</option>
