@@ -1,5 +1,5 @@
 import { ClubRepository } from "../../../domain/ports/ClubRepository";
-import { Club, ClubInfoDisplay } from "../../../domain/entities/models/club";
+import { ClubInfoDisplay } from "../../../domain/entities/models/club";
 
 export class GetClubList {
     constructor(private clubRepository: ClubRepository){};
