@@ -1,6 +1,7 @@
 import { ClubRepository } from "../../../domain/ports/ClubRepository";
 import { Club, ClubInfoDisplay } from "../../../domain/entities/models/club";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
+import { mapClubFromApi } from "../../mappers/FromApi/ClubMapper";
 import { mapClubToApi } from "../../mappers/ToApi/ClubMapperToApi";
 
 export class ClubRepositoryHttp implements ClubRepository {
@@ -14,7 +15,8 @@ export class ClubRepositoryHttp implements ClubRepository {
 
     async getAllClubs(): Promise<ClubInfoDisplay[]> {
         const response = await fetch(this.BASEURL);
-        return response.json();
+        const json = await response.json();
+        return mapClubFromApi(json);
     }
 
     async addClub(club: Club): Promise<void> {
