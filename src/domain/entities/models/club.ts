@@ -11,3 +11,12 @@ export type Club = {
     tenantId: string,
     numberOfMachines: number
 }
+
+export type ClubInfoDisplay = {
+    clubId: string
+    name: string,
+    address: string,
+    phone: string,
+    tenantEntityName: string,
+    machinesCount: number
+}
