@@ -1,7 +1,7 @@
-import { Club } from "../entities/models/club";
+import { Club, ClubInfoDisplay } from "../entities/models/club";
 
 export interface ClubRepository {
-    getAllClubs(): Promise<Club[]>;
+    getAllClubs(): Promise<ClubInfoDisplay[]>;
     findClubByUuid(clubUuid: string): Promise<Club | null>;
     addClub(club: Club): Promise<void>;
     modifyClub(club: Club): Promise<void>;
