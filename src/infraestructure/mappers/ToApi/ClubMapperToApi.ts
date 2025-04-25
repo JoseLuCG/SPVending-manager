@@ -9,7 +9,7 @@ export function mapClubToApi(club: Partial<Club>): any {
       email: club.email,
       remark: club.remark,
       micronId: club.micronId,
-      acountingId: club.accountingId,
-      tenantName: club.tenantName
+      accountingId: club.accountingId,
+      tenantId: club.tenantId
     };
 }
