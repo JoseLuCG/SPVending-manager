@@ -25,15 +25,15 @@ export const infoDisplayTenant = {
 export const infoDisplayClub = {
     list: "Club",
     column1: {
-        field: "clubName",
+        field: "name",
         header: "Name"
     },
     column2: {
-        field: "tenantName",
+        field: "tenantEntityName",
         header: "Tenant"
     },
     column3: {
-        field: "numberOfMachines",
+        field: "machinesCount",
         header: "Machines"
     },
     column4: {
