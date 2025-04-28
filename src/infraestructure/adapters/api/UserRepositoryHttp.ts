@@ -1,9 +1,10 @@
 import { UserRepository } from "../../../domain/ports/UserRepository";
 import { User, UserInfoDisplay } from "../../../domain/entities/models/user";
 import { mapUserFromApi } from "../../mappers/FromApi/UserMapper";
+import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 
 export class UserRepositoryHttp implements UserRepository {
-    private BASEURL = "https://api.example.com/";
+    private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.usersPath;
 
     async findUserByUuid(userUuid: string): Promise<User | null> {
         const response = await fetch(`${this.BASEURL}/${userUuid}`);
