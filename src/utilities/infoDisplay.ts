@@ -73,20 +73,20 @@ export const infoDisplayMachines = {
 export const infoDisplayUsers = {
     list: "User",
     column1: {
-        field: "",
+        field: "username",
         header: "Name"
     },
     column2: {
-        field: "",
-        header: "Rol"
+        field: "clubEntityName",
+        header: "Place"
     },
     column3: {
-        field: "",
-        header: "Tenant"
+        field: "micronId",
+        header: "MIC ID"
     },
     column4: {
-        field: "",
-        header: "Club"
+        field: "micronUser",
+        header: "Micron User"
     },
     column5: {
         field: "",
