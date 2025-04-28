@@ -17,5 +17,6 @@ export type MachineInfoDisplay = {
     clubName: string,
     tenantName: string,
     attendant: string,
-    state: string
+    state: string,
+    machineId: string
 }
