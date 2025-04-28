@@ -1,7 +1,7 @@
-import { Machine } from "../entities/models/machine";
+import { Machine, MachineInfoDisplay } from "../entities/models/machine";
 
 export interface MachineRepository {
-    getAllMachines() : Promise<Machine[]>;
+    getAllMachines() : Promise<MachineInfoDisplay[]>;
     findMachineByUuid( machineUuid : string ) : Promise<Machine | null >;
     addMachine( machine : Machine ) : Promise<void>;
     modifyMachine( machine : Machine) : Promise<void>;

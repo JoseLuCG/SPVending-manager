@@ -11,3 +11,11 @@ export type Machine = {
     clubName: string,
     state: boolean
 }
+
+export type MachineInfoDisplay = {
+    machineCode: string,
+    clubName: string,
+    tenantName: string,
+    attendant: string,
+    state: string
+}
