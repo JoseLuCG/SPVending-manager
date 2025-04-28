@@ -1,7 +1,7 @@
 import { ClubInfoDisplay } from '../models/club';
 import { MachineInfoDisplay } from '../models/machine';
 import { Tenant, TenantInfoDisplay } from '../models/tenant';
-import { User, UserInfoDisplay } from '../models/user';
+import { UserInfoDisplay } from '../models/user';
 import { InfoDisplay } from './genericModels';
 
 export type DataRowProps = {
