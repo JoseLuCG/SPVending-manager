@@ -4,5 +4,6 @@ export const PATH_PREFIX = {
     tenantPath: "/tenants",
     clubPath: "/clubs",
     potentialTenants: "all-sumary",
-    machinesPath: "/machines"
+    machinesPath: "/machines",
+    usersPath: "/user-managers"
 }
