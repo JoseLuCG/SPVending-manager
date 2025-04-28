@@ -2,6 +2,7 @@ import { MachineRepository } from "../../../domain/ports/MachineRepository";
 import { Machine, MachineInfoDisplay } from "../../../domain/entities/models/machine";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapMachineFromApi } from "../../mappers/FromApi/MachineMapper";
+import { mapMachineToApi } from "../../mappers/ToApi/MachineMapperToApi";
 
 export class MachineRepositoryHttp implements MachineRepository{
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.machinesPath;
@@ -19,11 +20,12 @@ export class MachineRepositoryHttp implements MachineRepository{
     }
 
     async addMachine(machine: Machine): Promise<void> {
+        const body = mapMachineToApi(machine);
         const response = await fetch(
             this.BASEURL,
             {
                 method: "POST",
-                body: JSON.stringify(machine),
+                body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
             }
         );

@@ -21,7 +21,6 @@ export class TenantRepositoryHttp implements TenantRepository {
 
     async addTenant(tenant: Tenant): Promise<void> {
         const body = mapTenantToApi(tenant);
-        console.log(body);
         const response = await fetch(
             this.BASEURL,
             {
