@@ -1,6 +1,7 @@
 import { ClubInfoDisplay } from "../models/club";
 import { MachineInfoDisplay } from "../models/machine";
 import { TenantInfoDisplay } from "../models/tenant";
+import { UserInfoDisplay } from "../models/user";
 
 export type PageInfo = {
     size: number;
@@ -21,5 +22,10 @@ export type ClubApiResponse = {
 
 export type MachineApiResponse = {
     content: MachineInfoDisplay[],
+    page: PageInfo
+}
+
+export type UserApiResponse = {
+    content: UserInfoDisplay[],
     page: PageInfo
 }
