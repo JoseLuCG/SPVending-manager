@@ -1,5 +1,6 @@
 import { UserRepository } from "../../../domain/ports/UserRepository";
-import { User } from "../../../domain/entities/models/user";
+import { User, UserInfoDisplay } from "../../../domain/entities/models/user";
+import { mapUserFromApi } from "../../mappers/FromApi/UserMapper";
 
 export class UserRepositoryHttp implements UserRepository {
     private BASEURL = "https://api.example.com/";
@@ -10,9 +11,10 @@ export class UserRepositoryHttp implements UserRepository {
         return response.json();
     }
 
-    async getAllUsers(): Promise<User[]> {
+    async getAllUsers(): Promise<UserInfoDisplay[]> {
         const response = await fetch(this.BASEURL);
-        return response.json();
+        const json = await response.json();
+        return mapUserFromApi(json);
     }
 
     async addUser(user: User): Promise<void> {
