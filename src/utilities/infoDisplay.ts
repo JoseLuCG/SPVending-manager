@@ -49,24 +49,24 @@ export const infoDisplayClub = {
 export const infoDisplayMachines = {
     list: "Machine",
     column1: {
-        field: "",
+        field: "code",
         header: "Machine Code"
     },
     column2: {
-        field: "",
+        field: "clubName",
         header: "Club"
     },
     column3: {
-        field: "",
-        header: "Tenant"
+        field: "toSerialNumber",
+        header: "Terminal Serial Number"
     },
     column4: {
-        field: "",
-        header: "Attendant"
+        field: "terminalId",
+        header: "Terminal ID"
     },
     column5: {
-        field: "",
-        header: "State"
+        field: "smartFridgeId",
+        header: "SF ID"
     }
 };
 
