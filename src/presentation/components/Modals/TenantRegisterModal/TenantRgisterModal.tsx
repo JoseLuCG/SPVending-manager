@@ -1,7 +1,7 @@
 import "./../Modal.css"
 import React, { useState } from "react";
 import { CreateTenant } from "../../../../application/usecases/TenantUseCases/CreateTenant";
-import { GenericModalProps } from "../../../../domain/entities/property-models/componentsProperties";
+import { ModalProps } from "../../../../domain/entities/property-models/componentsProperties";
 import { TenantRepositoryHttp } from "../../../../infraestructure/adapters/api/TenantRepositoryHttp";
 import { Tenant } from "../../../../domain/entities/models/tenant";
 
@@ -9,7 +9,7 @@ import { Tenant } from "../../../../domain/entities/models/tenant";
 const tenantRepo = new TenantRepositoryHttp();
 const createTenant = new CreateTenant(tenantRepo);
 
-function TenantRegisterModal({ isOpen, onClose }: GenericModalProps) {
+function TenantRegisterModal({ isOpen, onClose }: ModalProps) {
     // States:
     const [ tenantFormData, setTenantFormData ] = useState<Omit<Tenant,"tenantId"|"numberOfClubs">>({
         tenantName: "",
