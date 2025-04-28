@@ -14,3 +14,12 @@ export type User = {
     clubName: string,
     tenantId: string
 }
+
+export type UserInfoDisplay = {
+    userManagerId: string,
+    username: string,
+    micronId: string,
+    micronUser: string,
+    tenantEntityName: string,
+    clubEntityName: string
+}
