@@ -35,3 +35,7 @@ export type GenericModalProps = {
 export type SelectTenantOptionProps = {
     onSelectTenant: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
+
+export type SelectClubOptionProps = {
+    onSelectClub: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+}
