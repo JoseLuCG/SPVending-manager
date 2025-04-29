@@ -5,6 +5,7 @@ import ClubsPage from './presentation/pages/ClubsPage/ClubsPage';
 import MachinesPage from './presentation/pages/MachinesPage/MachinesPage';
 import UsersPage from './presentation/pages/UsersPage/UsersPage';
 import { appRoutes } from './utilities/defines/routes';
+import SelectedItemPage from './presentation/pages/SelectedItemPage/SelectedItemPage';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
 				<Route path={appRoutes.clubsRoute} element={<ClubsPage/>}/>
 				<Route path={appRoutes.machinesRoute} element={<MachinesPage/>}/>
 				<Route path={appRoutes.usersRoute} element={<UsersPage/>} />
+				<Route path={appRoutes.selectedItemRoute} element={<SelectedItemPage/>} />
 			</Routes>
 		</>
 	)
