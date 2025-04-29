@@ -5,7 +5,7 @@ import { DataTable } from 'primereact/datatable';
 import { DataTableSelectionSingleChangeEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { MainProps } from './../../../domain/entities/property-models/componentsProperties';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Modal from '../Modals/Modal';
 import { UserInfoDisplay } from '../../../domain/entities/models/user';
 import { MachineInfoDisplay } from '../../../domain/entities/models/machine';
