@@ -1,4 +1,4 @@
-import { Club, ClubInfoDisplay } from "../entities/models/club";
+import { Club, ClubInfoDisplay, ClubOption } from "../entities/models/club";
 
 export interface ClubRepository {
     getAllClubs(): Promise<ClubInfoDisplay[]>;
@@ -6,4 +6,5 @@ export interface ClubRepository {
     addClub(club: Club): Promise<void>;
     modifyClub(club: Club): Promise<void>;
     deleteClub(uuid: string): Promise<void>;
+    getClubOptions(): Promise<ClubOption[]>;
 }
