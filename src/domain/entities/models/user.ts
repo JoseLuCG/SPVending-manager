@@ -10,7 +10,7 @@ export type User = {
     micronId: string,
     micronUser: string,
     micronPass: string,
-    type: Rol,
+    userType: Rol,
     clubName: string,
     tenantId: string
 }
