@@ -20,3 +20,8 @@ export type ClubInfoDisplay = {
     tenantEntityName: string,
     machinesCount: number
 }
+
+export type ClubOption = {
+    clubId: string,
+    name: string
+}
