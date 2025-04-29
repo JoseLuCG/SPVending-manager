@@ -117,6 +117,7 @@ function MachineRegisterModal({ isOpen, onClose }: ModalProps) {
                     />
                     <br />
                     <SelectClubOptions onSelectClub={changeHandler}/>
+                    <br />
                     <button type="submit">Registrar</button>
                     <button type="button" onClick={onClose}>Cancelar</button>
                 </form>
