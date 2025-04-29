@@ -81,15 +81,15 @@ export const infoDisplayUsers = {
         header: "Place"
     },
     column3: {
-        field: "micronId",
-        header: "MIC ID"
+        field: "tenantEntityName",
+        header: "Tenant Name"
     },
     column4: {
         field: "micronUser",
         header: "Micron User"
     },
     column5: {
-        field: "",
-        header: "X"
+        field: "micronId",
+        header: "MIC ID"
     }
 };
