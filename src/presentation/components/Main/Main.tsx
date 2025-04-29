@@ -2,14 +2,26 @@ import './Main.css';
 //import searchIcon from './../../assets/icons/Search-more.svg';
 import Aside from './../Aside/Aside';
 import { DataTable } from 'primereact/datatable';
+import { DataTableSelectionSingleChangeEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { MainProps } from './../../../domain/entities/property-models/componentsProperties';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Modal from '../Modals/Modal';
+import { UserInfoDisplay } from '../../../domain/entities/models/user';
+import { MachineInfoDisplay } from '../../../domain/entities/models/machine';
+import { TenantInfoDisplay } from '../../../domain/entities/models/tenant';
+import { ClubInfoDisplay } from '../../../domain/entities/models/club';
 
 function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 	// ---------- States ----------
 	const [ showModal, setShowModal ] = useState(false);
+	const [ rowSelected, setRowSelected ] = useState({});
+
+	// Handlers:
+	function selectionRowHandler(event:DataTableSelectionSingleChangeEvent<UserInfoDisplay[]|MachineInfoDisplay[]|TenantInfoDisplay[]|ClubInfoDisplay[]>) {
+		setRowSelected(event.value);
+		alert(JSON.stringify(event.value, null, 2));
+	}
 
 	// ---------- Styles ----------
 	const rowClassName = () => {
@@ -30,7 +42,13 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 						<Modal typeModal={textInfoDisplay.list} isOpen={showModal} onClose={() => setShowModal(false)}/>
 						<input className='searcher' type="text" placeholder='Buscar...' />
 					</div>
-					<DataTable value={dataToDisplay} selectionMode="single" rowClassName={rowClassName}>
+					<DataTable 
+						value={dataToDisplay} 
+						selectionMode="single" 
+						rowClassName={rowClassName} 
+						selection={rowSelected}
+						onSelectionChange={selectionRowHandler}
+					>
 						<Column field={textInfoDisplay.column1.field} header={textInfoDisplay.column1.header}></Column>
 						<Column field={textInfoDisplay.column2.field} header={textInfoDisplay.column2.header}></Column>
 						<Column field={textInfoDisplay.column3.field} header={textInfoDisplay.column3.header}></Column>
