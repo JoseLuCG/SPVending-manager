@@ -1,9 +1,15 @@
+import Aside from "../../components/Aside/Aside";
+import Header from "../../components/Header/Header";
 import "./SelectedItemPage.css"
 
 function SelectedItemPage() {
+    
 
 	return (
-        <h1>Hola mundo</h1>
+        <>
+            <Header/>
+            <Aside/>
+        </>
 	)
 }
 
