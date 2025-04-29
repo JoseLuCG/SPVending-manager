@@ -1,16 +1,11 @@
 import './Main.css';
 //import searchIcon from './../../assets/icons/Search-more.svg';
 import Aside from './../Aside/Aside';
-import { DataTable } from 'primereact/datatable';
-import { DataTableSelectionSingleChangeEvent } from 'primereact/datatable';
+import { DataTable, DataTableRowClickEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { MainProps } from './../../../domain/entities/property-models/componentsProperties';
 import { useState } from 'react';
 import Modal from '../Modals/Modal';
-import { UserInfoDisplay } from '../../../domain/entities/models/user';
-import { MachineInfoDisplay } from '../../../domain/entities/models/machine';
-import { TenantInfoDisplay } from '../../../domain/entities/models/tenant';
-import { ClubInfoDisplay } from '../../../domain/entities/models/club';
 
 function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 	// ---------- States ----------
@@ -18,9 +13,9 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 	const [ rowSelected, setRowSelected ] = useState({});
 
 	// Handlers:
-	function selectionRowHandler(event:DataTableSelectionSingleChangeEvent<UserInfoDisplay[]|MachineInfoDisplay[]|TenantInfoDisplay[]|ClubInfoDisplay[]>) {
-		setRowSelected(event.value);
-		alert(JSON.stringify(event.value, null, 2));
+	function selectionRowHandler(event:DataTableRowClickEvent) {
+		setRowSelected(event.data);
+		alert(JSON.stringify(event.data, null, 2));
 	}
 
 	// ---------- Styles ----------
@@ -47,7 +42,7 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 						selectionMode="single" 
 						rowClassName={rowClassName} 
 						selection={rowSelected}
-						onSelectionChange={selectionRowHandler}
+						onRowClick={selectionRowHandler}
 					>
 						<Column field={textInfoDisplay.column1.field} header={textInfoDisplay.column1.header}></Column>
 						<Column field={textInfoDisplay.column2.field} header={textInfoDisplay.column2.header}></Column>
