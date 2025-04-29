@@ -2,6 +2,7 @@ import { UserRepository } from "../../../domain/ports/UserRepository";
 import { User, UserInfoDisplay } from "../../../domain/entities/models/user";
 import { mapUserFromApi } from "../../mappers/FromApi/UserMapper";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
+import { mapUserToApi } from "../../mappers/ToApi/UserMapperToApi";
 
 export class UserRepositoryHttp implements UserRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.usersPath;
@@ -19,11 +20,12 @@ export class UserRepositoryHttp implements UserRepository {
     }
 
     async addUser(user: User): Promise<void> {
+        const body = mapUserToApi(user);
         const response = await fetch(
             this.BASEURL,
             {
                 method: "POST",
-                body: JSON.stringify(user),
+                body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
             }
         );
