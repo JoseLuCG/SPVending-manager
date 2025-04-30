@@ -1,16 +1,21 @@
+import React from "react";
 import "./DisplayItemInfo.css"
+import { useNavigate } from "react-router";
 
 function DisplayItemInfo() {
-    
+    const navigate = useNavigate();
+
+    function backHandler() {
+        navigate(-1);
+    }
 
 	return (
         <>
-            <main>
-                <h1>Hola mundo</h1>
-                <p>Esta pagina es de prueba</p>
+            <main className="mn-display">
+                <button onClick={backHandler}>Back</button>
             </main>    
         </>
-	)
+	);
 }
 
 export default DisplayItemInfo;
