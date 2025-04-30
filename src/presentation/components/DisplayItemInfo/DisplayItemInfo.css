@@ -1,0 +1,7 @@
+main.mn-display {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
