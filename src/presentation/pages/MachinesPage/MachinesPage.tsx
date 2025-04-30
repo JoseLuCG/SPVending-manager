@@ -3,7 +3,7 @@ import Main from './../../components/Main/Main';
 import Header from './../../components/Header/Header';
 import { infoDisplayMachines } from '../../../utilities/infoDisplay';
 import { useEffect, useState } from 'react';
-import { Machine, MachineInfoDisplay } from '../../../domain/entities/models/machine';
+import { MachineInfoDisplay } from '../../../domain/entities/models/machine';
 import { MachineRepositoryHttp } from '../../../infraestructure/adapters/api/MachineRepositoryHttp';
 import { GetMachineList } from '../../../application/usecases/MachineUseCases/GetMachineList';
 
