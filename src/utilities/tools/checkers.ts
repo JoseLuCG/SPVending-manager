@@ -1,6 +1,6 @@
-import { RowData } from "../../domain/entities/property-models/genericModels";
+import { DataTableValue } from "primereact/datatable";
 
-export function getEntityId(rowData:RowData) {
+export function getEntityId(rowData:DataTableValue) {
     if ("tenantId" in rowData) return rowData.tenantId;
     if ("clubId" in rowData) return rowData.clubId;
     if ("userManagerId" in rowData) rowData.userManagerId;
