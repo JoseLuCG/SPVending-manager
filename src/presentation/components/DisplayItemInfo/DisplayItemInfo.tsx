@@ -1,5 +1,6 @@
 import "./DisplayItemInfo.css"
 import { useNavigate } from "react-router";
+import DisplayItemInfoTenant from "./DisplayItemInfoTenant/DisplayItemInfoTenant";
 
 function DisplayItemInfo() {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ function DisplayItemInfo() {
                 <div className="btn-container">
                 <button onClick={backHandler}>Back</button>
                 </div>
-                
+                <DisplayItemInfoTenant></DisplayItemInfoTenant>
             </main>    
         </>
 	);
