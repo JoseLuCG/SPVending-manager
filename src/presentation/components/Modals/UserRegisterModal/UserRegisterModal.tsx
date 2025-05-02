@@ -20,15 +20,17 @@ function UserRegisterModal({ isOpen, onClose }: ModalProps) {
         micronUser: "",
         micronPass: "",
         userType: 1,
-        tenantId: ""
+        tenantId: "",
+        clubId: ""
     });
 
     //Handlers:
     function changeHandler(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const { name, value } = event.target;
+        const mappedname = name === "clubEntityId"?"clubId": name;
         setUserForm({
             ...userForm,
-            [name]: name === "userType" ? Number(value) : value
+            [mappedname]: mappedname === "userType" ? Number(value) : value
         });
     }
 

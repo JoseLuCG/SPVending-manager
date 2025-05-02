@@ -12,7 +12,8 @@ export type User = {
     micronPass: string,
     userType: Rol,
     clubName: string,
-    tenantId: string
+    tenantId: string,
+    clubId?: string
 }
 
 export type UserInfoDisplay = {

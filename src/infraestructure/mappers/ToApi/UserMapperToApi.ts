@@ -8,6 +8,7 @@ export function mapUserToApi(user: Partial<User>): any {
       micronUser: user.micronUser,
       micronPass: user.micronPass,
       userType: user.userType,
-      tenantEntityId: user.tenantId
+      tenantEntityId: user.tenantId,
+      clubEntityId: user.clubId
     };
 }
