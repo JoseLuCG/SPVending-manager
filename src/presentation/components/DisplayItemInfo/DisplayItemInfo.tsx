@@ -11,7 +11,10 @@ function DisplayItemInfo() {
 	return (
         <>
             <main className="mn-display">
+                <div className="btn-container">
                 <button onClick={backHandler}>Back</button>
+                </div>
+                
             </main>    
         </>
 	);
