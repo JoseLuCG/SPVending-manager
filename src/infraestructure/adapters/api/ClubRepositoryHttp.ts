@@ -1,5 +1,5 @@
 import { ClubRepository } from "../../../domain/ports/ClubRepository";
-import { Club, ClubInfoDisplay } from "../../../domain/entities/models/club";
+import { Club, ClubInfoDisplay, ClubOption } from "../../../domain/entities/models/club";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapClubFromApi } from "../../mappers/FromApi/ClubMapper";
 import { mapClubToApi } from "../../mappers/ToApi/ClubMapperToApi";
@@ -48,4 +48,10 @@ export class ClubRepositoryHttp implements ClubRepository {
         const response = await fetch(`${this.BASEURL}/${uuid}`);
         if (!response.ok) throw new Error("Error deleting club");
     }
+
+    async getClubOptions(): Promise<ClubOption[]> {
+        const response = await fetch(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`);
+        const data = await response.json();
+        return data;
+    }    
 }
