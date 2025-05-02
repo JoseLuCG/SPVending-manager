@@ -5,6 +5,7 @@ import { ClubRepositoryHttp } from "../../../infraestructure/adapters/api/ClubRe
 import { ClubOption } from "../../../domain/entities/models/club";
 
 const clubRepo = new ClubRepositoryHttp();
+// TODO: Replace the GetClubList class with the corresponding class (A new class must be created).
 const getClubOptions = new GetClubList(clubRepo);
 
 function SelectClubOptions({onSelectClub}: SelectClubOptionProps) {
