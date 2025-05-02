@@ -9,3 +9,16 @@ main.mn-display {
 .btn-container {
     width: 100%;
 }
+
+form.frm-cntnr {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+div.frm-dv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
