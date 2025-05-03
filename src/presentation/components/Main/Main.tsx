@@ -26,7 +26,7 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 	// ---------- States ----------
 	const [ item, setItem ] = useContext(SelectedItem);
 	const [ showModal, setShowModal ] = useState(false);
-	const [ rowSelected, setRowSelected ] = useState({});
+	const [ rowSelected ] = useState({});
 
 	// Handlers:
 	function selectionRowHandler(event:DataTableRowClickEvent) {
