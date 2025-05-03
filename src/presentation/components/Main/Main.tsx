@@ -31,7 +31,6 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 	// Handlers:
 	function selectionRowHandler(event:DataTableRowClickEvent) {
 		const selectedItemId = getEntityId(event.data);
-		//let itemFromApi = {};
 
 		if (textInfoDisplay.list === "Tenant") {
 			const findTenantById = new GetTenant(tenantRepository);
@@ -58,8 +57,8 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 		if (textInfoDisplay.list === "User") {
 			const findUserById = new GetUser(userRepository);
 			findUserById.execute(selectedItemId)
-			.then(setItem)
-			.catch(console.error);
+				.then(setItem)
+				.catch(console.error);
 		}
 	}
 
