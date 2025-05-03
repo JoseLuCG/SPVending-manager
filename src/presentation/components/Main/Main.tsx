@@ -16,6 +16,8 @@ import { GetTenant } from '../../../application/usecases/TenantUseCases/GetTenan
 import { GetClub } from '../../../application/usecases/ClubUseCases/GetClub';
 import { GetMachine } from '../../../application/usecases/MachineUseCases/GetMachine';
 import { GetUser } from '../../../application/usecases/UserUseCases/GetUser';
+import { useNavigate } from 'react-router';
+import { appRoutes } from '../../../utilities/defines/routes';
 
 const tenantRepository = new TenantRepositoryHttp();
 const clubRepository = new ClubRepositoryHttp();
@@ -27,6 +29,7 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 	const [ item, setItem ] = useContext(SelectedItem);
 	const [ showModal, setShowModal ] = useState(false);
 	const [ rowSelected ] = useState({});
+	const navigate = useNavigate();
 
 	// Handlers:
 	function selectionRowHandler(event:DataTableRowClickEvent) {
@@ -60,6 +63,7 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 				.then(setItem)
 				.catch(console.error);
 		}
+		navigate(appRoutes.selectedItemRoute);
 	}
 
 	// ---------- Styles ----------
