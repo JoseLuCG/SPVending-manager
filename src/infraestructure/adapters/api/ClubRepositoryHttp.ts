@@ -9,8 +9,9 @@ export class ClubRepositoryHttp implements ClubRepository {
 
     async findClubByUuid(clubUuid: string): Promise<Club | null> {
         const response = await fetch(`${this.BASEURL}/${clubUuid}`);
+        const data = await response.json();
         if (!response.ok) return null;
-        return response.json();
+        return data;
     }
 
     async getAllClubs(): Promise<ClubInfoDisplay[]> {
