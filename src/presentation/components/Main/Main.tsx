@@ -74,10 +74,6 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 		};
 	};
 
-	useEffect(()=>{
-		console.log(item);
-	},[item]);
-
 	return (
 		<main>
 			<Aside />
