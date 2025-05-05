@@ -63,7 +63,6 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 				.then(setItem)
 				.catch(console.error);
 		}
-		navigate(appRoutes.selectedItemRoute);
 	}
 
 	// ---------- Styles ----------
@@ -73,6 +72,12 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 			"p-datatable-thead": true
 		};
 	};
+
+	useEffect(()=>{
+		if (item != null) {
+			navigate(appRoutes.selectedItemRoute);
+		}
+	});
 
 	return (
 		<main>
