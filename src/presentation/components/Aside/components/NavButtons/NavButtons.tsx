@@ -1,32 +1,48 @@
 import { NavButtonsProps } from './../../../../../domain/entities/property-models/componentsProperties';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import './NavButtons.css';
 import { appRoutes } from '../../../../../utilities/defines/routes';
+import { useContext } from 'react';
+import { SelectedItem } from '../../../../../contexts/SelectedItemContext';
 
 function NavButtons({ isAbove }: NavButtonsProps) {
+    const [ item, setItem ]= useContext(SelectedItem);
+    const navigate = useNavigate();
+
+    function onClickHanderTenant() {
+        setItem(null);
+        navigate(appRoutes.tenantsRoute);
+    }
+
+    function onClickHanderClub() {
+        setItem(null);
+        navigate(appRoutes.clubsRoute);
+    }
+
+    function onClickHanderMachine() {
+        setItem(null);
+        navigate(appRoutes.machinesRoute);
+    }
+
+    function onClickHanderUser() {
+        setItem(null);
+        navigate(appRoutes.usersRoute);
+    }
     
     return(
             <nav className={ isAbove ? "nav" : 'hidden' }>
                 <ul>
-                    <li>
-                        <Link to={appRoutes.tenantsRoute}>
-                            TENANTS
-                        </Link>
+                    <li onClick={onClickHanderTenant}>
+                        TENANTS
                     </li>
-                    <li>
-                        <Link to={appRoutes.clubsRoute}>
-                            CLUBS
-                        </Link>
+                    <li onClick={onClickHanderClub}>
+                        CLUBS
                     </li>
-                    <li>
-                        <Link to={appRoutes.machinesRoute}>
-                            MÁQUINAS
-                        </Link>
+                    <li onClick={onClickHanderMachine}>
+                        MÁQUINAS
                     </li>
-                    <li>
-                        <Link to={appRoutes.usersRoute}>
-                            USUARIOS
-                        </Link>
+                    <li onClick={onClickHanderUser}>
+                        USUARIOS
                     </li>
                 </ul>
             </nav>
