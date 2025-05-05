@@ -94,12 +94,12 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 						selection={rowSelected}
 						onRowClick={selectionRowHandler}
 					>
-						<Column field={textInfoDisplay.column1.field} header={textInfoDisplay.column1.header}></Column>
-						<Column field={textInfoDisplay.column2.field} header={textInfoDisplay.column2.header}></Column>
-						<Column field={textInfoDisplay.column3.field} header={textInfoDisplay.column3.header}></Column>
-						<Column field={textInfoDisplay.column4.field} header={textInfoDisplay.column4.header}></Column>
-						<Column field={textInfoDisplay.column5.field} header={textInfoDisplay.column5.header}></Column>
-						<Column field="" header="Actions"></Column>
+						<Column headerClassName={styles.headerTB} field={textInfoDisplay.column1.field} header={textInfoDisplay.column1.header}></Column>
+						<Column headerClassName={styles.headerTB} field={textInfoDisplay.column2.field} header={textInfoDisplay.column2.header}></Column>
+						<Column headerClassName={styles.headerTB} field={textInfoDisplay.column3.field} header={textInfoDisplay.column3.header}></Column>
+						<Column headerClassName={styles.headerTB} field={textInfoDisplay.column4.field} header={textInfoDisplay.column4.header}></Column>
+						<Column headerClassName={styles.headerTB} field={textInfoDisplay.column5.field} header={textInfoDisplay.column5.header}></Column>
+						<Column headerClassName={styles.headerTB} field="" header="Actions"></Column>
 					</DataTable>
 				</div>
 			</section>

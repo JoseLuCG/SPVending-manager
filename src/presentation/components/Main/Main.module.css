@@ -58,8 +58,12 @@ p.infText {
 }
 
 /* ---------- Table styles ---------- */
+.headerTB {
+    padding: 10px 15px;
+}
+
 .tableRow td,
-.p-datatable-thead > tr > th {
+.pDatatableThead > tr > th {
     padding: 10px 15px;
 }
 
