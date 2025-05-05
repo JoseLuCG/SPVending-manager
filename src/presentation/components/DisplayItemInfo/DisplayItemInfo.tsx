@@ -9,7 +9,7 @@ function DisplayItemInfo() {
     // States:
     const [ item, setItem ] = useContext(SelectedItem);
     const navigate = useNavigate();
-    let itemType = "";
+    const [ itemType, setItemType ] = useState("");
 
     // Handlers:
     function backHandler() {
@@ -22,10 +22,10 @@ function DisplayItemInfo() {
 
     useEffect(()=>{
         if (item != null) {
-            itemType = typeDeterminer(item);
-            console.log(itemType);
+            const type = typeDeterminer(item);
+            setItemType(type);
         }
-    });
+    }, [item]);
 
 	return (
         <>
@@ -33,7 +33,10 @@ function DisplayItemInfo() {
                 <div className="btn-container">
                 <button onClick={backHandler}>Back</button>
                 </div>
-                <DisplayItemInfoTenant></DisplayItemInfoTenant>
+                {itemType==="Tenant"?<DisplayItemInfoTenant/>:""}
+                {itemType=="Club"?<h1>Club page</h1>:""}
+                {itemType=="User"?<h1>User page</h1>:""}
+                {itemType=="Machine"?<h1>Machine page</h1>:""}
             </main>    
         </>
 	);
