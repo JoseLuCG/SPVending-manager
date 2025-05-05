@@ -1,3 +1,4 @@
+import styles from "./SelectTenantOptions.modules.css"
 import { useState } from "react";
 import { PotentialTenant } from "../../../domain/entities/models/tenant";
 import { TenantRepositoryHttp } from "../../../infraestructure/adapters/api/TenantRepositoryHttp";
