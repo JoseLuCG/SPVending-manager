@@ -1,5 +1,5 @@
 /* ---------- HEADER CSS ---------- */
-header {
+header.header {
     background-color: #021B46;
     height: 87px;
     /* height: 90px; */
@@ -9,16 +9,16 @@ header {
 }
 
 /* ---------- Text decoration ---------- */
-header > h1, header > div > h2 {
+header.header > h1, header > div > h2 {
     color: #fff;
 }
 
-header > h1 {
+header.header > h1 {
     margin-left: 32px;
 }
 
 /* ---------- USER PROFILE CSS ---------- */
-header > div {
+header.header > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
