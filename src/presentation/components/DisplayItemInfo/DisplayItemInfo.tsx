@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { SelectedItem } from "../../../contexts/SelectedItemContext";
 import { typeDeterminer } from "../../../utilities/tools/checkers";
 import DisplayItemInfoClub from "./DisplayItemInfoClub/DisplayItemInfoClub";
-import DisplayItemInfoMachine from "./DisplaYItemInfoMachine/DisplayItemInfoMachine";
+import DisplayItemInfoMachine from "./DisplayItemInfoMachine/DisplayItemInfoMachine";
 import DisplayItemInfoUser from "./DisplayItemInfoUser/DisplayItemInfoUser";
 
 function DisplayItemInfo() {
