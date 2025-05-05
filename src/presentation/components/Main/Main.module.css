@@ -3,14 +3,14 @@ main {
     flex-direction: row;
 }
 
-.table-contents {
+.tableContents {
     width: 1050px;
     height: 302px;
     margin-left: 48px;
     margin-top: 25px;
 }
 
-.header-content {
+.headerContent {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -51,23 +51,23 @@ p.infText {
     text-align: center;
 }
 
-.table-row td,
+.tableRow td,
 .p-datatable-thead > tr > th {
     padding: 10px 15px;
 }
 
-.table-row:hover {
+.tableRow:hover {
     background-color: #C4C4C4;
     cursor: pointer;
     border-radius: 20px;
 }
 
-.table-row:hover td:first-child {
+.tableRow:hover td:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
-.table-row:hover td:last-child {
+.tableRow:hover td:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }

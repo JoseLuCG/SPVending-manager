@@ -1,4 +1,4 @@
-import './Main.css';
+import styles from "./Main.module.css";
 //import searchIcon from './../../assets/icons/Search-more.svg';
 import Aside from './../Aside/Aside';
 import { DataTable, DataTableRowClickEvent } from 'primereact/datatable';
@@ -67,10 +67,7 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 
 	// ---------- Styles ----------
 	const rowClassName = () => {
-		return {
-			"table-row": true,
-			"p-datatable-thead": true
-		};
+		return  `${styles.tableRow} ${styles.pDatatableThead}`;
 	};
 
 	useEffect(()=>{
@@ -83,12 +80,12 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 		<main>
 			<Aside />
 			<section>
-				<div className='table-contents'>
-					<div className='header-content'>
-						<p className='infText'>{textInfoDisplay.list} List</p>
-						<button className='addButton' onClick={() => setShowModal(true) }>+ Add {textInfoDisplay.list}</button>
+				<div className={styles.tableContents}>
+					<div className={styles.headerContent}>
+						<p className={styles.infText}>{textInfoDisplay.list} List</p>
+						<button className={styles.addButton} onClick={() => setShowModal(true) }>+ Add {textInfoDisplay.list}</button>
 						<Modal typeModal={textInfoDisplay.list} isOpen={showModal} onClose={() => setShowModal(false)}/>
-						<input className='searcher' type="text" placeholder='Buscar...' />
+						<input className={styles.searcher} type="text" placeholder='Buscar...' />
 					</div>
 					<DataTable 
 						value={dataToDisplay} 
