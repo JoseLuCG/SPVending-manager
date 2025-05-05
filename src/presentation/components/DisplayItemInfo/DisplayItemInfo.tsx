@@ -1,3 +1,4 @@
+// TODO: change to css modules.
 import "./DisplayItemInfo.css"
 import { useNavigate } from "react-router";
 import DisplayItemInfoTenant from "./DisplayItemInfoTenant/DisplayItemInfoTenant";
