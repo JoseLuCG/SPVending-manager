@@ -4,6 +4,7 @@ import DisplayItemInfoTenant from "./DisplayItemInfoTenant/DisplayItemInfoTenant
 import { useContext, useEffect, useState } from "react";
 import { SelectedItem } from "../../../contexts/SelectedItemContext";
 import { typeDeterminer } from "../../../utilities/tools/checkers";
+import DisplayItemInfoClub from "./DisplayItemInfoClub/DisplayItemInfoClub";
 
 function DisplayItemInfo() {
     // States:
@@ -34,7 +35,7 @@ function DisplayItemInfo() {
                 <button onClick={backHandler}>Back</button>
                 </div>
                 {itemType==="Tenant"?<DisplayItemInfoTenant/>:""}
-                {itemType=="Club"?<h1>Club page</h1>:""}
+                {itemType=="Club"?<DisplayItemInfoClub/>:""}
                 {itemType=="User"?<h1>User page</h1>:""}
                 {itemType=="Machine"?<h1>Machine page</h1>:""}
             </main>    
