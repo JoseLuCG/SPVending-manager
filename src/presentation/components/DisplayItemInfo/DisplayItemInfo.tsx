@@ -6,6 +6,7 @@ import { SelectedItem } from "../../../contexts/SelectedItemContext";
 import { typeDeterminer } from "../../../utilities/tools/checkers";
 import DisplayItemInfoClub from "./DisplayItemInfoClub/DisplayItemInfoClub";
 import DisplayItemInfoMachine from "./DisplaYItemInfoMachine/DisplayItemInfoMachine";
+import DisplayItemInfoUser from "./DisplayItemInfoUser/DisplayItemInfoUser";
 
 function DisplayItemInfo() {
     // States:
@@ -37,7 +38,7 @@ function DisplayItemInfo() {
                 </div>
                 {itemType==="Tenant"?<DisplayItemInfoTenant/>:""}
                 {itemType=="Club"?<DisplayItemInfoClub/>:""}
-                {itemType=="User"?<h1>User page</h1>:""}
+                {itemType=="User"?<DisplayItemInfoUser/>:""}
                 {itemType=="Machine"?<DisplayItemInfoMachine/>:""}
             </main>    
         </>
