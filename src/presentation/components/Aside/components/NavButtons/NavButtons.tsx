@@ -1,6 +1,6 @@
+import styles from './NavButtons.module.css';
 import { NavButtonsProps } from './../../../../../domain/entities/property-models/componentsProperties';
 import { Link, useNavigate } from 'react-router';
-import './NavButtons.css';
 import { appRoutes } from '../../../../../utilities/defines/routes';
 import { useContext } from 'react';
 import { SelectedItem } from '../../../../../contexts/SelectedItemContext';
@@ -30,7 +30,7 @@ function NavButtons({ isAbove }: NavButtonsProps) {
     }
     
     return(
-            <nav className={ isAbove ? "nav" : 'hidden' }>
+            <nav className={ isAbove ? styles.nav : styles.hidden }>
                 <ul>
                     <li onClick={onClickHanderTenant}>
                         TENANTS
