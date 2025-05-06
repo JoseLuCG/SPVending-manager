@@ -1,5 +1,5 @@
 import { ClubRepository } from "../../../domain/ports/ClubRepository";
-import { Club, ClubInfoDisplay, ClubOption } from "../../../domain/entities/models/club";
+import { Club, ClubApi, ClubInfoDisplay, ClubOption } from "../../../domain/entities/models/club";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapClubFromApi } from "../../mappers/FromApi/ClubMapper";
 import { mapClubToApi } from "../../mappers/ToApi/ClubMapperToApi";
@@ -7,7 +7,7 @@ import { mapClubToApi } from "../../mappers/ToApi/ClubMapperToApi";
 export class ClubRepositoryHttp implements ClubRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.clubPath;
 
-    async findClubByUuid(clubUuid: string): Promise<Club | null> {
+    async findClubByUuid(clubUuid: string): Promise<ClubApi | null> {
         const response = await fetch(`${this.BASEURL}/${clubUuid}`);
         const data = await response.json();
         if (!response.ok) return null;

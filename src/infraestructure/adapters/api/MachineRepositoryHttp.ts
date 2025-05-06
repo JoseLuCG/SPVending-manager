@@ -1,5 +1,5 @@
 import { MachineRepository } from "../../../domain/ports/MachineRepository";
-import { Machine, MachineInfoDisplay } from "../../../domain/entities/models/machine";
+import { Machine, MachineApi, MachineInfoDisplay } from "../../../domain/entities/models/machine";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapMachineFromApi } from "../../mappers/FromApi/MachineMapper";
 import { mapMachineToApi } from "../../mappers/ToApi/MachineMapperToApi";
@@ -7,7 +7,7 @@ import { mapMachineToApi } from "../../mappers/ToApi/MachineMapperToApi";
 export class MachineRepositoryHttp implements MachineRepository{
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.machinesPath;
 
-    async findMachineByUuid(machineUuid: string): Promise<Machine | null> {
+    async findMachineByUuid(machineUuid: string): Promise<MachineApi | null> {
         const response = await fetch(`${this.BASEURL}/${machineUuid}`);
         if (!response.ok) return null;
         return response.json();

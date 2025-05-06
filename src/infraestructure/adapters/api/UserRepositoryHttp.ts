@@ -1,5 +1,5 @@
 import { UserRepository } from "../../../domain/ports/UserRepository";
-import { User, UserInfoDisplay } from "../../../domain/entities/models/user";
+import { User, UserApi, UserInfoDisplay } from "../../../domain/entities/models/user";
 import { mapUserFromApi } from "../../mappers/FromApi/UserMapper";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapUserToApi } from "../../mappers/ToApi/UserMapperToApi";
@@ -7,7 +7,7 @@ import { mapUserToApi } from "../../mappers/ToApi/UserMapperToApi";
 export class UserRepositoryHttp implements UserRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.usersPath;
 
-    async findUserByUuid(userUuid: string): Promise<User | null> {
+    async findUserByUuid(userUuid: string): Promise<UserApi | null> {
         const response = await fetch(`${this.BASEURL}/${userUuid}`);
         if (!response.ok) return null;
         return response.json();
