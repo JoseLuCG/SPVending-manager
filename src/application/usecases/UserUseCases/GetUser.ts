@@ -1,10 +1,10 @@
 import { UserRepository } from "../../../domain/ports/UserRepository";
-import { User } from "../../../domain/entities/models/user";
+import { UserApi } from "../../../domain/entities/models/user";
 
 export class GetUser {
     constructor( private userRepository: UserRepository ){};
 
-    async execute( userUuid : string ): Promise<User> {
+    async execute( userUuid : string ): Promise<UserApi> {
         const user = await this.userRepository.findUserByUuid(userUuid);
 
         if(!user) throw new Error("User not found");
