@@ -15,6 +15,10 @@ import { GetClub } from '../../../application/usecases/ClubUseCases/GetClub';
 import { GetMachine } from '../../../application/usecases/MachineUseCases/GetMachine';
 import { GetUser } from '../../../application/usecases/UserUseCases/GetUser';
 import { SelectedItemType } from "../../../domain/entities/property-models/componentsProperties";
+import { TenantApi } from "../../../domain/entities/models/tenant";
+import { ClubApi } from "../../../domain/entities/models/club";
+import { UserApi } from "../../../domain/entities/models/user";
+import { MachineApi } from "../../../domain/entities/models/machine";
 
 const tenantRepository = new TenantRepositoryHttp();
 const clubRepository = new ClubRepositoryHttp();
@@ -83,10 +87,10 @@ function DisplayItemInfo() {
                 <div className="btn-container">
                 <button onClick={backHandler}>Back</button>
                 </div>
-                {itemType==="tenants"?<DisplayItemInfoTenant object={selectedItem} />:""}
-                {itemType=="clubs"?<DisplayItemInfoClub object={selectedItem}/>:""}
-                {itemType=="users"?<DisplayItemInfoUser object={selectedItem}/>:""}
-                {itemType=="machines"?<DisplayItemInfoMachine object={selectedItem}/>:""}
+                {itemType==="tenants"?<DisplayItemInfoTenant object={selectedItem as TenantApi} />:""}
+                {itemType=="clubs"?<DisplayItemInfoClub object={selectedItem as ClubApi}/>:""}
+                {itemType=="users"?<DisplayItemInfoUser object={selectedItem as UserApi}/>:""}
+                {itemType=="machines"?<DisplayItemInfoMachine object={selectedItem as MachineApi}/>:""}
             </main>    
         </>
 	);
