@@ -83,10 +83,10 @@ function DisplayItemInfo() {
                 <div className="btn-container">
                 <button onClick={backHandler}>Back</button>
                 </div>
-                {itemType==="/tenants"?<DisplayItemInfoTenant object={selectedItem} />:""}
-                {itemType=="/clubs"?<DisplayItemInfoClub object={selectedItem}/>:""}
-                {itemType=="/users"?<DisplayItemInfoUser object={selectedItem}/>:""}
-                {itemType=="/machines"?<DisplayItemInfoMachine object={selectedItem}/>:""}
+                {itemType==="tenants"?<DisplayItemInfoTenant object={selectedItem} />:""}
+                {itemType=="clubs"?<DisplayItemInfoClub object={selectedItem}/>:""}
+                {itemType=="users"?<DisplayItemInfoUser object={selectedItem}/>:""}
+                {itemType=="machines"?<DisplayItemInfoMachine object={selectedItem}/>:""}
             </main>    
         </>
 	);
