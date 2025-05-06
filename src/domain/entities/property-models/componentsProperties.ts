@@ -45,3 +45,5 @@ export type SelectClubOptionProps = {
 }
 
 export type SelectedItemType = User | Machine | Tenant | Club | null;
+
+export type DIITenantProps = Tenant;
