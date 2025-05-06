@@ -3,6 +3,10 @@ import { MachineInfoDisplay } from '../models/machine';
 import { Tenant, TenantInfoDisplay } from '../models/tenant';
 import { UserInfoDisplay } from '../models/user';
 import { InfoDisplay } from './genericModels';
+import { Club } from "../models/club";
+import { Machine } from "../models/machine";
+import { User } from "../models/user";
+
 
 export type DataRowProps = {
     data: Tenant
@@ -39,3 +43,5 @@ export type SelectTenantOptionProps = {
 export type SelectClubOptionProps = {
     onSelectClub: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
+
+export type SelectedItemType = User | Machine | Tenant | Club | null;
