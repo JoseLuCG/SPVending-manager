@@ -12,6 +12,20 @@ export type Club = {
     numberOfMachines: number
 }
 
+export type ClubApi = { 
+    accountingId:string
+    address:string
+    cif:string
+    clubId:string
+    email:string
+    micronId:string
+    name:string
+    phone:string
+    remark:string
+    tenantEntityName:string
+    userManagers:[]
+}
+
 export type ClubInfoDisplay = {
     clubId: string
     name: string,

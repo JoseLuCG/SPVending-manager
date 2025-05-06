@@ -10,6 +10,18 @@ export type Tenant = {
 	numberOfClubs: number
 }
 
+export type TenantApi = {
+    tenantId: string,
+    name: string,
+    cif: string,
+    address: string,
+    phone:string,
+    email: string,
+    remark: string,
+    micronId: string,
+    managers: []
+}
+
 export type TenantInfoDisplay = {
 	tenantId: string;
 	name: string;

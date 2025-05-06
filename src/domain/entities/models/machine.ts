@@ -12,6 +12,18 @@ export type Machine = {
     state: boolean
 }
 
+export type MachineApi = {
+    machineId: string
+    code: string,
+    smartFridgeId: string,
+    smartFridgePassword: string,
+    terminalId: string,
+    toaSerialNumber: string,
+    rustdeskId: string,
+    rustdeskPass: string,
+    clubName: string
+}
+
 export type MachineInfoDisplay = {
     machineCode: string,
     clubName: string,
