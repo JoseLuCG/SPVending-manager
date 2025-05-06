@@ -1,11 +1,8 @@
-import { ClubInfoDisplay } from '../models/club';
-import { MachineInfoDisplay } from '../models/machine';
-import { Tenant, TenantInfoDisplay } from '../models/tenant';
-import { UserInfoDisplay } from '../models/user';
+import { ClubApi, ClubInfoDisplay } from '../models/club';
+import { MachineApi, MachineInfoDisplay } from '../models/machine';
+import { Tenant, TenantApi, TenantInfoDisplay } from '../models/tenant';
+import { UserApi, UserInfoDisplay } from '../models/user';
 import { InfoDisplay } from './genericModels';
-import { Club } from "../models/club";
-import { Machine } from "../models/machine";
-import { User } from "../models/user";
 
 
 export type DataRowProps = {
@@ -22,7 +19,7 @@ export type MenuButtonProps = {
 
 export type MainProps = {
     textInfoDisplay: InfoDisplay,
-    dataToDisplay : TenantInfoDisplay[] | ClubInfoDisplay[] | MachineInfoDisplay[] | UserInfoDisplay[]
+    dataToDisplay: TenantInfoDisplay[] | ClubInfoDisplay[] | MachineInfoDisplay[] | UserInfoDisplay[]
 }
 
 export type ModalProps = {
@@ -44,8 +41,20 @@ export type SelectClubOptionProps = {
     onSelectClub: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export type SelectedItemType = User | Machine | Tenant | Club | null;
+export type SelectedItemType = UserApi | MachineApi | TenantApi | ClubApi | null;
 
 export type DIITenantProps = {
-    object: Tenant
+    object: TenantApi | null
+}
+
+export type DIIClubProps = {
+    object: ClubApi | null
+}
+
+export type DIIUserProps = {
+    object: UserApi | null
+}
+
+export type DIIMachineProps = {
+    object: MachineApi | null
 }
