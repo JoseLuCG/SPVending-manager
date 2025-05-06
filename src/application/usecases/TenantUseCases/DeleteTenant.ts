@@ -1,6 +1,6 @@
 import { TenantRepository } from "../../../domain/ports/TenantRepository";
 
-export class ModifyTenant {
+export class DeleteTenant {
     constructor( private tenantRepository: TenantRepository ){};
 
     async execute( uuid : string ): Promise<void> {
