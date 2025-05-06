@@ -16,7 +16,7 @@ function App() {
 				<Route path={appRoutes.clubsRoute} element={<ClubsPage/>}/>
 				<Route path={appRoutes.machinesRoute} element={<MachinesPage/>}/>
 				<Route path={appRoutes.usersRoute} element={<UsersPage/>} />
-				<Route path={appRoutes.selectedItemRoute} element={<SelectedItemPage/>} />
+				<Route path={"/:itemType"+appRoutes.selectedItemRoute+"/:uuid"} element={<SelectedItemPage/>} />
 			</Routes>
 		</>
 	)
