@@ -1,5 +1,4 @@
 import { DataTableValue } from "primereact/datatable";
-import { SelectedItemType } from "../../domain/entities/context-models/contextModels";
 
 export function getEntityId(rowData:DataTableValue) {
     if ("tenantId" in rowData) return rowData.tenantId;
