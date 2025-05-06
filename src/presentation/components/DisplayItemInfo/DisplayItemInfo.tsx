@@ -74,7 +74,9 @@ function DisplayItemInfo() {
     // Functions:
  
     useEffect(()=>{
-        getItemFromDatabase(uuid, itemType);
+        if (uuid != undefined && itemType != undefined) {
+            getItemFromDatabase(uuid, itemType);
+        }
     },[uuid, itemType]);
 
     useEffect(() => {
