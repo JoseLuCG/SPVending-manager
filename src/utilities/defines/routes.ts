@@ -3,5 +3,5 @@ export const appRoutes = {
     clubsRoute: "/clubs",
     machinesRoute: "/machines",
     usersRoute: "/users",
-    selectedItemRoute: "/object-mockup"
+    selectedItemRoute: "/item"
 }
