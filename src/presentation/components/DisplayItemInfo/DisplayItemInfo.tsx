@@ -1,35 +1,81 @@
 // TODO: change to css modules.
 import "./DisplayItemInfo.css"
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import DisplayItemInfoTenant from "./DisplayItemInfoTenant/DisplayItemInfoTenant";
-import { useContext, useEffect, useState } from "react";
-import { SelectedItem } from "../../../contexts/SelectedItemContext";
-import { typeDeterminer } from "../../../utilities/tools/checkers";
+import { useEffect, useState } from "react";
 import DisplayItemInfoClub from "./DisplayItemInfoClub/DisplayItemInfoClub";
 import DisplayItemInfoMachine from "./DisplayItemInfoMachine/DisplayItemInfoMachine";
 import DisplayItemInfoUser from "./DisplayItemInfoUser/DisplayItemInfoUser";
+import { TenantRepositoryHttp } from '../../../infraestructure/adapters/api/TenantRepositoryHttp';
+import { ClubRepositoryHttp } from '../../../infraestructure/adapters/api/ClubRepositoryHttp';
+import { UserRepositoryHttp } from '../../../infraestructure/adapters/api/UserRepositoryHttp';
+import { MachineRepositoryHttp } from '../../../infraestructure/adapters/api/MachineRepositoryHttp';
+import { GetTenant } from '../../../application/usecases/TenantUseCases/GetTenant';
+import { GetClub } from '../../../application/usecases/ClubUseCases/GetClub';
+import { GetMachine } from '../../../application/usecases/MachineUseCases/GetMachine';
+import { GetUser } from '../../../application/usecases/UserUseCases/GetUser';
+import { SelectedItemType } from "../../../domain/entities/property-models/componentsProperties";
+
+const tenantRepository = new TenantRepositoryHttp();
+const clubRepository = new ClubRepositoryHttp();
+const userRepository = new UserRepositoryHttp();
+const machineRepository = new MachineRepositoryHttp();
 
 function DisplayItemInfo() {
     // States:
-    const [ item, setItem ] = useContext(SelectedItem);
     const navigate = useNavigate();
-    const [ itemType, setItemType ] = useState("");
+    const [ selectedItem, setSelectedItem ] = useState<SelectedItemType>(null);
+    const { itemType, uuid } = useParams();
 
     // Handlers:
     function backHandler() {
-        setItem(null);
         navigate(-1);
+    }
+    
+    async function getItemFromDatabase(uuid:string, itemType:string) {
+        if (uuid === undefined) return "Error obtaining the item";
+        if (itemType === undefined) return "Error obtaining the item";
+        console.log(itemType);
+        
+        if (itemType === "tenants") {
+			const findTenantById = new GetTenant(tenantRepository);
+			findTenantById.execute(uuid)
+				.then(setSelectedItem)
+				.catch(console.error);
+		}
+
+        if (itemType === "clubs") {
+			const findClubById = new GetClub(clubRepository);
+			findClubById.execute(uuid)				
+				.then(setSelectedItem)
+				.catch(console.error);
+			
+		}
+
+		if (itemType === "machines") {
+			const findMachineById = new GetMachine(machineRepository);
+			findMachineById.execute(uuid)
+				.then(setSelectedItem)
+				.catch(console.error);
+		}
+
+        if (itemType === "users") {
+			const findUserById = new GetUser(userRepository);
+			findUserById.execute(uuid)
+				.then(setSelectedItem)
+				.catch(console.error);
+		}
     }
 
     // Functions:
-
-
+ 
     useEffect(()=>{
-        if (item != null) {
-            const type = typeDeterminer(item);
-            setItemType(type);
-        }
-    }, [item]);
+        getItemFromDatabase(uuid, itemType);
+    },[uuid, itemType]);
+
+    useEffect(() => {
+        console.log("Selected item changed:", selectedItem);
+    }, [selectedItem]);
 
 	return (
         <>
@@ -37,10 +83,10 @@ function DisplayItemInfo() {
                 <div className="btn-container">
                 <button onClick={backHandler}>Back</button>
                 </div>
-                {itemType==="Tenant"?<DisplayItemInfoTenant/>:""}
-                {itemType=="Club"?<DisplayItemInfoClub/>:""}
-                {itemType=="User"?<DisplayItemInfoUser/>:""}
-                {itemType=="Machine"?<DisplayItemInfoMachine/>:""}
+                {itemType==="/tenants"?<DisplayItemInfoTenant object={selectedItem} />:""}
+                {itemType=="/clubs"?<DisplayItemInfoClub/>:""}
+                {itemType=="/users"?<DisplayItemInfoUser/>:""}
+                {itemType=="/machines"?<DisplayItemInfoMachine/>:""}
             </main>    
         </>
 	);
