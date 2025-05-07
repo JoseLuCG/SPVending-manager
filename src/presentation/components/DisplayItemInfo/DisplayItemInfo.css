@@ -23,3 +23,10 @@ div.frm-dv {
     flex-direction: column;
     align-items: center;
 }
+
+.editButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 160px;
+}
