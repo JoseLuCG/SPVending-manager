@@ -39,7 +39,6 @@ function DisplayItemInfo() {
     async function getItemFromDatabase(uuid:string, itemType:string) {
         if (uuid === undefined) return "Error obtaining the item";
         if (itemType === undefined) return "Error obtaining the item";
-        console.log(itemType);
         
         if (itemType === "tenants") {
 			const findTenantById = new GetTenant(tenantRepository);
@@ -78,10 +77,6 @@ function DisplayItemInfo() {
             getItemFromDatabase(uuid, itemType);
         }
     },[uuid, itemType]);
-
-    useEffect(() => {
-        console.log("Selected item changed:", selectedItem);
-    }, [selectedItem]);
 
 	return (
         <>
