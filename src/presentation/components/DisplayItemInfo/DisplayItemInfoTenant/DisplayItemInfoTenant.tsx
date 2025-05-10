@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { DIITenantProps } from "../../../../domain/entities/property-models/componentsProperties";
 import "./../DisplayItemInfo.css";
-import { Tenant } from "../../../../domain/entities/models/tenant";
+import { Tenant, TenantApi } from "../../../../domain/entities/models/tenant";
 import { TenantRepositoryHttp } from "../../../../infraestructure/adapters/api/TenantRepositoryHttp";
 import { ModifyTenant } from "../../../../application/usecases/TenantUseCases/ModifyTenant";
 
@@ -21,6 +21,23 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         micronId: ""
     });
 
+    // Functions:
+    function itemMapper(item:TenantApi):SetStateAction<Omit<Tenant, "tenantId" | "numberOfClubs">> | null  {
+        if (item != null) {
+            let dataMapped: Omit<Tenant,"tenantId"|"numberOfClubs"> = {
+                tenantName: item.name,
+                cif: Number.parseInt(item.cif),
+                address: item.address,
+                phone: Number.parseInt(item.phone),
+                email: item.email,
+                remark: item.remark,
+                micronId: item.micronId
+            };
+            return dataMapped
+        }
+        return null;
+    }
+
     // Handlers:
     function onClickHandler() {
         setIsDisabled(previous => !previous);
@@ -29,10 +46,10 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
 
     function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = event.target;
-        setTenantForm({
-            ...tenantForm,
+        setTenantForm(prev => ({
+            ...prev,
             [name]: name === "cif" || name === "phone" ? Number(value) : value
-        });
+        }));
     }
 
     async function submitHandler(event:React.FormEvent) {
@@ -40,17 +57,21 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         try {
             // ? Question: Can managers be modified in the tenant tab?
             console.log(tenantForm);
-            console.log(object);
             
-            
-            //await modifyUser.execute(tenantForm);
-            //alert("Tenant successfully modified!");
+            await modifyUser.execute(tenantForm);
+            alert("Tenant successfully modified!");
         } catch (error) {
             console.error(error);
             alert("An error has occurred")
         }
     }
 
+    useEffect(()=>{
+        if (object) {
+            const dataMapped = itemMapper(object);
+            dataMapped==null?"":setTenantForm(dataMapped);            
+        }
+    },[object]);
 
     if (!object) {
         return (
