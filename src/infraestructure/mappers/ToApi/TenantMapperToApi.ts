@@ -8,6 +8,7 @@ export function mapTenantToApi(tenant: Partial<Tenant>): any {
       phone: tenant.phone,
       email: tenant.email,
       remark: tenant.remark,
-      micronId: tenant.micronId
+      micronId: tenant.micronId,
+      tenantId: tenant.tenantId?tenant.tenantId:""
     };
 }
