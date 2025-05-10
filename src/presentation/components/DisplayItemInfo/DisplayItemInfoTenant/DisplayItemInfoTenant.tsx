@@ -11,27 +11,29 @@ const modifyUser = new ModifyTenant(tenantRepo);
 function DisplayItemInfoTenant({ object }: DIITenantProps) {
     // States:
     const [ isDisabled, setIsDisabled ] = useState(true);
-    const [ tenantForm, setTenantForm ] = useState<Omit<Tenant,"tenantId"|"numberOfClubs">>({
+    const [ tenantForm, setTenantForm ] = useState<Omit<Tenant,"numberOfClubs">>({
         tenantName: "",
         cif: 0,
         address: "",
         phone: 0,
         email: "",
         remark: "",
-        micronId: ""
+        micronId: "",
+        tenantId:""
     });
 
     // Functions:
     function itemMapper(item:TenantApi):SetStateAction<Omit<Tenant, "tenantId" | "numberOfClubs">> | null  {
         if (item != null) {
-            let dataMapped: Omit<Tenant,"tenantId"|"numberOfClubs"> = {
+            let dataMapped: Omit<Tenant,"numberOfClubs"> = {
                 tenantName: item.name,
                 cif: Number.parseInt(item.cif),
                 address: item.address,
                 phone: Number.parseInt(item.phone),
                 email: item.email,
                 remark: item.remark,
-                micronId: item.micronId
+                micronId: item.micronId,
+                tenantId: item.tenantId
             };
             return dataMapped
         }
@@ -41,7 +43,6 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
     // Handlers:
     function onClickHandler() {
         setIsDisabled(previous => !previous);
-        // TODO: Implement support for local storage to save data that has not been modified by the user
     }
 
     function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
@@ -56,20 +57,20 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         event.preventDefault();
         try {
             // ? Question: Can managers be modified in the tenant tab?
-            console.log(tenantForm);
-            
-            await modifyUser.execute(tenantForm);
-            alert("Tenant successfully modified!");
+            if (tenantForm.tenantId) {
+                await modifyUser.execute(tenantForm);
+                alert("Tenant successfully modified!");   
+            }
         } catch (error) {
             console.error(error);
-            alert("An error has occurred")
+            alert("An error has occurred");
         }
     }
 
     useEffect(()=>{
         if (object) {
             const dataMapped = itemMapper(object);
-            dataMapped==null?"":setTenantForm(dataMapped);            
+            dataMapped==null?"":setTenantForm(dataMapped);
         }
     },[object]);
 
