@@ -35,9 +35,9 @@ export class TenantRepositoryHttp implements TenantRepository {
     async modifyTenant(tenant: Tenant): Promise<void> {
         const body = mapTenantToApi(tenant);
         const response = await fetch(
-            this.BASEURL,
+            this.BASEURL+`/${tenant.tenantId}`,
             {
-                method: "POST",
+                method: "PUT",
                 body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
             }
