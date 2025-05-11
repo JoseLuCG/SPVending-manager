@@ -33,11 +33,12 @@ export class UserRepositoryHttp implements UserRepository {
     }
 
     async modifyUser(user: User): Promise<void> {
+        const body = mapUserToApi(user);
         const response = await fetch(
-            this.BASEURL,
+            this.BASEURL+`/${user.userId}`,
             {
-                method: "POST",
-                body: JSON.stringify(user),
+                method: "PUT",
+                body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
             }
         );
