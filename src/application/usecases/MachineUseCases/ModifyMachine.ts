@@ -1,7 +1,7 @@
 import { MachineRepository } from "../../../domain/ports/MachineRepository";
 import { Machine } from "../../../domain/entities/models/machine";
 
-export class CreateMachine {
+export class ModifyMachine {
     constructor( private machineRepository : MachineRepository ) {};
 
     async execute( machine : Machine ) : Promise<void> {
