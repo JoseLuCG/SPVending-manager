@@ -34,11 +34,12 @@ export class ClubRepositoryHttp implements ClubRepository {
     }
 
     async modifyClub(club: Club): Promise<void> {
+        const body = mapClubToApi(club);
         const response = await fetch(
-            this.BASEURL,
+            this.BASEURL+`/${club.clubId}`,
             {
-                method: "POST",
-                body: JSON.stringify(club),
+                method: "PUT",
+                body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
             }
         );
