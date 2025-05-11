@@ -10,6 +10,7 @@ export function mapMachineToApi(machine: Partial<Machine>): any {
         toaSerialNumber: machine.tnaSerialNumber,
         rustdeskId: machine.rustdeskId,
         rustdeskPass: machine.rustdeskPass,
-        clubId: machine.clubId
+        clubId: machine.clubId,
+        machineId: machine.machineId?machine.machineId:""
     };
 }
