@@ -26,7 +26,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
     });
 
     // Functions: 
-    function itemMapper(item: ClubApi): SetStateAction<Omit<Club, "clubId" | "numberOfMachines">> | null {
+    function itemMapper(item: ClubApi): SetStateAction<Omit<Club, "numberOfMachines">> | null {
         if (item != null) {
             let dataMapped: Omit<Club, "numberOfMachines"> = {
                 clubName: item.name,
@@ -62,7 +62,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
         event.preventDefault();
         try {
             await modifyClub.execute(clubFormData);
-            alert("Club successfully modified!")
+            alert("Club successfully modified!");
         } catch (error) {
             console.error(error);
             alert("An error has occurred");
