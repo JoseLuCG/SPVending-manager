@@ -33,11 +33,12 @@ export class MachineRepositoryHttp implements MachineRepository{
     }
 
     async modifyMachine(machine: Machine): Promise<void> {
+        const body = mapMachineToApi(machine);
         const response = await fetch(
-            this.BASEURL,
+            this.BASEURL+`/${machine.machineId}`,
             {
-                method: "POST",
-                body: JSON.stringify(machine),
+                method: "PUT",
+                body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
             }
         );
