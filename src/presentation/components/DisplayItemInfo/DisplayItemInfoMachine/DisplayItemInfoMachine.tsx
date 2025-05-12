@@ -42,7 +42,7 @@ function DisplayItemInfoMachine({object}:DIIMachineProps) {
             }
             return dataMapped;
         }
-        return null
+        return null;
     }
 
     // Handlers:
