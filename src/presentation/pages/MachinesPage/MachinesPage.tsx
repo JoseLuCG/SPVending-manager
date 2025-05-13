@@ -6,23 +6,34 @@ import { useEffect, useState } from 'react';
 import { MachineInfoDisplay } from '../../../domain/entities/models/machine';
 import { MachineRepositoryHttp } from '../../../infraestructure/adapters/api/MachineRepositoryHttp';
 import { GetMachineList } from '../../../application/usecases/MachineUseCases/GetMachineList';
+import { DeleteMachine } from '../../../application/usecases/MachineUseCases/DeleteMachine';
 
 const repository = new MachineRepositoryHttp();
 const getMachineList = new GetMachineList(repository);
+const deleteMachine = new DeleteMachine(repository);
 
 function MachinesPage() {
 	const [ machines, setMachines ] = useState<MachineInfoDisplay[]>([]);
+	const [ uuid, setUuid ] = useState("");
 
 	useEffect(()=>{
 		getMachineList.execute()
 			.then(setMachines)
 			.catch(console.error);
-	}, [])
+	}, []);
+
+	useEffect(() => {
+		if (uuid != "") {
+			console.log(uuid);
+			deleteMachine.execute(uuid);
+			setUuid("");
+		}
+		}, [uuid]);
 
 	return (
 		<>
 			<Header />
-			<Main textInfoDisplay={infoDisplayMachines} dataToDisplay={machines} />
+			<Main textInfoDisplay={infoDisplayMachines} dataToDisplay={machines} setterUuid={setUuid}/>
 		</>
 	)
 }

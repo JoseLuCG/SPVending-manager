@@ -6,12 +6,15 @@ import { UserRepositoryHttp } from '../../../infraestructure/adapters/api/UserRe
 import { GetUserList } from '../../../application/usecases/UserUseCases/GetUserList';
 import { useEffect, useState } from 'react';
 import { UserInfoDisplay } from '../../../domain/entities/models/user';
+import { DeleteUser } from '../../../application/usecases/UserUseCases/DeleteUser';
 
 const repository = new UserRepositoryHttp();
 const getUserList = new GetUserList(repository);
+const deleteUser = new DeleteUser(repository);
 
 function UsersPage() {
 	const [ users, setUsers ] = useState<UserInfoDisplay[]>([]);
+	const [ uuid, setUuid ] = useState("");
 
 	useEffect(()=> {
 		getUserList.execute()
@@ -19,10 +22,18 @@ function UsersPage() {
 			.catch(console.error);
 	},[]);
 
+	useEffect(() => {
+		if (uuid != "") {
+			console.log(uuid);
+			deleteUser.execute(uuid);
+			setUuid("");
+		}
+	}, [uuid]);
+
 	return (
 		<>
 			<Header />
-			<Main textInfoDisplay={ infoDisplayUsers } dataToDisplay={users}/>
+			<Main textInfoDisplay={ infoDisplayUsers } dataToDisplay={users} setterUuid={setUuid}/>
 		</>
 	)
 }
