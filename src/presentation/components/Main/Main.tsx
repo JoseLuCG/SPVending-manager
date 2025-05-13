@@ -11,9 +11,8 @@ import { getEntityId } from '../../../utilities/tools/checkers';
 import { useLocation, useNavigate } from 'react-router';
 import { appRoutes } from '../../../utilities/defines/routes';
 
-function Main({textInfoDisplay, dataToDisplay}: MainProps) {
+function Main({textInfoDisplay, dataToDisplay, setterUuid}: MainProps) {
 	// ---------- States ----------
-	//const [ item, setItem ] = useContext(SelectedItem);
 	const [ showModal, setShowModal ] = useState(false);
 	const [ rowSelected ] = useState({});
 	const navigate = useNavigate();
@@ -25,6 +24,10 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 		navigate(`${location.pathname}` +  appRoutes.selectedItemRoute + `/${selectedItemId}`, {state:{from:location.pathname}});
 	}
 
+	function onClickHandler(data:any) {
+		const dataId = getEntityId(data);
+		setterUuid(dataId);
+	}
 	// ---------- Styles ----------
 	const rowClassName = () => {
 		return  `${styles.tableRow} ${styles.pDatatableThead}`;
@@ -56,7 +59,7 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 						<Column headerClassName={styles.headerTB} field="" header="Actions"
 							body={(rowData) => (
 								<div>
-									<button>
+									<button onClick={()=> onClickHandler(rowData)}>
 										<img src={trashIcon} alt="" />
 									</button>
 								</div>
