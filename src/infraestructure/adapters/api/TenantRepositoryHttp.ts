@@ -46,7 +46,12 @@ export class TenantRepositoryHttp implements TenantRepository {
     }
 
     async deleteTenant(uuid: string): Promise<void> {
-        const response = await fetch(`${this.BASEURL}/${uuid}`);
+        const response = await fetch(
+            `${this.BASEURL}/${uuid}`,
+            {
+                method: "DELETE"
+            }
+        );
         if (!response.ok) throw new Error("Error deleting tenant");
     }
 
