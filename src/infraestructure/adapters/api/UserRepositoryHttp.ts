@@ -46,7 +46,11 @@ export class UserRepositoryHttp implements UserRepository {
     }
 
     async deleteUser(userUuid: string): Promise<void> {
-        const response = await fetch(`${this.BASEURL}/${userUuid}`);
+        const response = await fetch(
+            `${this.BASEURL}/${userUuid}`,
+            {
+                method: "DELETE"
+            });
         if (!response.ok) throw new Error("Error deleting user");
     }
 }
