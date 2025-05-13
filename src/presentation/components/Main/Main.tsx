@@ -52,7 +52,13 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 						<Column headerClassName={styles.headerTB} field={textInfoDisplay.column3.field} header={textInfoDisplay.column3.header}></Column>
 						<Column headerClassName={styles.headerTB} field={textInfoDisplay.column4.field} header={textInfoDisplay.column4.header}></Column>
 						<Column headerClassName={styles.headerTB} field={textInfoDisplay.column5.field} header={textInfoDisplay.column5.header}></Column>
-						<Column headerClassName={styles.headerTB} field="" header="Actions"></Column>
+						<Column headerClassName={styles.headerTB} field="" header="Actions"
+							body={(rowData) => (
+								<div>
+									<button>action</button>
+								</div>
+							)}
+						/>
 					</DataTable>
 				</div>
 			</section>
