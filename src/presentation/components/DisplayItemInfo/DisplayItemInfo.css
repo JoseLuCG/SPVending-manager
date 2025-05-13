@@ -11,22 +11,43 @@ main.mn-display {
     width: 100%;
 }
 
-form.frm-cntnr {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-div.frm-dv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .editButtonContainer {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     margin-right: 160px;
+}
+
+/* ---------- Form ---------- */
+form.frm-cntnr {
+    width: 100%;
+    margin-top: 50px;
+}
+
+/* ---------- Main Form Div ---------- */
+main.frm-mn-cntnr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+main.frm-mn-cntnr:first-child {
+    margin-right: 5%;
+}
+
+div.frm-dv {
+    margin-left: 5%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin-bottom: 40px;
+}
+
+div.frm-dv > div.fp-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+    border-bottom: 2px dotted; 
 }

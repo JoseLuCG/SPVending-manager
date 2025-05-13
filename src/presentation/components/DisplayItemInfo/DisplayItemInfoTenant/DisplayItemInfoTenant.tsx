@@ -10,8 +10,8 @@ const modifyUser = new ModifyTenant(tenantRepo);
 
 function DisplayItemInfoTenant({ object }: DIITenantProps) {
     // States:
-    const [ isDisabled, setIsDisabled ] = useState(true);
-    const [ tenantForm, setTenantForm ] = useState<Omit<Tenant,"numberOfClubs">>({
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [tenantForm, setTenantForm] = useState<Omit<Tenant, "numberOfClubs">>({
         tenantName: "",
         cif: 0,
         address: "",
@@ -19,13 +19,13 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         email: "",
         remark: "",
         micronId: "",
-        tenantId:""
+        tenantId: ""
     });
 
     // Functions:
-    function itemMapper(item:TenantApi):SetStateAction<Omit<Tenant, "tenantId" | "numberOfClubs">> | null  {
+    function itemMapper(item: TenantApi): SetStateAction<Omit<Tenant, "tenantId" | "numberOfClubs">> | null {
         if (item != null) {
-            let dataMapped: Omit<Tenant,"numberOfClubs"> = {
+            let dataMapped: Omit<Tenant, "numberOfClubs"> = {
                 tenantName: item.name,
                 cif: Number.parseInt(item.cif),
                 address: item.address,
@@ -53,13 +53,13 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         }));
     }
 
-    async function submitHandler(event:React.FormEvent) {
+    async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
         try {
             // ? Question: Can managers be modified in the tenant tab?
             if (tenantForm.tenantId) {
                 await modifyUser.execute(tenantForm);
-                alert("Tenant successfully modified!");   
+                alert("Tenant successfully modified!");
             }
         } catch (error) {
             console.error(error);
@@ -67,12 +67,12 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         if (object) {
             const dataMapped = itemMapper(object);
-            dataMapped==null?"":setTenantForm(dataMapped);
+            dataMapped == null ? "" : setTenantForm(dataMapped);
         }
-    },[object]);
+    }, [object]);
 
     if (!object) {
         return (
@@ -88,86 +88,104 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                 <button onClick={onClickHandler}>Eddit</button>
             </div>
             <form className="frm-cntnr" onSubmit={submitHandler}>
-                <div className="frm-dv">
-                    <label htmlFor="tenantName">Tenant Name</label>
-                    <input
-                        id="tenantName"
-                        name="tenantName"
-                        type="text"
-                        value={isDisabled? object.name: tenantForm.tenantName}
-                        disabled={isDisabled}
-                        placeholder={isDisabled?"":object.name}
-                        onChange={changeHandler}
-                    />
-                    <label htmlFor="address">Tenant Address</label>
-                    <input
-                        id="address"
-                        name="address"
-                        type="text"
-                        value={isDisabled?object.address: tenantForm.address}
-                        disabled={isDisabled}
-                        placeholder={isDisabled?"":object.address}
-                        onChange={changeHandler}
-                    />
-                    <label htmlFor="email">Tenant email</label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="text"
-                        value={isDisabled?object.email: tenantForm.email}
-                        disabled={isDisabled}
-                        placeholder={isDisabled?"":object.email}
-                        onChange={changeHandler}
-                    />
-                    <label htmlFor="remark">Remark</label>
-                    <input
-                        id="remark"
-                        name="remark"
-                        type="text"
-                        value={isDisabled?object.remark:tenantForm.remark}
-                        disabled={isDisabled}
-                        placeholder={isDisabled?"":object.remark}
-                        onChange={changeHandler}
-                    />
-                </div>
-                <div className="frm-dv">
-                    <label htmlFor="tenantCIF">CIF</label>
-                    <input
-                        id="tenantCIF"
-                        name="cif"
-                        type="text"
-                        value={isDisabled?object.cif:tenantForm.cif}
-                        disabled={isDisabled}
-                        placeholder={isDisabled?"":object.cif}
-                        onChange={changeHandler}
-                    />
-                    <label htmlFor="phone">Phone</label>
-                    <input
-                        id="phone"
-                        name="phone"
-                        type="phone"
-                        value={isDisabled?object.phone: tenantForm.phone}
-                        disabled={isDisabled}
-                        placeholder={isDisabled?"":object.phone}
-                        onChange={changeHandler}
-                    />
-                    <label htmlFor="micronId">Micron ID</label>
-                    <input
-                        id="micronId"
-                        type="text"
-                        value={isDisabled?object.micronId:tenantForm.micronId}
-                        disabled={isDisabled}
-                        placeholder={isDisabled?"":object.micronId}
-                        onChange={changeHandler}
-                    />
-                    <label htmlFor="managers">Managers</label>
-                    <input
-                        id="managers"
-                        type="text"
-                        value={object.managers}
-                        disabled
-                    />
-                </div>
+                <main className="frm-mn-cntnr">
+                    <div className="frm-dv">
+                        <div className="fp-div">
+                            <label htmlFor="tenantName">Tenant Name</label>
+                            <input
+                                id="tenantName"
+                                name="tenantName"
+                                type="text"
+                                value={isDisabled ? object.name : tenantForm.tenantName}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.name}
+                                onChange={changeHandler}
+                            />
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="address">Tenant Address</label>
+                            <input
+                                id="address"
+                                name="address"
+                                type="text"
+                                value={isDisabled ? object.address : tenantForm.address}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.address}
+                                onChange={changeHandler}
+                            />
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="email">Tenant email</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="text"
+                                value={isDisabled ? object.email : tenantForm.email}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.email}
+                                onChange={changeHandler}
+                            />
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="remark">Remark</label>
+                            <input
+                                id="remark"
+                                name="remark"
+                                type="text"
+                                value={isDisabled ? object.remark : tenantForm.remark}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.remark}
+                                onChange={changeHandler}
+                            />
+                        </div>
+                    </div>
+                    <div className="frm-dv">
+                        <div className="fp-div">
+                            <label htmlFor="tenantCIF">CIF</label>
+                            <input
+                                id="tenantCIF"
+                                name="cif"
+                                type="text"
+                                value={isDisabled ? object.cif : tenantForm.cif}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.cif}
+                                onChange={changeHandler}
+                            />
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="phone">Phone</label>
+                            <input
+                                id="phone"
+                                name="phone"
+                                type="phone"
+                                value={isDisabled ? object.phone : tenantForm.phone}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.phone}
+                                onChange={changeHandler}
+                            />
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="micronId">Micron ID</label>
+                            <input
+                                id="micronId"
+                                type="text"
+                                value={isDisabled ? object.micronId : tenantForm.micronId}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.micronId}
+                                onChange={changeHandler}
+                            />
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="managers">Managers</label>
+                            <input
+                                id="managers"
+                                type="text"
+                                value={object.managers}
+                                disabled
+                            />
+                        </div>
+                    </div>
+                </main>
                 <div>
                     <button type="submit">Submit</button>
                 </div>
