@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { ClubApi, ClubInfoDisplay } from '../models/club';
 import { MachineApi, MachineInfoDisplay } from '../models/machine';
 import { Tenant, TenantApi, TenantInfoDisplay } from '../models/tenant';
@@ -19,7 +20,8 @@ export type MenuButtonProps = {
 
 export type MainProps = {
     textInfoDisplay: InfoDisplay,
-    dataToDisplay: TenantInfoDisplay[] | ClubInfoDisplay[] | MachineInfoDisplay[] | UserInfoDisplay[]
+    dataToDisplay: TenantInfoDisplay[] | ClubInfoDisplay[] | MachineInfoDisplay[] | UserInfoDisplay[],
+    setterUuid: Dispatch<SetStateAction<string>>
 }
 
 export type ModalProps = {
