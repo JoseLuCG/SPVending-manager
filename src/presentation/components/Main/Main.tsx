@@ -1,5 +1,6 @@
 import styles from "./Main.module.css";
 //import searchIcon from './../../assets/icons/Search-more.svg';
+import trashIcon from "./../../../assets/icons/Trash.svg";
 import Aside from './../Aside/Aside';
 import { DataTable, DataTableRowClickEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -55,7 +56,9 @@ function Main({textInfoDisplay, dataToDisplay}: MainProps) {
 						<Column headerClassName={styles.headerTB} field="" header="Actions"
 							body={(rowData) => (
 								<div>
-									<button>action</button>
+									<button>
+										<img src={trashIcon} alt="" />
+									</button>
 								</div>
 							)}
 						/>
