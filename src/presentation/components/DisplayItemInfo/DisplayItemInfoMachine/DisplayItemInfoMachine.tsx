@@ -193,7 +193,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                         </div>
                     </div>
                 </main>
-                <div>
+                <div className="editButtonContainer">
                     <button type="submit">Submit</button>
                 </div>
             </form>

@@ -90,7 +90,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                 <button onClick={onClickHandler}>Eddit</button>
             </div>
             <form className="frm-cntnr" onSubmit={submitHandler}>
-                <main className="frm-mc-cntnr">
+                <main className="frm-mn-cntnr">
                     <div className="frm-dv">
                         <div className="fp-div">
                             <label htmlFor="clubName">Club Name</label>
@@ -214,7 +214,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         </div>
                     </div>
                 </main>
-                <div>
+                <div className="editButtonContainer ">
                     <button type="submit">Submit</button>
                 </div>
             </form>

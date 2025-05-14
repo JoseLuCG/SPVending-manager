@@ -186,7 +186,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         </div>
                     </div>
                 </main>
-                <div>
+                <div className="editButtonContainer">
                     <button type="submit">Submit</button>
                 </div>
             </form>
