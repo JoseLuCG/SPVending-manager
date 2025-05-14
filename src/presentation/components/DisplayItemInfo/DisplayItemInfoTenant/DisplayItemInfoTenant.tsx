@@ -84,9 +84,6 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
 
     return (
         <>
-            <div className="editButtonContainer">
-                <button onClick={onClickHandler}>Eddit</button>
-            </div>
             <form className="frm-cntnr" onSubmit={submitHandler}>
                 <main className="frm-mn-cntnr">
                     <div className="frm-dv">
@@ -106,6 +103,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className="fp-div">
                             <label htmlFor="address">Tenant Address</label>
                             <input
+                                className="input"
                                 id="address"
                                 name="address"
                                 type="text"
@@ -118,6 +116,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className="fp-div">
                             <label htmlFor="email">Tenant email</label>
                             <input
+                                className="input"
                                 id="email"
                                 name="email"
                                 type="text"
@@ -130,6 +129,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className="fp-div">
                             <label htmlFor="remark">Remark</label>
                             <input
+                                className="input"
                                 id="remark"
                                 name="remark"
                                 type="text"
@@ -144,6 +144,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className="fp-div">
                             <label htmlFor="tenantCIF">CIF</label>
                             <input
+                                className="input"
                                 id="tenantCIF"
                                 name="cif"
                                 type="text"
@@ -156,6 +157,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className="fp-div">
                             <label htmlFor="phone">Phone</label>
                             <input
+                                className="input"
                                 id="phone"
                                 name="phone"
                                 type="phone"
@@ -168,6 +170,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className="fp-div">
                             <label htmlFor="micronId">Micron ID</label>
                             <input
+                                className="input"
                                 id="micronId"
                                 type="text"
                                 value={isDisabled ? object.micronId : tenantForm.micronId}
@@ -179,6 +182,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className="fp-div">
                             <label htmlFor="managers">Managers</label>
                             <input
+                                className="input"
                                 id="managers"
                                 type="text"
                                 value={object.managers}
@@ -188,7 +192,8 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                     </div>
                 </main>
                 <div className="editButtonContainer">
-                    <button type="submit">Submit</button>
+                    <button className="button" type="button" onClick={onClickHandler}>Edit</button>
+                    <button className="button" type="submit">Save</button>
                 </div>
             </form>
         </>

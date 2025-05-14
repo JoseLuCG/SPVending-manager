@@ -87,9 +87,6 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
 
     return (
         <>
-            <div className="editButtonContainer">
-                <button onClick={onClickHandler}>Eddit</button>
-            </div>
             <form className="frm-cntnr" onSubmit={submitHandler}>
                 <main className="frm-mn-cntnr">
                     <div className="frm-dv">
@@ -194,7 +191,8 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                     </div>
                 </main>
                 <div className="editButtonContainer">
-                    <button type="submit">Submit</button>
+                    <button className="button" type="button" onClick={onClickHandler}>Edit</button>
+                    <button className="button" type="submit">Save</button>
                 </div>
             </form>
         </>
