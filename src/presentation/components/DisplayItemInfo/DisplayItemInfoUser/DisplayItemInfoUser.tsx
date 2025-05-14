@@ -75,7 +75,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
             const dataMapped = itemMapper(object);
             dataMapped == null ? "" : setUserForm(dataMapped);
         }
-    },[object]);
+    }, [object]);
 
     if (!object) {
         return (
@@ -91,94 +91,107 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                 <button onClick={onClickHandler}>Eddit</button>
             </div>
             <form className="frm-cntnr" onSubmit={submitHandler}>
-                <div className="frm-dv">
-                    <label htmlFor="username">User Name</label>
-                    <input
-                        id="username"
-                        name="username"
-                        type="text"
-                        value={isDisabled ? object.username : userForm.username}
-                        disabled={isDisabled}
-                        placeholder={isDisabled ? "" : object.username}
-                        onChange={changeHandler}
-                    />
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="text"
-                        value={isDisabled ? object.password : userForm.password}
-                        disabled={isDisabled}
-                        placeholder={isDisabled ? "" : object.password}
-                    />
-                    <label htmlFor="adminFor">Admin For</label>
-                    {
-                        isDisabled ?
+                <main className="frm-mn-cntnr">
+                    <div className="frm-dv">
+                        <div className="fp-div">
+                            <label htmlFor="username">User Name</label>
                             <input
-                                id="adminFor"
+                                id="username"
+                                name="username"
                                 type="text"
-                                value={object.clubEntityName ? object.clubEntityName : object.tenantEntityName}
+                                value={isDisabled ? object.username : userForm.username}
                                 disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.username}
+                                onChange={changeHandler}
                             />
-                            :
-                            <div>
-                                <label htmlFor="type1">Tenant admin</label>
-                                <input
-                                    className="rdbttn"
-                                    type="radio"
-                                    id="type1"
-                                    name="userType"
-                                    value="2"
-                                    checked={userForm.userType === 2}
-                                    onChange={changeHandler}
-                                />
-                                <label htmlFor="type2">Club admin</label>
-                                <input
-                                    className="rdbttn"
-                                    type="radio"
-                                    id="type2"
-                                    name="userType"
-                                    value="1"
-                                    checked={userForm.userType === 1}
-                                    onChange={changeHandler}
-                                />
-                                <br />
-                                <SelectClubOptions onSelectClub={changeHandler} />
-                                <br />
-                                <SelectTenantOptions onSelectTenant={changeHandler} />
-                            </div>
-                    }
-
-                </div>
-                <div className="frm-dv">
-                    <label htmlFor="micronId">Micron ID</label>
-                    <input
-                        id="micronId"
-                        name="micronId"
-                        type="text"
-                        value={isDisabled ? object.micronId : userForm.micronId}
-                        disabled={isDisabled}
-                        placeholder={isDisabled ? "" : object.micronId}
-                    />
-                    <label htmlFor="micronUser">Micron User</label>
-                    <input
-                        id="micronUser"
-                        name="micronUser"
-                        type="text"
-                        value={isDisabled ? object.micronUser : userForm.micronUser}
-                        disabled={isDisabled}
-                        placeholder={isDisabled ? "" : object.micronUser}
-                    />
-                    <label htmlFor="micronPass">Micron Pass</label>
-                    <input
-                        id="micronPass"
-                        name="micronPass"
-                        type="text"
-                        value={isDisabled ? object.micronPass : userForm.micronPass}
-                        disabled={isDisabled}
-                        placeholder={isDisabled ? "" : object.micronPass}
-                    />
-                </div>
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="password">Password</label>
+                            <input
+                                id="password"
+                                name="password"
+                                type="text"
+                                value={isDisabled ? object.password : userForm.password}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.password}
+                            />
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="adminFor">Admin For</label>
+                            {
+                                isDisabled ?
+                                    <input
+                                        id="adminFor"
+                                        type="text"
+                                        value={object.clubEntityName ? object.clubEntityName : object.tenantEntityName}
+                                        disabled={isDisabled}
+                                    />
+                                    :
+                                    <div>
+                                        <label htmlFor="type1">Tenant admin</label>
+                                        <input
+                                            className="rdbttn"
+                                            type="radio"
+                                            id="type1"
+                                            name="userType"
+                                            value="2"
+                                            checked={userForm.userType === 2}
+                                            onChange={changeHandler}
+                                        />
+                                        <label htmlFor="type2">Club admin</label>
+                                        <input
+                                            className="rdbttn"
+                                            type="radio"
+                                            id="type2"
+                                            name="userType"
+                                            value="1"
+                                            checked={userForm.userType === 1}
+                                            onChange={changeHandler}
+                                        />
+                                        <br />
+                                        <SelectClubOptions onSelectClub={changeHandler} />
+                                        <br />
+                                        <SelectTenantOptions onSelectTenant={changeHandler} />
+                                    </div>
+                            }
+                        </div>
+                    </div>
+                    <div className="frm-dv">
+                        <div className="fp-div">
+                            <label htmlFor="micronId">Micron ID</label>
+                            <input
+                                id="micronId"
+                                name="micronId"
+                                type="text"
+                                value={isDisabled ? object.micronId : userForm.micronId}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.micronId}
+                            />
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="micronUser">Micron User</label>
+                            <input
+                                id="micronUser"
+                                name="micronUser"
+                                type="text"
+                                value={isDisabled ? object.micronUser : userForm.micronUser}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.micronUser}
+                            />
+                        </div>
+                        <div className="fp-div">
+                            <label htmlFor="micronPass">Micron Pass</label>
+                            <input
+                                id="micronPass"
+                                name="micronPass"
+                                type="text"
+                                value={isDisabled ? object.micronPass : userForm.micronPass}
+                                disabled={isDisabled}
+                                placeholder={isDisabled ? "" : object.micronPass}
+                            />
+                        </div>
+                    </div>
+                </main>
                 <div>
                     <button type="submit">Submit</button>
                 </div>
