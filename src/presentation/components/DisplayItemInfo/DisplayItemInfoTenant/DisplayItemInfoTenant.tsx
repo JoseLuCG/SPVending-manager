@@ -93,6 +93,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className="fp-div">
                             <label htmlFor="tenantName">Tenant Name</label>
                             <input
+                                className="input"
                                 id="tenantName"
                                 name="tenantName"
                                 type="text"
