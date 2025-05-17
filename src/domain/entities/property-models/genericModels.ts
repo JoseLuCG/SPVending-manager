@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 import { ClubInfoDisplay } from "../models/club"
 import { MachineInfoDisplay } from "../models/machine"
 import { TenantInfoDisplay } from "../models/tenant"
@@ -18,3 +19,7 @@ export type InfoDisplay = {
 }
 
 export type RowData = TenantInfoDisplay | ClubInfoDisplay | UserInfoDisplay | MachineInfoDisplay;
+
+export type AuthorizationProps = {
+    children: ReactNode;
+}
