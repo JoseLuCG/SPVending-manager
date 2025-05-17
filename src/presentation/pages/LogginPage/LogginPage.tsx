@@ -1,0 +1,93 @@
+import styles from "./LogginPAge.module.css"
+import logo from "./../../../assets/logo.png";
+import { useState } from "react";
+import { AdminRepositoryHttp } from "../../../infraestructure/adapters/api/AdminRepositoryHttp";
+import { LogAdmin } from "../../../application/usecases/AdminUseCases/LogAdmin";
+
+const repository = new AdminRepositoryHttp();
+const logAdmin = new LogAdmin(repository);
+
+function LogginPage() {
+    const [ adminForm, setAdminForm ] = useState({
+        username:"",
+        password:""
+    });
+    const [ errorMessage, setErrorMessage ] = useState("");
+/*
+	username:"Admin",
+	password:"abc123.2"
+*/
+
+    // Handlers:
+    function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+        const { name, value } = event.target;
+        setAdminForm({
+            ...adminForm,
+            [name]: value
+        });
+    }
+
+    async function submitHandler(event:React.FormEvent) {
+        event.preventDefault();
+        try {
+            // TODO: check if message is a AdminApi type or a string "Bad credentials"
+            //Bad credentials
+            const message = await logAdmin.execute(adminForm);
+            console.log(message);
+            
+            alert("Admin successfully logged");
+        } catch (error:any) {
+            console.error(error);
+            let errorMessage: string = "Unknow error occurred";
+            if (error instanceof Error) {
+                errorMessage = error.message;
+            } else if (typeof error === "string") {
+                errorMessage = error;
+            } else if ( (typeof error === "object") && (error !== null) && "Error" in error) {
+                errorMessage = (error as any).Error;
+            }
+            setErrorMessage(errorMessage);
+            alert("Error log in the admin");
+        }
+    }
+
+    return (
+        <>
+            <div className={styles.mainContainer}>
+                <div className={styles.registerContainer}>
+                    <form onSubmit={submitHandler} className={styles.form}>
+                        <label className={styles.label} htmlFor="adminProfile">Administrator profile</label>
+                        <input
+                            className={styles.inputStyle}
+                            id="adminProfile"
+                            name="username"
+                            placeholder="admin-example"
+                            type="text"
+                            value={adminForm.username}
+                            onChange={changeHandler}
+                            required
+                        />
+                        <label className={styles.label} htmlFor="adminProfile">Administrator password</label>
+                        <input
+                            className={styles.inputStyle}
+                            id="adminPassword"
+                            name="password"
+                            placeholder="password"
+                            type="password"
+                            value={adminForm.password}
+                            onChange={changeHandler}
+                            required
+                        />
+                        <p className={styles.errMessage}>(!) {errorMessage}</p>
+                        <button type="submit" className={styles.logginButton}>Log in</button>
+                    </form>
+                </div>
+                <div className={styles.footer}>
+                    <img className={styles.img} src={logo} alt="logo" />
+                </div>
+            </div>
+        </>
+    );
+}
+
+export default LogginPage;
