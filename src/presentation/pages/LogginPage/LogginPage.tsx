@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { AdminRepositoryHttp } from "../../../infraestructure/adapters/api/AdminRepositoryHttp";
 import { LogAdmin } from "../../../application/usecases/AdminUseCases/LogAdmin";
 import { Admin } from "../../../contexts/AdminContext";
+import { useNavigate } from "react-router";
+import { appRoutes } from "../../../utilities/defines/routes";
 
 const repository = new AdminRepositoryHttp();
 const logAdmin = new LogAdmin(repository);
@@ -15,6 +17,7 @@ function LogginPage() {
         password:""
     });
     const [ errorMessage, setErrorMessage ] = useState("");
+    const navigate = useNavigate();
 /*
 	username:"Admin",
 	password:"abc123.2"
@@ -57,6 +60,9 @@ function LogginPage() {
     useEffect(
         ()=> {
             console.log(admin);
+            if (admin !== null) {
+                navigate(appRoutes.tenantsRoute);
+            }
         },[admin]
     );
 
