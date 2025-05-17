@@ -1,4 +1,5 @@
 export const appRoutes = {
+    logginRoute: "/" ,
     tenantsRoute: "/tenants",
     clubsRoute: "/clubs",
     machinesRoute: "/machines",
