@@ -1,13 +1,15 @@
 import styles from "./LogginPAge.module.css"
 import logo from "./../../../assets/logo.png";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AdminRepositoryHttp } from "../../../infraestructure/adapters/api/AdminRepositoryHttp";
 import { LogAdmin } from "../../../application/usecases/AdminUseCases/LogAdmin";
+import { Admin } from "../../../contexts/AdminContext";
 
 const repository = new AdminRepositoryHttp();
 const logAdmin = new LogAdmin(repository);
 
 function LogginPage() {
+    const [ admin, setAdmin ] = useContext(Admin);
     const [ adminForm, setAdminForm ] = useState({
         username:"",
         password:""
@@ -32,9 +34,10 @@ function LogginPage() {
         try {
             // TODO: check if message is a AdminApi type or a string "Bad credentials"
             //Bad credentials
-            const message = await logAdmin.execute(adminForm);
-            console.log(message);
-            
+            const response = await logAdmin.execute(adminForm);
+            console.log("",response);
+            setAdmin(response);
+
             alert("Admin successfully logged");
         } catch (error:any) {
             console.error(error);
@@ -50,6 +53,12 @@ function LogginPage() {
             alert("Error log in the admin");
         }
     }
+
+    useEffect(
+        ()=> {
+            console.log(admin);
+        },[admin]
+    );
 
     return (
         <>
