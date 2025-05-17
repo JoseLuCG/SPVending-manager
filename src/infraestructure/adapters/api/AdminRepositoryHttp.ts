@@ -1,0 +1,24 @@
+import { Admin, AdminApi } from "../../../domain/entities/models/admin";
+import { AdminRepository } from "../../../domain/ports/AdminRepository";
+import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
+
+export class AdminRepositoryHttp implements AdminRepository {
+    private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.loginPage;
+
+    async logAdmin(user: Omit<Admin, "id" | "roles">): Promise<AdminApi | string> {
+        const response = await fetch(
+            `${this.BASEURL}`,
+            {
+                method: "POST",
+                body: JSON.stringify(user),
+                headers: { "Content-Type": "application/json" }
+            }
+        );
+        const data = await response.json();
+        if (!response.ok) {
+            if (data.password) throw new Error("The password must have at least 8 characters"); 
+            throw new Error("Error the password is incorrect");
+        }
+        return data;
+    }
+}
