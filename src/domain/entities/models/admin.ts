@@ -9,3 +9,8 @@ export type Admin = {
     password: string
     roles: AdminRol
 }
+
+export type AdminApi = {
+    name:string,
+    role:string 
+}
