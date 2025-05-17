@@ -5,5 +5,6 @@ export const PATH_PREFIX = {
     clubPath: "/clubs",
     potentialTenants: "all-sumary",
     machinesPath: "/machines",
-    usersPath: "/user-managers"
+    usersPath: "/user-managers",
+    loginPage: "/auth/login"
 }
