@@ -7,6 +7,7 @@ import UsersPage from './presentation/pages/UsersPage/UsersPage';
 import { appRoutes } from './utilities/defines/routes';
 import SelectedItemPage from './presentation/pages/SelectedItemPage/SelectedItemPage';
 import LogginPage from './presentation/pages/LogginPage/LogginPage';
+import Authorization from './security/Authorization';
 
 function App() {
 
@@ -14,11 +15,11 @@ function App() {
 		<>
 			<Routes>
 				<Route path={appRoutes.logginRoute} element={<LogginPage/>}/>
-				<Route path={appRoutes.tenantsRoute} element={<TenantsPage/>}/>
-				<Route path={appRoutes.clubsRoute} element={<ClubsPage/>}/>
-				<Route path={appRoutes.machinesRoute} element={<MachinesPage/>}/>
-				<Route path={appRoutes.usersRoute} element={<UsersPage/>} />
-				<Route path={"/:itemType"+appRoutes.selectedItemRoute+"/:uuid"} element={<SelectedItemPage/>} />
+				<Route path={appRoutes.tenantsRoute} element={ <Authorization> <TenantsPage/> </Authorization>}/>
+				<Route path={appRoutes.clubsRoute} element={ <Authorization> <ClubsPage/> </Authorization>}/>
+				<Route path={appRoutes.machinesRoute} element={<Authorization> <MachinesPage/> </Authorization>}/>
+				<Route path={appRoutes.usersRoute} element={<Authorization> <UsersPage/> </Authorization>} />
+				<Route path={"/:itemType"+appRoutes.selectedItemRoute+"/:uuid"} element={<Authorization> <SelectedItemPage/> </Authorization>} />
 			</Routes>
 		</>
 	)
