@@ -40,11 +40,11 @@ function LogginPage() {
             console.error(error);
             let errorMessage: string = "Unknow error occurred";
             if (error instanceof Error) {
-                errorMessage = error.message;
+                errorMessage = "(!)" + error.message;
             } else if (typeof error === "string") {
-                errorMessage = error;
+                errorMessage = "(!)" + error;
             } else if ( (typeof error === "object") && (error !== null) && "Error" in error) {
-                errorMessage = (error as any).Error;
+                errorMessage = "(!)" + (error as any).Error;
             }
             setErrorMessage(errorMessage);
             alert("Error log in the admin");
@@ -78,7 +78,7 @@ function LogginPage() {
                             onChange={changeHandler}
                             required
                         />
-                        <p className={styles.errMessage}>(!) {errorMessage}</p>
+                        <p className={styles.errMessage}>{errorMessage}</p>
                         <button type="submit" className={styles.logginButton}>Log in</button>
                     </form>
                 </div>
