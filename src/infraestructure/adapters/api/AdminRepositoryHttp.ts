@@ -11,7 +11,8 @@ export class AdminRepositoryHttp implements AdminRepository {
             {
                 method: "POST",
                 body: JSON.stringify(user),
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                credentials: "include"
             }
         );
         const data = await response.json();
