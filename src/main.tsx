@@ -3,14 +3,14 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 import './index.css'
 import App from './App.tsx'
-import { SelectedItemContext } from './contexts/SelectedItemContext.tsx'
+import { AdminContext } from './contexts/AdminContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
 	<BrowserRouter>
 		<StrictMode>
-			<SelectedItemContext>
+			<AdminContext>
 				<App />
-			</SelectedItemContext>
+			</AdminContext>
 		</StrictMode>
 	</BrowserRouter>
 )
