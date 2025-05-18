@@ -6,6 +6,7 @@ import styles from "./../DisplayItemInfo.module.css";
 import { User, UserApi } from "../../../../domain/entities/models/user";
 import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
 import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
+import Loader from "../../Loader/Loader";
 
 const userRepository = new UserRepositoryHttp();
 const modifyUser = new ModifyUser(userRepository);
@@ -79,9 +80,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
 
     if (!object) {
         return (
-            <div>
-                <p>Loading...</p>
-            </div>
+            <Loader/>
         );
     }
 
@@ -93,6 +92,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="username">User Name</label>
                             <input
+                                className={styles.input}
                                 id="username"
                                 name="username"
                                 type="text"
@@ -105,6 +105,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="password">Password</label>
                             <input
+                                className={styles.input}
                                 id="password"
                                 name="password"
                                 type="text"
@@ -118,6 +119,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                             {
                                 isDisabled ?
                                     <input
+                                    className={styles.input}
                                         id="adminFor"
                                         type="text"
                                         value={object.clubEntityName ? object.clubEntityName : object.tenantEntityName}
@@ -157,6 +159,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="micronId">Micron ID</label>
                             <input
+                                className={styles.input}
                                 id="micronId"
                                 name="micronId"
                                 type="text"
@@ -168,6 +171,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="micronUser">Micron User</label>
                             <input
+                                className={styles.input}
                                 id="micronUser"
                                 name="micronUser"
                                 type="text"
@@ -179,6 +183,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="micronPass">Micron Pass</label>
                             <input
+                                className={styles.input}
                                 id="micronPass"
                                 name="micronPass"
                                 type="text"

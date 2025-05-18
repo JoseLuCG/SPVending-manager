@@ -4,6 +4,7 @@ import styles from "./../DisplayItemInfo.module.css";
 import { Tenant, TenantApi } from "../../../../domain/entities/models/tenant";
 import { TenantRepositoryHttp } from "../../../../infraestructure/adapters/api/TenantRepositoryHttp";
 import { ModifyTenant } from "../../../../application/usecases/TenantUseCases/ModifyTenant";
+import Loader from "../../Loader/Loader";
 
 const tenantRepo = new TenantRepositoryHttp();
 const modifyUser = new ModifyTenant(tenantRepo);
@@ -76,9 +77,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
 
     if (!object) {
         return (
-            <div>
-                <p>Loading...</p>
-            </div>
+            <Loader/>
         );
     }
 
@@ -90,7 +89,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="tenantName">Tenant Name</label>
                             <input
-                                className="input"
+                                className={styles.input}
                                 id="tenantName"
                                 name="tenantName"
                                 type="text"
@@ -103,7 +102,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="address">Tenant Address</label>
                             <input
-                                className="input"
+                                className={styles.input}
                                 id="address"
                                 name="address"
                                 type="text"
@@ -116,7 +115,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="email">Tenant email</label>
                             <input
-                                className="input"
+                                className={styles.input}
                                 id="email"
                                 name="email"
                                 type="text"
@@ -129,7 +128,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="remark">Remark</label>
                             <input
-                                className="input"
+                                className={styles.input}
                                 id="remark"
                                 name="remark"
                                 type="text"
@@ -144,7 +143,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="tenantCIF">CIF</label>
                             <input
-                                className="input"
+                                className={styles.input}
                                 id="tenantCIF"
                                 name="cif"
                                 type="text"
@@ -157,7 +156,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="phone">Phone</label>
                             <input
-                                className="input"
+                                className={styles.input}
                                 id="phone"
                                 name="phone"
                                 type="phone"
@@ -170,7 +169,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="micronId">Micron ID</label>
                             <input
-                                className="input"
+                                className={styles.input}
                                 id="micronId"
                                 type="text"
                                 value={isDisabled ? object.micronId : tenantForm.micronId}
@@ -182,7 +181,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="managers">Managers</label>
                             <input
-                                className="input"
+                                className={styles.input}
                                 id="managers"
                                 type="text"
                                 value={object.managers}

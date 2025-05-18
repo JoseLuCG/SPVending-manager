@@ -5,6 +5,7 @@ import { MachineRepositoryHttp } from "../../../../infraestructure/adapters/api/
 import styles from "./../DisplayItemInfo.module.css";
 import { Machine, MachineApi } from "../../../../domain/entities/models/machine";
 import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
+import Loader from "../../Loader/Loader";
 
 const machineRepository = new MachineRepositoryHttp();
 const modifyMachine = new ModifyMachine(machineRepository);
@@ -79,9 +80,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
 
     if (!object) {
         return (
-            <div>
-                <p>Loading...</p>
-            </div>
+            <Loader/>
         );
     }
 
@@ -93,6 +92,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="machineCode">Machine Code</label>
                             <input
+                                className={styles.input}
                                 id="machineCode"
                                 name="machineCode"
                                 type="text"
@@ -107,6 +107,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                             {
                                 isDisabled ?
                                     <input
+                                        className={styles.input}
                                         id="clubName"
                                         type="text"
                                         value={object.clubName}
@@ -117,6 +118,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="smartFridgeId">Smart Fridge Id</label>
                             <input
+                                className={styles.input}
                                 id="smartFridgeId"
                                 name="smartFridgeld"
                                 type="text"
@@ -129,6 +131,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="terminalId">Terminal ID</label>
                             <input
+                                className={styles.input}
                                 id="terminalId"
                                 name="terminalId"
                                 type="text"
@@ -143,6 +146,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="rustdeskId">Rust Desk ID</label>
                             <input
+                                className={styles.input}
                                 id="rustdeskId"
                                 name="rustdeskId"
                                 type="text"
@@ -155,6 +159,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="rustdeskPass">Rust Desk Password</label>
                             <input
+                                className={styles.input}
                                 id="rustdeskPass"
                                 name="rustdeskPass"
                                 type="text"
@@ -167,6 +172,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="smartFridgePassword">Smart Fridge Password</label>
                             <input
+                                className={styles.input}
                                 id="smartFridgePassword"
                                 name="smartFridgePassword"
                                 type="text"
@@ -179,6 +185,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="toaSerialNumber">Terminal Serial Number</label>
                             <input
+                                className={styles.input}
                                 id="toaSerialNumber"
                                 name="tnaSerialNumber"
                                 type="text"

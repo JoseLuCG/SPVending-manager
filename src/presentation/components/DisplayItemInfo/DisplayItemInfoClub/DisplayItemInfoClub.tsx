@@ -5,6 +5,7 @@ import { Club, ClubApi } from "../../../../domain/entities/models/club";
 import { ClubRepositoryHttp } from "../../../../infraestructure/adapters/api/ClubRepositoryHttp";
 import { ModifyClub } from "../../../../application/usecases/ClubUseCases/ModifyClub";
 import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
+import Loader from "../../Loader/Loader";
 
 const clubRepo = new ClubRepositoryHttp();
 const modifyClub = new ModifyClub(clubRepo);
@@ -78,9 +79,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
 
     if (!object) {
         return (
-            <div>
-                <p>Loading...</p>
-            </div>
+            <Loader/>
         );
     }
 
@@ -92,6 +91,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="clubName">Club Name</label>
                             <input
+                                className={styles.input}
                                 id="clubName"
                                 name="clubName"
                                 type="text"
@@ -106,6 +106,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                             {
                                 isDisabled ?
                                     <input
+                                        className={styles.input}    
                                         id="tenantEntity"
                                         name="tenantId"
                                         type="text"
@@ -117,6 +118,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="address">Club Address</label>
                             <input
+                                className={styles.input}
                                 id="address"
                                 name="address"
                                 type="text"
@@ -129,6 +131,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="email">Club email</label>
                             <input
+                                className={styles.input}
                                 id="email"
                                 name="email"
                                 type="text"
@@ -141,6 +144,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="remark">Remark</label>
                             <input
+                                className={styles.input}
                                 id="remark"
                                 name="remark"
                                 type="text"
@@ -155,6 +159,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="clubCIF">CIF</label>
                             <input
+                                className={styles.input}
                                 id="clubCIF"
                                 name="cif"
                                 type="text"
@@ -167,6 +172,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="accountingId">Accounting ID</label>
                             <input
+                                className={styles.input}
                                 id="accountingId"
                                 name="accountingId"
                                 type="text"
@@ -179,6 +185,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="phone">Phone</label>
                             <input
+                                className={styles.input}
                                 id="phone"
                                 name="phone"
                                 type="text"
@@ -191,6 +198,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="micronId">Micron ID</label>
                             <input
+                                className={styles.input}
                                 id="micronId"
                                 name="micronId"
                                 type="text"
@@ -203,6 +211,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         <div className={styles.fpDiv}>
                             <label htmlFor="managers">Managers</label>
                             <input
+                                className={styles.input}
                                 id="managers"
                                 type="text"
                                 value={object.userManagers}
