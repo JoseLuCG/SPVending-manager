@@ -40,6 +40,7 @@ function UserRegisterModal({ isOpen, onClose }: ModalProps) {
             await createUser.execute(userForm);
             alert("User successfully registered!");
             onClose();
+            window.location.reload();
         } catch {
             alert("Error  registering user")
         }

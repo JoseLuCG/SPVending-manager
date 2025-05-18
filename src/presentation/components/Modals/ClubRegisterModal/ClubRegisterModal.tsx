@@ -39,6 +39,7 @@ function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
             await createClub.execute(clubFormData);
             alert("Club successfully registered!");
             onClose();
+            window.location.reload();
         }catch {
             alert("Error registering club");
         }

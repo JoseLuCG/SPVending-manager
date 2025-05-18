@@ -39,6 +39,7 @@ function MachineRegisterModal({ isOpen, onClose }: ModalProps) {
             await createMachine.execute(machineFormData);
             alert("Machine successfully registered!");
             onClose();
+            window.location.reload();
         } catch {
             alert("Error registering machine");
         }
