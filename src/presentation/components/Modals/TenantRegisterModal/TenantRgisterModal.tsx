@@ -36,6 +36,7 @@ function TenantRegisterModal({ isOpen, onClose }: ModalProps) {
             await createTenant.execute(tenantFormData);
             alert("Tenant successfully registered!");
             onClose();
+            window.location.reload();
         }catch {
             alert("Error registering tenant");
         }
