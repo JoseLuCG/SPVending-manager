@@ -6,15 +6,15 @@ import { useEffect, useState } from 'react';
 import { TenantInfoDisplay } from '../../../domain/entities/models/tenant';
 import { TenantRepositoryHttp } from '../../../infraestructure/adapters/api/TenantRepositoryHttp';
 import { GetTenantList } from '../../../application/usecases/TenantUseCases/GetTenantList';
-import { DeleteTenant } from '../../../application/usecases/TenantUseCases/DeleteTenant';
+import TenantWarningModal from '../../components/WarningsModals/TenantWarningModal/TenantWarningModal';
 
 const repository = new TenantRepositoryHttp();
 const getTenantList = new GetTenantList(repository);
-const deleteTenant = new DeleteTenant(repository);
 
 function TenantsPage() {
 	const [ tenants , setTenants ] = useState<TenantInfoDisplay[]>([]);
 	const [ uuid, setUuid ] = useState("");
+	const [ showModal, setShowModal ] = useState(false); 
 
 	useEffect(()=> {
 		getTenantList.execute()
@@ -24,9 +24,7 @@ function TenantsPage() {
 
 	useEffect(()=> {
 		if (uuid != "") {
-			console.log(uuid);
-			deleteTenant.execute(uuid);
-			setUuid("");
+			setShowModal(true);
 		}
 	}, [uuid]);
 
@@ -34,6 +32,12 @@ function TenantsPage() {
 		<>
 			<Header />
 			<Main textInfoDisplay={infoDisplayTenant} dataToDisplay={tenants} setterUuid={setUuid}/>
+			<TenantWarningModal 
+				isOpen={showModal} 
+				onClose={()=>{setShowModal(false)}} 
+				uuid={uuid}
+				setUuid={setUuid}
+			/>
 		</>
 	)
 }
