@@ -6,17 +6,17 @@ import { useEffect, useState } from 'react';
 import { MachineInfoDisplay } from '../../../domain/entities/models/machine';
 import { MachineRepositoryHttp } from '../../../infraestructure/adapters/api/MachineRepositoryHttp';
 import { GetMachineList } from '../../../application/usecases/MachineUseCases/GetMachineList';
-import { DeleteMachine } from '../../../application/usecases/MachineUseCases/DeleteMachine';
+import MachineWarningModal from '../../components/WarningsModals/MachineWarningModal/MachineWarningModal';
 
 const repository = new MachineRepositoryHttp();
 const getMachineList = new GetMachineList(repository);
-const deleteMachine = new DeleteMachine(repository);
 
 function MachinesPage() {
-	const [ machines, setMachines ] = useState<MachineInfoDisplay[]>([]);
-	const [ uuid, setUuid ] = useState("");
+	const [machines, setMachines] = useState<MachineInfoDisplay[]>([]);
+	const [uuid, setUuid] = useState("");
+	const [showModal, setShowModal] = useState(false);
 
-	useEffect(()=>{
+	useEffect(() => {
 		getMachineList.execute()
 			.then(setMachines)
 			.catch(console.error);
@@ -24,16 +24,20 @@ function MachinesPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			console.log(uuid);
-			deleteMachine.execute(uuid);
-			setUuid("");
+			setShowModal(true);
 		}
-		}, [uuid]);
+	}, [uuid]);
 
 	return (
 		<>
 			<Header />
-			<Main textInfoDisplay={infoDisplayMachines} dataToDisplay={machines} setterUuid={setUuid}/>
+			<Main textInfoDisplay={infoDisplayMachines} dataToDisplay={machines} setterUuid={setUuid} />
+			<MachineWarningModal
+				isOpen={showModal}
+				onClose={() => { setShowModal(false) }}
+				uuid={uuid}
+				setUuid={setUuid}
+			/>
 		</>
 	)
 }
