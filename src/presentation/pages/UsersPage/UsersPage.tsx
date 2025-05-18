@@ -6,15 +6,15 @@ import { UserRepositoryHttp } from '../../../infraestructure/adapters/api/UserRe
 import { GetUserList } from '../../../application/usecases/UserUseCases/GetUserList';
 import { useEffect, useState } from 'react';
 import { UserInfoDisplay } from '../../../domain/entities/models/user';
-import { DeleteUser } from '../../../application/usecases/UserUseCases/DeleteUser';
+import UserWarningModal from '../../components/WarningsModals/UserWarningModal/UserWarningModal';
 
 const repository = new UserRepositoryHttp();
 const getUserList = new GetUserList(repository);
-const deleteUser = new DeleteUser(repository);
 
 function UsersPage() {
 	const [ users, setUsers ] = useState<UserInfoDisplay[]>([]);
 	const [ uuid, setUuid ] = useState("");
+	const [showModal, setShowModal] = useState(false);
 
 	useEffect(()=> {
 		getUserList.execute()
@@ -24,9 +24,7 @@ function UsersPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			console.log(uuid);
-			deleteUser.execute(uuid);
-			setUuid("");
+			setShowModal(true);
 		}
 	}, [uuid]);
 
@@ -34,6 +32,12 @@ function UsersPage() {
 		<>
 			<Header />
 			<Main textInfoDisplay={ infoDisplayUsers } dataToDisplay={users} setterUuid={setUuid}/>
+			<UserWarningModal
+				isOpen={showModal}
+				onClose={() => { setShowModal(false) }}
+				uuid={uuid}
+				setUuid={setUuid}
+			/>
 		</>
 	)
 }
