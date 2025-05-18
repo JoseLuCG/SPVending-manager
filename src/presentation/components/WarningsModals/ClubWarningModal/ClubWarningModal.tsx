@@ -28,7 +28,7 @@ function ClubWarningModal({ isOpen, onClose, uuid, setUuid }: WarningProps) {
         <>
             <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2>Are you sure you want to delete the tenant?</h2>
+                <h2>Are you sure you want to delete the Club?</h2>
                 <button type="button" onClick={onClickHandler}>Delete</button>
                 <button type="button" onClick={onCloseHandler}>Cancel</button>
             </div>
