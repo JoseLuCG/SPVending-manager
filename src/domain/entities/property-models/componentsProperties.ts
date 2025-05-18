@@ -60,3 +60,10 @@ export type DIIUserProps = {
 export type DIIMachineProps = {
     object: MachineApi | null
 }
+
+export type WarningProps = {
+    isOpen: boolean,
+    onClose: () => void,
+    uuid: string,
+    setUuid: (string:string) => void
+}
