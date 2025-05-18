@@ -3,13 +3,20 @@ main {
     display: flex;
     flex-direction: row;
 }
+/* ---------- SECTION CONTAINER ---------- */
+.sectionContainer {
+    width: 100%;
+}
 
-/* ---------- Table container ---------- */
-.tableContents {
-    width: 1050px;
-    height: 302px;
-    margin-left: 48px;
-    margin-top: 25px;
+/* ---------- TABLE CONTAINER ---------- */
+.container{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 3%;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #002A72;
+    box-shadow: 5px 5px 10px #000000;
 }
 
 /* ---------- Header content ---------- */
@@ -17,13 +24,12 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin-bottom: 5%;
 }
 
 /* ----- Information text ----- */
 p.infText {
-    height: 57px;
-    width: 219px;
+    width: 10%;
     align-content: center;
     text-align: center;
 }
@@ -35,7 +41,6 @@ p.infText {
     padding: 10px 30px 10px;
     border-radius: 40px;
     border: none;
-    margin-right: 340px;
     transition: background-color 0.2s ease-out;
 }
 
@@ -55,16 +60,34 @@ p.infText {
     border: 1px solid #021B46;
     padding: 0 20px;
     text-align: center;
+    margin-right: 50%;
 }
+
+/* ---------- TABLE CONTAINER ---------- */
+.tableContainer {
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #002A72;
+}
+
+
 
 /* ---------- Table styles ---------- */
 .headerTB {
     padding: 10px 15px;
 }
 
+.headerTB:last-child {
+    justify-items: right;
+}
+
 .tableRow td,
 .pDatatableThead > tr > th {
     padding: 10px 15px;
+}
+
+.tableRow td:last-child {
+    justify-items: right;
 }
 
 .tableRow:hover {
