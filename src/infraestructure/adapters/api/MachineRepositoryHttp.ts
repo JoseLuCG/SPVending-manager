@@ -8,13 +8,13 @@ export class MachineRepositoryHttp implements MachineRepository{
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.machinesPath;
 
     async findMachineByUuid(machineUuid: string): Promise<MachineApi | null> {
-        const response = await fetch(`${this.BASEURL}/${machineUuid}`);
+        const response = await fetch(`${this.BASEURL}/${machineUuid}`, {credentials: "include"});
         if (!response.ok) return null;
         return response.json();
     }
 
     async getAllMachines(): Promise<MachineInfoDisplay[]> {
-        const response = await fetch(this.BASEURL);
+        const response = await fetch(this.BASEURL, {credentials: "include"});
         const json = await response.json();
         return mapMachineFromApi(json);
     }
@@ -26,7 +26,8 @@ export class MachineRepositoryHttp implements MachineRepository{
             {
                 method: "POST",
                 body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                credentials: "include"
             }
         );
         if (!response.ok) throw new Error("Error adding user");
@@ -39,7 +40,8 @@ export class MachineRepositoryHttp implements MachineRepository{
             {
                 method: "PUT",
                 body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                credentials: "include"
             }
         );
         if (!response.ok) throw new Error("Error when modifying the machine");
@@ -49,7 +51,8 @@ export class MachineRepositoryHttp implements MachineRepository{
         const response = await fetch(
             `${this.BASEURL}/${uuid}`,
             {
-                method: "DELETE"
+                method: "DELETE",
+                credentials: "include"
             });
         if (!response.ok) throw new Error("Error deleting machine");
     }

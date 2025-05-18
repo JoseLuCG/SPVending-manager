@@ -8,13 +8,13 @@ export class UserRepositoryHttp implements UserRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.usersPath;
 
     async findUserByUuid(userUuid: string): Promise<UserApi | null> {
-        const response = await fetch(`${this.BASEURL}/${userUuid}`);
+        const response = await fetch(`${this.BASEURL}/${userUuid}`, {credentials: "include"});
         if (!response.ok) return null;
         return response.json();
     }
 
     async getAllUsers(): Promise<UserInfoDisplay[]> {
-        const response = await fetch(this.BASEURL);
+        const response = await fetch(this.BASEURL, {credentials: "include"});
         const json = await response.json();
         return mapUserFromApi(json);
     }
@@ -26,7 +26,8 @@ export class UserRepositoryHttp implements UserRepository {
             {
                 method: "POST",
                 body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                credentials: "include"
             }
         );
         if (!response.ok) throw new Error("Error adding user");
@@ -39,7 +40,8 @@ export class UserRepositoryHttp implements UserRepository {
             {
                 method: "PUT",
                 body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                credentials: "include"
             }
         );
         if (!response.ok) throw new Error("Error when modifying the user");
@@ -49,7 +51,8 @@ export class UserRepositoryHttp implements UserRepository {
         const response = await fetch(
             `${this.BASEURL}/${userUuid}`,
             {
-                method: "DELETE"
+                method: "DELETE",
+                credentials: "include"
             });
         if (!response.ok) throw new Error("Error deleting user");
     }
