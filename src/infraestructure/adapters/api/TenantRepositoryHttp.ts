@@ -8,13 +8,13 @@ export class TenantRepositoryHttp implements TenantRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.tenantPath;
 
     async findTenantByUuid(tenantUuid: string): Promise<TenantApi | null> {
-        const response = await fetch(`${this.BASEURL}/${tenantUuid}`);
+        const response = await fetch(`${this.BASEURL}/${tenantUuid}`, {credentials: "include"});
         if (!response.ok) return null;
         return response.json();
     }
 
     async getAllTenants(): Promise<TenantInfoDisplay[]> {
-        const response = await fetch(this.BASEURL);
+        const response = await fetch(this.BASEURL, {credentials: "include"});
         const json = await response.json();
         return mapTenantFromApi(json);
     }
@@ -26,7 +26,11 @@ export class TenantRepositoryHttp implements TenantRepository {
             {
                 method: "POST",
                 body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" }
+                headers: {
+                    "Content-Type": "application/json",
+                    'Access-Control-Allow-Origin': '*', 
+                },
+                credentials: "include"
             }
         );
         if (!response.ok) throw new Error("Error adding tenant");
@@ -39,7 +43,8 @@ export class TenantRepositoryHttp implements TenantRepository {
             {
                 method: "PUT",
                 body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                credentials: "include"
             }
         );
         if (!response.ok) throw new Error("Error when modifying the tenant");
@@ -49,14 +54,15 @@ export class TenantRepositoryHttp implements TenantRepository {
         const response = await fetch(
             `${this.BASEURL}/${uuid}`,
             {
-                method: "DELETE"
+                method: "DELETE",
+                credentials: "include"
             }
         );
         if (!response.ok) throw new Error("Error deleting tenant");
     }
 
     async getPotentialTenants(): Promise<PotentialTenant[]> {
-        const response = await fetch(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`);
+        const response = await fetch(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`,{credentials: "include"});
         const data = await response.json();
         return data;
     }
