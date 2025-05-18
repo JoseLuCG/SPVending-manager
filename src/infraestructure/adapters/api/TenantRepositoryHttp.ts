@@ -26,10 +26,7 @@ export class TenantRepositoryHttp implements TenantRepository {
             {
                 method: "POST",
                 body: JSON.stringify(body),
-                headers: {
-                    "Content-Type": "application/json",
-                    'Access-Control-Allow-Origin': '*', 
-                },
+                headers: { "Content-Type": "application/json" },
                 credentials: "include"
             }
         );
