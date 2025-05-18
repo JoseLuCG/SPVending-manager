@@ -2,7 +2,7 @@ import { SetStateAction, useEffect, useState } from "react";
 import { ModifyUser } from "../../../../application/usecases/UserUseCases/ModifyUser";
 import { DIIUserProps } from "../../../../domain/entities/property-models/componentsProperties";
 import { UserRepositoryHttp } from "../../../../infraestructure/adapters/api/UserRepositoryHttp";
-import "./../DisplayItemInfo.css";
+import styles from "./../DisplayItemInfo.module.css";
 import { User, UserApi } from "../../../../domain/entities/models/user";
 import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
 import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
@@ -87,10 +87,10 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
 
     return (
         <>
-            <form className="frm-cntnr" onSubmit={submitHandler}>
-                <main className="frm-mn-cntnr">
-                    <div className="frm-dv">
-                        <div className="fp-div">
+            <form className={styles.frmCntnr} onSubmit={submitHandler}>
+                <main className={styles.frmMnCntnr}>
+                    <div className={styles.frmDv}>
+                        <div className={styles.fpDiv}>
                             <label htmlFor="username">User Name</label>
                             <input
                                 id="username"
@@ -102,7 +102,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="password">Password</label>
                             <input
                                 id="password"
@@ -113,7 +113,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                 placeholder={isDisabled ? "" : object.password}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="adminFor">Admin For</label>
                             {
                                 isDisabled ?
@@ -153,8 +153,8 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                             }
                         </div>
                     </div>
-                    <div className="frm-dv">
-                        <div className="fp-div">
+                    <div className={styles.frmDv}>
+                        <div className={styles.fpDiv}>
                             <label htmlFor="micronId">Micron ID</label>
                             <input
                                 id="micronId"
@@ -165,7 +165,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                 placeholder={isDisabled ? "" : object.micronId}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="micronUser">Micron User</label>
                             <input
                                 id="micronUser"
@@ -176,7 +176,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                 placeholder={isDisabled ? "" : object.micronUser}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="micronPass">Micron Pass</label>
                             <input
                                 id="micronPass"
@@ -189,9 +189,9 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                         </div>
                     </div>
                 </main>
-                <div className="editButtonContainer">
-                    <button className="button" type="button" onClick={onClickHandler}>Edit</button>
-                    <button className="button" type="submit">Save</button>
+                <div className={styles.editButtonContainer}>
+                    <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
+                    <button className={styles.button} type="submit">Save</button>
                 </div>
             </form>
         </>

@@ -1,6 +1,6 @@
 import React, { SetStateAction, useEffect, useState } from "react";
 import { DIIClubProps } from "../../../../domain/entities/property-models/componentsProperties";
-import "./../DisplayItemInfo.css";
+import styles from "./../DisplayItemInfo.module.css";
 import { Club, ClubApi } from "../../../../domain/entities/models/club";
 import { ClubRepositoryHttp } from "../../../../infraestructure/adapters/api/ClubRepositoryHttp";
 import { ModifyClub } from "../../../../application/usecases/ClubUseCases/ModifyClub";
@@ -86,10 +86,10 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
 
     return (
         <>
-            <form className="frm-cntnr" onSubmit={submitHandler}>
-                <main className="frm-mn-cntnr">
-                    <div className="frm-dv">
-                        <div className="fp-div">
+            <form className={styles.frmCntnr} onSubmit={submitHandler}>
+                <main className={styles.frmMnCntnr}>
+                    <div className={styles.frmDv}>
+                        <div className={styles.fpDiv}>
                             <label htmlFor="clubName">Club Name</label>
                             <input
                                 id="clubName"
@@ -101,7 +101,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="tenantEntity">Tenant Owner</label>
                             {
                                 isDisabled ?
@@ -114,7 +114,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                     <SelectTenantOptions onSelectTenant={changeHandler} />
                             }
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="address">Club Address</label>
                             <input
                                 id="address"
@@ -126,7 +126,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="email">Club email</label>
                             <input
                                 id="email"
@@ -138,7 +138,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="remark">Remark</label>
                             <input
                                 id="remark"
@@ -151,8 +151,8 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                             />
                         </div>
                     </div>
-                    <div className="frm-dv">
-                        <div className="fp-div">
+                    <div className={styles.frmDv}>
+                        <div className={styles.fpDiv}>
                             <label htmlFor="clubCIF">CIF</label>
                             <input
                                 id="clubCIF"
@@ -164,7 +164,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="accountingId">Accounting ID</label>
                             <input
                                 id="accountingId"
@@ -176,7 +176,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="phone">Phone</label>
                             <input
                                 id="phone"
@@ -188,7 +188,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="micronId">Micron ID</label>
                             <input
                                 id="micronId"
@@ -200,7 +200,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="managers">Managers</label>
                             <input
                                 id="managers"
@@ -211,9 +211,9 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                         </div>
                     </div>
                 </main>
-                <div className="editButtonContainer">
-                    <button className="button" type="button" onClick={onClickHandler}>Edit</button>
-                    <button className="button" type="submit">Save</button>
+                <div className={styles.editButtonContainer}>
+                    <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
+                    <button className={styles.button} type="submit">Save</button>
                 </div>
             </form>
         </>

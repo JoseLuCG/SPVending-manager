@@ -2,7 +2,7 @@ import React, { SetStateAction, useEffect, useState } from "react";
 import { ModifyMachine } from "../../../../application/usecases/MachineUseCases/ModifyMachine";
 import { DIIMachineProps } from "../../../../domain/entities/property-models/componentsProperties";
 import { MachineRepositoryHttp } from "../../../../infraestructure/adapters/api/MachineRepositoryHttp";
-import "./../DisplayItemInfo.css";
+import styles from "./../DisplayItemInfo.module.css";
 import { Machine, MachineApi } from "../../../../domain/entities/models/machine";
 import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
 
@@ -87,10 +87,10 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
 
     return (
         <>
-            <form className="frm-cntnr" onSubmit={submitHandler}>
-                <main className="frm-mn-cntnr">
-                    <div className="frm-dv">
-                        <div className="fp-div">
+            <form className={styles.frmCntnr} onSubmit={submitHandler}>
+                <main className={styles.frmMnCntnr}>
+                    <div className={styles.frmDv}>
+                        <div className={styles.fpDiv}>
                             <label htmlFor="machineCode">Machine Code</label>
                             <input
                                 id="machineCode"
@@ -102,7 +102,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="clubName">Club Name</label>
                             {
                                 isDisabled ?
@@ -114,7 +114,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                                     <SelectClubOptions onSelectClub={changeHandler} />
                             }
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="smartFridgeId">Smart Fridge Id</label>
                             <input
                                 id="smartFridgeId"
@@ -126,7 +126,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="terminalId">Terminal ID</label>
                             <input
                                 id="terminalId"
@@ -139,8 +139,8 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                             />
                         </div>
                     </div>
-                    <div className="frm-dv">
-                        <div className="fp-div">
+                    <div className={styles.frmDv}>
+                        <div className={styles.fpDiv}>
                             <label htmlFor="rustdeskId">Rust Desk ID</label>
                             <input
                                 id="rustdeskId"
@@ -152,7 +152,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="rustdeskPass">Rust Desk Password</label>
                             <input
                                 id="rustdeskPass"
@@ -164,7 +164,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="smartFridgePassword">Smart Fridge Password</label>
                             <input
                                 id="smartFridgePassword"
@@ -176,7 +176,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="toaSerialNumber">Terminal Serial Number</label>
                             <input
                                 id="toaSerialNumber"
@@ -190,9 +190,9 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                         </div>
                     </div>
                 </main>
-                <div className="editButtonContainer">
-                    <button className="button" type="button" onClick={onClickHandler}>Edit</button>
-                    <button className="button" type="submit">Save</button>
+                <div className={styles.editButtonContainer}>
+                    <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
+                    <button className={styles.button} type="submit">Save</button>
                 </div>
             </form>
         </>

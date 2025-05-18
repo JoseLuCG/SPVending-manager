@@ -1,6 +1,6 @@
 import { SetStateAction, useEffect, useState } from "react";
 import { DIITenantProps } from "../../../../domain/entities/property-models/componentsProperties";
-import "./../DisplayItemInfo.css";
+import styles from "./../DisplayItemInfo.module.css";
 import { Tenant, TenantApi } from "../../../../domain/entities/models/tenant";
 import { TenantRepositoryHttp } from "../../../../infraestructure/adapters/api/TenantRepositoryHttp";
 import { ModifyTenant } from "../../../../application/usecases/TenantUseCases/ModifyTenant";
@@ -84,10 +84,10 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
 
     return (
         <>
-            <form className="frm-cntnr" onSubmit={submitHandler}>
-                <main className="frm-mn-cntnr">
-                    <div className="frm-dv">
-                        <div className="fp-div">
+            <form className={styles.frmCntnr} onSubmit={submitHandler}>
+                <main className={styles.frmMnCntnr}>
+                    <div className={styles.frmDv}>
+                        <div className={styles.fpDiv}>
                             <label htmlFor="tenantName">Tenant Name</label>
                             <input
                                 className="input"
@@ -100,7 +100,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="address">Tenant Address</label>
                             <input
                                 className="input"
@@ -113,7 +113,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="email">Tenant email</label>
                             <input
                                 className="input"
@@ -126,7 +126,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="remark">Remark</label>
                             <input
                                 className="input"
@@ -140,8 +140,8 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                             />
                         </div>
                     </div>
-                    <div className="frm-dv">
-                        <div className="fp-div">
+                    <div className={styles.frmDv}>
+                        <div className={styles.fpDiv}>
                             <label htmlFor="tenantCIF">CIF</label>
                             <input
                                 className="input"
@@ -154,7 +154,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="phone">Phone</label>
                             <input
                                 className="input"
@@ -167,7 +167,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="micronId">Micron ID</label>
                             <input
                                 className="input"
@@ -179,7 +179,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                 onChange={changeHandler}
                             />
                         </div>
-                        <div className="fp-div">
+                        <div className={styles.fpDiv}>
                             <label htmlFor="managers">Managers</label>
                             <input
                                 className="input"
@@ -191,9 +191,9 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                         </div>
                     </div>
                 </main>
-                <div className="editButtonContainer">
-                    <button className="button" type="button" onClick={onClickHandler}>Edit</button>
-                    <button className="button" type="submit">Save</button>
+                <div className={styles.editButtonContainer}>
+                    <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
+                    <button className={styles.button} type="submit">Save</button>
                 </div>
             </form>
         </>

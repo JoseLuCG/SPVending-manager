@@ -1,5 +1,5 @@
 // TODO: change to css modules.
-import "./DisplayItemInfo.css"
+import styles from "./DisplayItemInfo.module.css";
 import { useNavigate, useParams } from "react-router";
 import DisplayItemInfoTenant from "./DisplayItemInfoTenant/DisplayItemInfoTenant";
 import { useEffect, useState } from "react";
@@ -80,8 +80,8 @@ function DisplayItemInfo() {
 
 	return (
         <>
-            <main className="mn-display">
-                <div className="btn-container">
+            <main className={styles.mnDisplay}>
+                <div className={styles.btnContainer}>
                 <button onClick={backHandler}>Back</button>
                 </div>
                 {itemType==="tenants"?<DisplayItemInfoTenant object={selectedItem as TenantApi} />:""}
