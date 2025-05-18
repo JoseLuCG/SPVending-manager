@@ -6,34 +6,38 @@ import { ClubRepositoryHttp } from '../../../infraestructure/adapters/api/ClubRe
 import { GetClubList } from '../../../application/usecases/ClubUseCases/GetClubList';
 import { useEffect, useState } from 'react';
 import { ClubInfoDisplay } from '../../../domain/entities/models/club';
-import { DeleteClub } from '../../../application/usecases/ClubUseCases/DeleteClub';
+import ClubWarningModal from '../../components/WarningsModals/ClubWarningModal/ClubWarningModal';
 
 const repository = new ClubRepositoryHttp();
 const getClubList = new GetClubList(repository);
-const deleteClub = new DeleteClub(repository);
 
 function ClubsPage() {
-	const [ clubs, setClubs ] = useState<ClubInfoDisplay[]>([]);
-	const [ uuid, setUuid ] = useState("");
+	const [clubs, setClubs] = useState<ClubInfoDisplay[]>([]);
+	const [uuid, setUuid] = useState("");
+	const [showModal, setShowModal] = useState(false);
 
-	useEffect(()=>{
+	useEffect(() => {
 		getClubList.execute()
 			.then(setClubs)
 			.catch(console.error);
 	}, []);
 
-	useEffect(()=> {
+	useEffect(() => {
 		if (uuid != "") {
-			console.log(uuid);
-			deleteClub.execute(uuid);
-			setUuid("");
+			setShowModal(true);
 		}
 	}, [uuid]);
 
 	return (
 		<>
 			<Header />
-			<Main textInfoDisplay={infoDisplayClub} dataToDisplay={clubs} setterUuid={setUuid}/>
+			<Main textInfoDisplay={infoDisplayClub} dataToDisplay={clubs} setterUuid={setUuid} />
+			<ClubWarningModal
+				isOpen={showModal}
+				onClose={() => { setShowModal(false) }}
+				uuid={uuid}
+				setUuid={setUuid}
+			/>
 		</>
 	)
 }
