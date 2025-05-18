@@ -8,14 +8,14 @@ export class ClubRepositoryHttp implements ClubRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.clubPath;
 
     async findClubByUuid(clubUuid: string): Promise<ClubApi | null> {
-        const response = await fetch(`${this.BASEURL}/${clubUuid}`);
+        const response = await fetch(`${this.BASEURL}/${clubUuid}`, {credentials: "include"});
         const data = await response.json();
         if (!response.ok) return null;
         return data;
     }
 
     async getAllClubs(): Promise<ClubInfoDisplay[]> {
-        const response = await fetch(this.BASEURL);
+        const response = await fetch(this.BASEURL, {credentials: "include"});
         const json = await response.json();
         return mapClubFromApi(json);
     }
@@ -27,7 +27,8 @@ export class ClubRepositoryHttp implements ClubRepository {
             {
                 method: "POST",
                 body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                credentials: "include"
             }
         );
         if (!response.ok) throw new Error("Error adding the club");
@@ -40,7 +41,8 @@ export class ClubRepositoryHttp implements ClubRepository {
             {
                 method: "PUT",
                 body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                credentials: "include"
             }
         );
         if (!response.ok) throw new Error("Error when modifying the club");
@@ -50,13 +52,14 @@ export class ClubRepositoryHttp implements ClubRepository {
         const response = await fetch(
             `${this.BASEURL}/${uuid}`,
             {
-                method: "DELETE"
+                method: "DELETE",
+                credentials: "include"
             });
         if (!response.ok) throw new Error("Error deleting club");
     }
 
     async getClubOptions(): Promise<ClubOption[]> {
-        const response = await fetch(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`);
+        const response = await fetch(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`, {credentials: "include"});
         const data = await response.json();
         return data;
     }    
