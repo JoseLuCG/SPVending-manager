@@ -1,21 +1,21 @@
 import styles from "./../WarningsModals.module.css";
 import { WarningProps } from "../../../../domain/entities/property-models/componentsProperties";
-import { TenantRepositoryHttp } from "../../../../infraestructure/adapters/api/TenantRepositoryHttp";
-import { DeleteTenant } from "../../../../application/usecases/TenantUseCases/DeleteTenant";
+import { ClubRepositoryHttp } from "../../../../infraestructure/adapters/api/ClubRepositoryHttp";
+import { DeleteClub } from "../../../../application/usecases/ClubUseCases/DeleteClub";
 
-const repository = new TenantRepositoryHttp();
-const deleteTenant = new DeleteTenant(repository);
+const repository = new ClubRepositoryHttp();
+const deleteClub = new DeleteClub(repository);
 
-function TenantWarningModal({ isOpen, onClose, uuid, setUuid }: WarningProps) {
+function ClubWarningModal({ isOpen, onClose, uuid, setUuid }: WarningProps) {
    
     function onClickHandler() {
         if (uuid != "") {
             console.log(uuid);
-			deleteTenant.execute(uuid);
-			setUuid("");
+            deleteClub.execute(uuid);
+            setUuid("");
             onClose();
             window.location.reload();
-		}
+        }
     }
 
     function onCloseHandler() {
@@ -37,4 +37,4 @@ function TenantWarningModal({ isOpen, onClose, uuid, setUuid }: WarningProps) {
     );
 }
 
-export default TenantWarningModal;
+export default ClubWarningModal;
