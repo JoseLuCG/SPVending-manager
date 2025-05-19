@@ -47,7 +47,7 @@ function TenantRegisterModal({ isOpen, onClose }: ModalProps) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2>Registrar Tenant</h2>
+                <h2 className={styles.h2}>REGISTER TENANT</h2>
                 <form onSubmit={submitHandler} className={styles.form}>
                     <div className={styles.inputPack}>
                         <label>Tenant Name: </label>

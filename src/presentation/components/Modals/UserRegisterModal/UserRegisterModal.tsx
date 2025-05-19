@@ -51,7 +51,7 @@ function UserRegisterModal({ isOpen, onClose }: ModalProps) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2>Register User</h2>
+                <h2 className={styles.h2}>REGISTER USER</h2>
                 <form onSubmit={submitHandler} className={styles.form}>
                     <div className={styles.inputPack}>
                         <label htmlFor="">User name: </label>

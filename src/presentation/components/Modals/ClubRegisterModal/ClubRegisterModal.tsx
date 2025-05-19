@@ -50,7 +50,7 @@ function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2>Registrar club</h2>
+                <h2 className={styles.h2}>REGISTER CLUB</h2>
                 <form onSubmit={submitHandler} className={styles.form}>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club Name: </label>
