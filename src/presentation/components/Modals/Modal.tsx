@@ -1,4 +1,3 @@
-// TODO: change to css modules
 import { GenericModalProps } from "../../../domain/entities/property-models/componentsProperties";
 import ClubRegisterModal from "./ClubRegisterModal/ClubRegisterModal";
 import MachineRegisterModal from "./MachineRegisterModal/MachineRegisterModal";
