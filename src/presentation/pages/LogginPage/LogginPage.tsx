@@ -59,7 +59,6 @@ function LogginPage() {
 
     useEffect(
         ()=> {
-            console.log(admin);
             if (admin !== null) {
                 navigate(appRoutes.tenantsRoute);
             }
