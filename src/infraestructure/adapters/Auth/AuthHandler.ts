@@ -1,18 +1,22 @@
-import { TenantApiResponse } from "../../../domain/entities/api-models/apiResponse";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 
-export async function authHandler(request:Response): Promise<TenantApiResponse | null> {
-    const URL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.refreshToken;
-     
-    if (request.ok) return await request.json();
-    if ( (!request.ok) && (request.status !== 401) ) throw new Error(`Error: status ${request.status}`);
-    if (request.status == 401) {
-        const response = await fetch(URL, {
+export async function authHandler( url:string, options:RequestInit ): Promise<any> {
+    const response = await fetch(url, options);
+    if (response.ok) return await response.json();
+    if (response.status !== 401) throw new Error(`Error: status ${response.status}`);
+
+    const REFRESH_TOKEN_URL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.refreshToken
+    const refreshResponse = await fetch(
+        REFRESH_TOKEN_URL, {
             method: "POST",
             credentials: "include"
-        });
-        console.log(response.status);
-           
+    });
+    if (!refreshResponse.ok) throw new Error("Token refresh failed");
+    
+    const retryResponse = await fetch(url,options);
+    if (!retryResponse.ok) {
+        throw new Error(`Retry failed: status ${retryResponse.status}`);
     }
-    return null;
+
+    return await retryResponse.json();
 }
