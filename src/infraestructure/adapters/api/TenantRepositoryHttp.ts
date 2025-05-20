@@ -59,7 +59,6 @@ export class TenantRepositoryHttp implements TenantRepository {
 
     async getPotentialTenants(): Promise<PotentialTenant[]> {
         const response = await authHandler(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`,{credentials: "include"});
-        const data = await response.json();
-        return data;
+        return response;
     }
 }

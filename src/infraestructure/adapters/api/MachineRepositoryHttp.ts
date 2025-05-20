@@ -3,25 +3,24 @@ import { Machine, MachineApi, MachineInfoDisplay } from "../../../domain/entitie
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapMachineFromApi } from "../../mappers/FromApi/MachineMapper";
 import { mapMachineToApi } from "../../mappers/ToApi/MachineMapperToApi";
+import { authHandler } from "../Auth/AuthHandler";
 
 export class MachineRepositoryHttp implements MachineRepository{
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.machinesPath;
 
     async findMachineByUuid(machineUuid: string): Promise<MachineApi | null> {
-        const response = await fetch(`${this.BASEURL}/${machineUuid}`, {credentials: "include"});
-        if (!response.ok) return null;
-        return response.json();
+        const response = await authHandler(`${this.BASEURL}/${machineUuid}`, {credentials: "include"});
+        return await response;
     }
 
     async getAllMachines(): Promise<MachineInfoDisplay[]> {
-        const response = await fetch(this.BASEURL, {credentials: "include"});
-        const json = await response.json();
+        const json = await authHandler(this.BASEURL, {credentials: "include"});
         return mapMachineFromApi(json);
     }
 
     async addMachine(machine: Machine): Promise<void> {
         const body = mapMachineToApi(machine);
-        const response = await fetch(
+        const response = await authHandler(
             this.BASEURL,
             {
                 method: "POST",
@@ -30,12 +29,12 @@ export class MachineRepositoryHttp implements MachineRepository{
                 credentials: "include"
             }
         );
-        if (!response.ok) throw new Error("Error adding user");
+        return response;
     }
 
     async modifyMachine(machine: Machine): Promise<void> {
         const body = mapMachineToApi(machine);
-        const response = await fetch(
+        const response = await authHandler(
             this.BASEURL+`/${machine.machineId}`,
             {
                 method: "PUT",
@@ -44,16 +43,16 @@ export class MachineRepositoryHttp implements MachineRepository{
                 credentials: "include"
             }
         );
-        if (!response.ok) throw new Error("Error when modifying the machine");
+        return response;
     }
 
     async deleteMachine(uuid: string): Promise<void> {
-        const response = await fetch(
+        const response = await authHandler(
             `${this.BASEURL}/${uuid}`,
             {
                 method: "DELETE",
                 credentials: "include"
             });
-        if (!response.ok) throw new Error("Error deleting machine");
+        return response;
     }
 }

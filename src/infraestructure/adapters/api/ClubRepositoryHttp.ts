@@ -3,26 +3,24 @@ import { Club, ClubApi, ClubInfoDisplay, ClubOption } from "../../../domain/enti
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapClubFromApi } from "../../mappers/FromApi/ClubMapper";
 import { mapClubToApi } from "../../mappers/ToApi/ClubMapperToApi";
+import { authHandler } from "../Auth/AuthHandler";
 
 export class ClubRepositoryHttp implements ClubRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.clubPath;
 
     async findClubByUuid(clubUuid: string): Promise<ClubApi | null> {
-        const response = await fetch(`${this.BASEURL}/${clubUuid}`, {credentials: "include"});
-        const data = await response.json();
-        if (!response.ok) return null;
-        return data;
+        const response = await authHandler(`${this.BASEURL}/${clubUuid}`, {credentials: "include"});
+        return response;
     }
 
     async getAllClubs(): Promise<ClubInfoDisplay[]> {
-        const response = await fetch(this.BASEURL, {credentials: "include"});
-        const json = await response.json();
+        const json = await authHandler(this.BASEURL, {credentials: "include"});
         return mapClubFromApi(json);
     }
 
     async addClub(club: Club): Promise<void> {
         const body = mapClubToApi(club);
-        const response = await fetch(
+        const response = await authHandler(
             this.BASEURL,
             {
                 method: "POST",
@@ -31,12 +29,12 @@ export class ClubRepositoryHttp implements ClubRepository {
                 credentials: "include"
             }
         );
-        if (!response.ok) throw new Error("Error adding the club");
+        return response;
     }
 
     async modifyClub(club: Club): Promise<void> {
         const body = mapClubToApi(club);
-        const response = await fetch(
+        const response = await authHandler(
             this.BASEURL+`/${club.clubId}`,
             {
                 method: "PUT",
@@ -45,22 +43,21 @@ export class ClubRepositoryHttp implements ClubRepository {
                 credentials: "include"
             }
         );
-        if (!response.ok) throw new Error("Error when modifying the club");
+        return response;
     }
 
     async deleteClub(uuid: string): Promise<void> {
-        const response = await fetch(
+        const response = await authHandler(
             `${this.BASEURL}/${uuid}`,
             {
                 method: "DELETE",
                 credentials: "include"
             });
-        if (!response.ok) throw new Error("Error deleting club");
+        return response;
     }
 
     async getClubOptions(): Promise<ClubOption[]> {
-        const response = await fetch(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`, {credentials: "include"});
-        const data = await response.json();
-        return data;
+        const response = await authHandler(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`, {credentials: "include"});
+        return response;
     }    
 }

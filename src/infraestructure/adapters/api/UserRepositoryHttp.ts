@@ -3,25 +3,24 @@ import { User, UserApi, UserInfoDisplay } from "../../../domain/entities/models/
 import { mapUserFromApi } from "../../mappers/FromApi/UserMapper";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapUserToApi } from "../../mappers/ToApi/UserMapperToApi";
+import { authHandler } from "../Auth/AuthHandler";
 
 export class UserRepositoryHttp implements UserRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.usersPath;
 
     async findUserByUuid(userUuid: string): Promise<UserApi | null> {
-        const response = await fetch(`${this.BASEURL}/${userUuid}`, {credentials: "include"});
-        if (!response.ok) return null;
-        return response.json();
+        const response = await authHandler(`${this.BASEURL}/${userUuid}`, {credentials: "include"});
+        return await response;
     }
 
     async getAllUsers(): Promise<UserInfoDisplay[]> {
-        const response = await fetch(this.BASEURL, {credentials: "include"});
-        const json = await response.json();
+        const json = await authHandler(this.BASEURL, {credentials: "include"});
         return mapUserFromApi(json);
     }
 
     async addUser(user: User): Promise<void> {
         const body = mapUserToApi(user);
-        const response = await fetch(
+        const response = await authHandler(
             this.BASEURL,
             {
                 method: "POST",
@@ -30,12 +29,12 @@ export class UserRepositoryHttp implements UserRepository {
                 credentials: "include"
             }
         );
-        if (!response.ok) throw new Error("Error adding user");
+        return response;
     }
 
     async modifyUser(user: User): Promise<void> {
         const body = mapUserToApi(user);
-        const response = await fetch(
+        const response = await authHandler(
             this.BASEURL+`/${user.userId}`,
             {
                 method: "PUT",
@@ -44,16 +43,16 @@ export class UserRepositoryHttp implements UserRepository {
                 credentials: "include"
             }
         );
-        if (!response.ok) throw new Error("Error when modifying the user");
+        return response;
     }
 
     async deleteUser(userUuid: string): Promise<void> {
-        const response = await fetch(
+        const response = await authHandler(
             `${this.BASEURL}/${userUuid}`,
             {
                 method: "DELETE",
                 credentials: "include"
             });
-        if (!response.ok) throw new Error("Error deleting user");
+        return response;
     }
 }
