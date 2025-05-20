@@ -9,22 +9,18 @@ export class TenantRepositoryHttp implements TenantRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.tenantPath;
 
     async findTenantByUuid(tenantUuid: string): Promise<TenantApi | null> {
-        const response = await authHandler(`${this.BASEURL}/${tenantUuid}`, {credentials: "include"});        
-        if (!response.ok) return null;
-        return response;
+        const response = await authHandler(`${this.BASEURL}/${tenantUuid}`, {credentials: "include"});    
+        return await response;
     }
 
     async getAllTenants(): Promise<TenantInfoDisplay[]> {
-        const json = await authHandler( this.BASEURL,{
-            credentials: "include"
-        });
-       
+        const json = await authHandler( this.BASEURL, { credentials: "include" });
         return mapTenantFromApi(json);
     }
 
     async addTenant(tenant: Tenant): Promise<void> {
         const body = mapTenantToApi(tenant);
-        const response = await fetch(
+        const response = await authHandler(
             this.BASEURL,
             {
                 method: "POST",
@@ -33,12 +29,12 @@ export class TenantRepositoryHttp implements TenantRepository {
                 credentials: "include"
             }
         );
-        if (!response.ok) throw new Error("Error adding tenant");
+        return response;
     }
 
     async modifyTenant(tenant: Tenant): Promise<void> {
         const body = mapTenantToApi(tenant);
-        const response = await fetch(
+        const response = await authHandler(
             this.BASEURL+`/${tenant.tenantId}`,
             {
                 method: "PUT",
@@ -47,22 +43,22 @@ export class TenantRepositoryHttp implements TenantRepository {
                 credentials: "include"
             }
         );
-        if (!response.ok) throw new Error("Error when modifying the tenant");
+        return response;
     }
 
     async deleteTenant(uuid: string): Promise<void> {
-        const response = await fetch(
+        const response = await authHandler(
             `${this.BASEURL}/${uuid}`,
             {
                 method: "DELETE",
                 credentials: "include"
             }
         );
-        if (!response.ok) throw new Error("Error deleting tenant");
+        return response;
     }
 
     async getPotentialTenants(): Promise<PotentialTenant[]> {
-        const response = await fetch(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`,{credentials: "include"});
+        const response = await authHandler(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`,{credentials: "include"});
         const data = await response.json();
         return data;
     }
