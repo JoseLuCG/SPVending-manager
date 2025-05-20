@@ -9,9 +9,9 @@ export class TenantRepositoryHttp implements TenantRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.tenantPath;
 
     async findTenantByUuid(tenantUuid: string): Promise<TenantApi | null> {
-        const response = await fetch(`${this.BASEURL}/${tenantUuid}`, {credentials: "include"});
+        const response = await authHandler(`${this.BASEURL}/${tenantUuid}`, {credentials: "include"});        
         if (!response.ok) return null;
-        return response.json();
+        return response;
     }
 
     async getAllTenants(): Promise<TenantInfoDisplay[]> {
