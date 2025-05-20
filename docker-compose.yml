@@ -9,8 +9,12 @@ services:
     ports:
       - 5173:5173
     volumes:
-      - /app
+      - .:/app
       - /app/node_modules
     environment:
       - VITE_APP_BACKEND_ADDRESS=http://localhost:8080
-
+    networks:
+      - spvending-manager_spring-network
+networks:
+  spvending-manager_spring-network:
+    external: true
