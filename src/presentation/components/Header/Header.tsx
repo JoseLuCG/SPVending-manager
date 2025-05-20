@@ -8,13 +8,6 @@ function Header() {
     const [ adminUser, setAdminUser ] = useState("User Name");
 
     useEffect(
-        ()=> {
-            console.log(admin);
-            
-        }
-    );
-
-    useEffect(
         () => {
             if (admin != null) {
                 const user:string = admin.name
