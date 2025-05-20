@@ -38,7 +38,6 @@ function LogginPage() {
             // TODO: check if message is a AdminApi type or a string "Bad credentials"
             //Bad credentials
             const response = await logAdmin.execute(adminForm);
-            console.log("",response);
             setAdmin(response);
 
             alert("Admin successfully logged");
