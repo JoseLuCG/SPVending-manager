@@ -3,6 +3,7 @@ import { PotentialTenant, Tenant, TenantApi, TenantInfoDisplay } from "../../../
 import { BASE_URL_SERVER, API_PREFIX, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapTenantFromApi } from "../../mappers/FromApi/TenantMapper";
 import { mapTenantToApi } from "../../mappers/ToApi/TenantMapperToApi";
+import { authHandler } from "../Auth/AuthHandler";
 
 export class TenantRepositoryHttp implements TenantRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.tenantPath;
@@ -15,7 +16,14 @@ export class TenantRepositoryHttp implements TenantRepository {
 
     async getAllTenants(): Promise<TenantInfoDisplay[]> {
         const response = await fetch(this.BASEURL, {credentials: "include"});
+        //const authorizedResponse = authHandler(response);
         const json = await response.json();
+        /*if (response.status == 401) {
+            const refreshedJson = authHandler(response);
+            
+            return mapTenantFromApi(refreshedJson);
+        }*/
+       
         return mapTenantFromApi(json);
     }
 
