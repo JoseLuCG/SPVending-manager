@@ -7,5 +7,6 @@ export const PATH_PREFIX = {
     machinesPath: "/machines",
     usersPath: "/user-managers",
     loginPage: "/auth/login",
-    refreshToken: "/auth/refresh-token"
+    refreshToken: "/auth/refresh-token",
+    logOutPage: "/logout"
 }
