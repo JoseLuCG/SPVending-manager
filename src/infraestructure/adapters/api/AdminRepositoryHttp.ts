@@ -23,12 +23,13 @@ export class AdminRepositoryHttp implements AdminRepository {
         return data;
     }
 
-    async logOut(): Promise<void> {
+    async logOut(): Promise<boolean> {
         const URL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.logOutPage
         const response = await fetch(URL, {
             method: "POST",
             credentials: "include"
         });
-        return await response.json();
+        if (response.ok) return true;   
+        return false
     }
 }
