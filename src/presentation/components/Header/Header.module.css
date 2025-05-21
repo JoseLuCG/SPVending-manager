@@ -9,7 +9,7 @@ header.header {
 }
 
 /* ---------- Text decoration ---------- */
-header.header > h1, header > div > h2 {
+header.header > h1, header > div.userContainer > h2 {
     color: #fff;
 }
 
@@ -17,13 +17,15 @@ header.header > h1 {
     margin-left: 32px;
 }
 
-/* ---------- USER PROFILE CSS ---------- */
-header.header > div {
+/* ---------- USER CONTAINER CSS ---------- */
+.userContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 200px;
-    margin-right: 5%;
+    margin-right: 3%;
+    padding: 1% 2% 0px 2%;
+    cursor: pointer;
 }
 
 .picContainer {
@@ -31,4 +33,34 @@ header.header > div {
     height: 60px;
     width: 60px;
     border-radius: 50%;
+}
+
+/* ---------- PROFILE MENU ---------- */
+.menuProfileHidden {
+    display: none;
+}
+
+.menuProfile {
+    background-color: #021B46;
+    width: 300px;
+    height:fit-content;
+    position: absolute;
+    top: 87px;
+    right: 2.5%;
+    padding: 20px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.cntnrNv {
+    height: fit-content;
+}
+
+.cntnrUl {
+    height: fit-content;
+}
+
+li.cntnrLi > button {
+    width: 100%;
+    padding: 10px 30px 10px;
+    border-radius: 10px;
 }
