@@ -7,12 +7,14 @@ import { User, UserApi } from "../../../../domain/entities/models/user";
 import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
 import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
 import Loader from "../../Loader/Loader";
+import { useNavigate } from "react-router";
 
 const userRepository = new UserRepositoryHttp();
 const modifyUser = new ModifyUser(userRepository);
 
 function DisplayItemInfoUser({ object }: DIIUserProps) {
     // States:
+    const navigate = useNavigate();
     const [isDisabled, setIsDisabled] = useState(true);
     const [userForm, setUserForm] = useState<Omit<User, "clubName">>({
         username: "",
@@ -71,6 +73,11 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
         }
     }
 
+    function backHandler() {
+        navigate(-1);
+    }
+
+    // UseEffects:
     useEffect(() => {
         if (object) {
             const dataMapped = itemMapper(object);
@@ -197,6 +204,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                 <div className={styles.editButtonContainer}>
                     <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
                     <button className={styles.button} type="submit">Save</button>
+                    <button className={styles.button} type="button" onClick={backHandler}>Back</button>
                 </div>
             </form>
         </>

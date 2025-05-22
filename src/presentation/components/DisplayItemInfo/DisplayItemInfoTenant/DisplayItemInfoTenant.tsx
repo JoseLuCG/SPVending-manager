@@ -5,12 +5,14 @@ import { Tenant, TenantApi } from "../../../../domain/entities/models/tenant";
 import { TenantRepositoryHttp } from "../../../../infraestructure/adapters/api/TenantRepositoryHttp";
 import { ModifyTenant } from "../../../../application/usecases/TenantUseCases/ModifyTenant";
 import Loader from "../../Loader/Loader";
+import { useNavigate } from "react-router";
 
 const tenantRepo = new TenantRepositoryHttp();
 const modifyUser = new ModifyTenant(tenantRepo);
 
 function DisplayItemInfoTenant({ object }: DIITenantProps) {
     // States:
+    const navigate = useNavigate();
     const [isDisabled, setIsDisabled] = useState(true);
     const [tenantForm, setTenantForm] = useState<Omit<Tenant, "numberOfClubs">>({
         tenantName: "",
@@ -68,6 +70,11 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         }
     }
 
+    function backHandler() {
+        navigate(-1);
+    }
+
+    // UseEffects: 
     useEffect(() => {
         if (object) {
             const dataMapped = itemMapper(object);
@@ -193,6 +200,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                 <div className={styles.editButtonContainer}>
                     <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
                     <button className={styles.button} type="submit">Save</button>
+                    <button className={styles.button} type="button" onClick={backHandler}>Back</button>
                 </div>
             </form>
         </>

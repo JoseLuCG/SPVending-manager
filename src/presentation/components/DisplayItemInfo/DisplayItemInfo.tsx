@@ -1,6 +1,6 @@
 // TODO: change to css modules.
 import styles from "./DisplayItemInfo.module.css";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import DisplayItemInfoTenant from "./DisplayItemInfoTenant/DisplayItemInfoTenant";
 import { useEffect, useState } from "react";
 import DisplayItemInfoClub from "./DisplayItemInfoClub/DisplayItemInfoClub";
@@ -27,14 +27,10 @@ const machineRepository = new MachineRepositoryHttp();
 
 function DisplayItemInfo() {
     // States:
-    const navigate = useNavigate();
     const [ selectedItem, setSelectedItem ] = useState<SelectedItemType>(null);
     const { itemType, uuid } = useParams();
 
     // Handlers:
-    function backHandler() {
-        navigate(-1);
-    }
     
     async function getItemFromDatabase(uuid:string, itemType:string) {
         if (uuid === undefined) return "Error obtaining the item";
@@ -81,9 +77,6 @@ function DisplayItemInfo() {
 	return (
         <>
             <main className={styles.mnDisplay}>
-                <div className={styles.btnContainer}>
-                <button onClick={backHandler}>Back</button>
-                </div>
                 {itemType==="tenants"?<DisplayItemInfoTenant object={selectedItem as TenantApi} />:""}
                 {itemType=="clubs"?<DisplayItemInfoClub object={selectedItem as ClubApi}/>:""}
                 {itemType=="users"?<DisplayItemInfoUser object={selectedItem as UserApi}/>:""}

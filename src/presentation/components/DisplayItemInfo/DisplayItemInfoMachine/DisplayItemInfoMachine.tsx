@@ -6,12 +6,14 @@ import styles from "./../DisplayItemInfo.module.css";
 import { Machine, MachineApi } from "../../../../domain/entities/models/machine";
 import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
 import Loader from "../../Loader/Loader";
+import { useNavigate } from "react-router";
 
 const machineRepository = new MachineRepositoryHttp();
 const modifyMachine = new ModifyMachine(machineRepository);
 
 function DisplayItemInfoMachine({ object }: DIIMachineProps) {
     // States:
+    const navigate = useNavigate();
     const [isDisabled, setIsDisabled] = useState(true);
     const [machineForm, setMachineForm] = useState<Omit<Machine, "state">>({
         machineCode: "",
@@ -71,6 +73,11 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
         }
     }
 
+    function backHandler() {
+        navigate(-1);
+    }
+
+    // UseEffects:
     useEffect(() => {
         if (object) {
             const dataMapped = itemMapper(object);
@@ -110,6 +117,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                                         className={styles.input}
                                         id="clubName"
                                         type="text"
+                                        disabled
                                         value={object.clubName}
                                     /> :
                                     <SelectClubOptions onSelectClub={changeHandler} />
@@ -200,6 +208,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                 <div className={styles.editButtonContainer}>
                     <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
                     <button className={styles.button} type="submit">Save</button>
+                    <button className={styles.button} type="button" onClick={backHandler}>Back</button>
                 </div>
             </form>
         </>

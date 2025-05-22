@@ -6,12 +6,14 @@ import { ClubRepositoryHttp } from "../../../../infraestructure/adapters/api/Clu
 import { ModifyClub } from "../../../../application/usecases/ClubUseCases/ModifyClub";
 import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
 import Loader from "../../Loader/Loader";
+import { useNavigate } from "react-router";
 
 const clubRepo = new ClubRepositoryHttp();
 const modifyClub = new ModifyClub(clubRepo);
 
 function DisplayItemInfoClub({ object }: DIIClubProps) {
     // States:
+    const navigate = useNavigate();
     const [isDisabled, setIsDisabled] = useState(true);
     const [clubFormData, setClubFormData] = useState<Omit<Club, "numberOfMachines">>({
         clubName: "",
@@ -70,6 +72,11 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
         }
     }
 
+    function backHandler() {
+        navigate(-1);
+    }
+
+    // UseEffects:
     useEffect(() => {
         if (object) {
             const dataMapped = itemMapper(object);
@@ -110,6 +117,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                         id="tenantEntity"
                                         name="tenantId"
                                         type="text"
+                                        disabled
                                         value={object.tenantEntityName}
                                     /> :
                                     <SelectTenantOptions onSelectTenant={changeHandler} />
@@ -223,6 +231,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                 <div className={styles.editButtonContainer}>
                     <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
                     <button className={styles.button} type="submit">Save</button>
+                    <button className={styles.button} type="button" onClick={backHandler}>Back</button>
                 </div>
             </form>
         </>
