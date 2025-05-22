@@ -55,7 +55,7 @@ function Header() {
                     <img src={userIcon} alt="profile pic" height="60" width="60"/>
                 </div>
             </div>
-            <div className={isHidden ? styles.menuProfileHidden : styles.menuProfile}>
+            <div className={`${styles.menuProfileHidden } ${!isHidden ? styles.menuProfile : ''}`}>
                     <nav className={styles.cntnrNv}>
                         <ul className={styles.cntnrUl}>
                             <li className={styles.cntnrLi}>

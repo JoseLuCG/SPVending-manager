@@ -37,10 +37,6 @@ header.header > h1 {
 
 /* ---------- PROFILE MENU ---------- */
 .menuProfileHidden {
-    display: none;
-}
-
-.menuProfile {
     background-color: #021B46;
     width: 300px;
     height:fit-content;
@@ -49,6 +45,16 @@ header.header > h1 {
     right: 2.5%;
     padding: 20px;
     border-radius: 0px 0px 10px 10px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menuProfile {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .cntnrNv {
