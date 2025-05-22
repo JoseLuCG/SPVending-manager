@@ -39,8 +39,6 @@ function LogginPage() {
             //Bad credentials
             const response = await logAdmin.execute(adminForm);
             setAdmin(response);
-
-            alert("Admin successfully logged");
         } catch (error:any) {
             console.error(error);
             let errorMessage: string = "Unknow error occurred";
