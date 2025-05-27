@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import { DIITenantProps } from "../../../../domain/entities/property-models/componentsProperties";
 import styles from "./../DisplayItemInfo.module.css";
 import { Tenant, TenantApi } from "../../../../domain/entities/models/tenant";
@@ -6,6 +6,7 @@ import { TenantRepositoryHttp } from "../../../../infraestructure/adapters/api/T
 import { ModifyTenant } from "../../../../application/usecases/TenantUseCases/ModifyTenant";
 import Loader from "../../Loader/Loader";
 import { useNavigate } from "react-router";
+import { Toast } from "primereact/toast";
 
 const tenantRepo = new TenantRepositoryHttp();
 const modifyUser = new ModifyTenant(tenantRepo);
@@ -13,6 +14,7 @@ const modifyUser = new ModifyTenant(tenantRepo);
 function DisplayItemInfoTenant({ object }: DIITenantProps) {
     // States:
     const navigate = useNavigate();
+    const toast = useRef<Toast>(null);
     const [isDisabled, setIsDisabled] = useState(true);
     const [tenantForm, setTenantForm] = useState<Omit<Tenant, "numberOfClubs">>({
         tenantName: "",
@@ -24,6 +26,13 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         micronId: "",
         tenantId: ""
     });
+    const showSuccess = ()=> {
+        toast.current?.show({ severity: 'success', summary: 'Success', detail: 'Tenant modified successfully.' });
+    }
+
+    const showError = () => {
+        toast.current?.show({severity:'error', summary: 'Error', detail:'Error modifying tenant', life: 3000});
+    }
 
     // Functions:
     function itemMapper(item: TenantApi): SetStateAction<Omit<Tenant, "tenantId" | "numberOfClubs">> | null {
@@ -62,11 +71,11 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
             // ? Question: Can managers be modified in the tenant tab?
             if (tenantForm.tenantId) {
                 await modifyUser.execute(tenantForm);
-                alert("Tenant successfully modified!");
+                showSuccess();
             }
         } catch (error) {
             console.error(error);
-            alert("An error has occurred");
+            showError();
         }
     }
 
@@ -90,6 +99,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
 
     return (
         <>
+            <Toast ref={toast}/>
             <form className={styles.frmCntnr} onSubmit={submitHandler}>
                 <main className={styles.frmMnCntnr}>
                     <div className={styles.frmDv}>
