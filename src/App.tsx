@@ -8,6 +8,7 @@ import { appRoutes } from './utilities/defines/routes';
 import SelectedItemPage from './presentation/pages/SelectedItemPage/SelectedItemPage';
 import LogginPage from './presentation/pages/LogginPage/LogginPage';
 import Authorization from './security/Authorization';
+import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
 
 function App() {
 
