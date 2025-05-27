@@ -60,10 +60,11 @@ export type DIIUserProps = {
 export type DIIMachineProps = {
     object: MachineApi | null
 }
-
+// visible, position, setVisible
 export type WarningProps = {
-    isOpen: boolean,
-    onClose: () => void,
+    visible: boolean,
+    setVisible: () => void,
     uuid: string,
     setUuid: (string:string) => void
+    position:string
 }
