@@ -4,6 +4,7 @@ import { MachineApi, MachineInfoDisplay } from '../models/machine';
 import { Tenant, TenantApi, TenantInfoDisplay } from '../models/tenant';
 import { UserApi, UserInfoDisplay } from '../models/user';
 import { InfoDisplay } from './genericModels';
+import { Toast } from 'primereact/toast';
 
 
 export type DataRowProps = {
@@ -26,13 +27,15 @@ export type MainProps = {
 
 export type ModalProps = {
     isOpen: boolean,
-    onClose: () => void
+    onClose: () => void,
+    toastRef: React.RefObject<Toast|null>
 }
 
 export type GenericModalProps = {
     typeModal: string
     isOpen: boolean,
-    onClose: () => void
+    onClose: () => void,
+    toastRef: React.RefObject<Toast|null>
 }
 
 export type SelectTenantOptionProps = {
