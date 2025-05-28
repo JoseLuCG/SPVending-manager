@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  frontend-prod:
+    build: 
+      context: ./
+      dockerfile: Dockerfile.prod
+      args:
+        - VITE_APP_BACKEND_ADDRESS=http://localhost:8080
+    container_name: frontend-prod
+    restart: always
+    ports:
+      - 5173:5173
+    networks:
+      - spvending-manager_spring-network
+networks:
+  spvending-manager_spring-network:
+    external: true
