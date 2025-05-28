@@ -3,44 +3,51 @@ import { WarningProps } from "../../../../domain/entities/property-models/compon
 import { MachineRepositoryHttp } from "../../../../infraestructure/adapters/api/MachineRepositoryHttp";
 import { DeleteMachine } from "../../../../application/usecases/MachineUseCases/DeleteMachine";
 import alertIcon from "./../../../../assets/icons/alert.png";
+import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
 
 const repository = new MachineRepositoryHttp();
 const deleteMachine = new DeleteMachine(repository);
 
-function MachineWarningModal({ isOpen, onClose, uuid, setUuid }: WarningProps) {
-   
-    function onClickHandler() {
+function MachineWarningModal({visible, setVisible, uuid, setUuid, position}: WarningProps) {
+    // Handlers:
+    function closeWindow(){
+        setUuid("");
+        setVisible();
+    }
+
+    function onDeleteHandler() {
         if (uuid != "") {
             console.log(uuid);
             deleteMachine.execute(uuid);
             setUuid("");
-            onClose();
+            setVisible();
             window.location.reload();
         }
     }
 
-    function onCloseHandler() {
-        setUuid("");
-        onClose();
-    }
-
-    if (!isOpen) return null;
-    return(
-        <>
-            <div className={styles.modalOverlay}>
-            <div className={styles.modal}>
-                <div className={styles.content}>
-                    <img className={styles.imgAlert} src={alertIcon} alt="" height="200" width="200"/>
-                    <h2 className={styles.textAlert}>Are you sure you want to delete the Machine?</h2>
-                </div>
-                <div className={styles.buttonsContainer}>
-                    <button className={styles.button} type="button" onClick={onClickHandler}>Delete</button>
-                    <button className={styles.button} type="button" onClick={onCloseHandler}>Cancel</button>
-                </div>
-            </div>
+    const footerContent = (
+        <div>
+            <Button label="No" icon="pi pi-times" onClick={closeWindow} className={`p-button-text ${styles.btnPddng}`} />
+            <Button label="Yes" icon="pi pi-check" onClick={onDeleteHandler} className={styles.btnPddng} autoFocus />
         </div>
-        </>
     );
+    const header = (
+        <div>
+            <img src={alertIcon} alt="" width="30px" height="30px"/>
+            <h2>Deleting machine:</h2>
+        </div>
+    );
+    
+    return (
+        <div className="card px-2">
+            <Dialog header={header} visible={visible} position={position} style={{ width: '50vw', padding:20, background:'#ffffff' }} onHide={() => {if (!visible) return; setVisible }} footer={footerContent} draggable={false} resizable={false}>
+                <p className="m-0">
+                    Are you sure you want to delete this machine?
+                </p>
+            </Dialog>
+        </div>
+    )
 }
 
 export default MachineWarningModal;

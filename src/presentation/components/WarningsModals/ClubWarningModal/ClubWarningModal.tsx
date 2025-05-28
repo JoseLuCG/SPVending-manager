@@ -3,43 +3,49 @@ import { WarningProps } from "../../../../domain/entities/property-models/compon
 import { ClubRepositoryHttp } from "../../../../infraestructure/adapters/api/ClubRepositoryHttp";
 import { DeleteClub } from "../../../../application/usecases/ClubUseCases/DeleteClub";
 import alertIcon from "./../../../../assets/icons/alert.png";
+import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
 
 const repository = new ClubRepositoryHttp();
 const deleteClub = new DeleteClub(repository);
 
-function ClubWarningModal({ isOpen, onClose, uuid, setUuid }: WarningProps) {
-   
-    function onClickHandler() {
+function ClubWarningModal({visible, setVisible, uuid, setUuid, position}: WarningProps) {
+    // Handlers:
+    function closeWindow(){
+        setUuid("");
+        setVisible();
+    }
+
+    function onDeleteHandler() {
         if (uuid != "") {
             console.log(uuid);
             deleteClub.execute(uuid);
             setUuid("");
-            onClose();
+            setVisible();
             window.location.reload();
         }
     }
 
-    function onCloseHandler() {
-        setUuid("");
-        onClose();
-    }
-
-    if (!isOpen) return null;
-    return(
-        <>
-            <div className={styles.modalOverlay}>
-            <div className={styles.modal}>
-                <div className={styles.content}>
-                    <img className={styles.imgAlert} src={alertIcon} alt="" height="200" width="200"/>
-                    <h2 className={styles.textAlert}>Are you sure you want to delete the Club?</h2>
-                </div>
-                <div className={styles.buttonsContainer}>
-                    <button className={styles.button} type="button" onClick={onClickHandler}>Delete</button>
-                    <button className={styles.button} type="button" onClick={onCloseHandler}>Cancel</button>
-                </div>
-            </div>
+    const footerContent = (
+        <div>
+            <Button label="No" icon="pi pi-times" onClick={closeWindow} className={`p-button-text ${styles.btnPddng}`} />
+            <Button label="Yes" icon="pi pi-check" onClick={onDeleteHandler} className={styles.btnPddng} autoFocus />
         </div>
-        </>
+    );
+    const header = (
+        <div>
+            <img src={alertIcon} alt="" width="30px" height="30px"/>
+            <h2>Deleting club:</h2>
+        </div>
+    );
+    return(
+        <div className="card px-2">
+            <Dialog header={header} visible={visible} position={position} style={{ width: '50vw', padding:20, background:'#ffffff' }} onHide={() => {if (!visible) return; setVisible }} footer={footerContent} draggable={false} resizable={false}>
+                <p className="m-0">
+                    Are you sure you want to delete this tenant?
+                </p>
+            </Dialog>
+        </div>
     );
 }
 
