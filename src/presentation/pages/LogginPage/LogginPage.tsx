@@ -38,7 +38,9 @@ function LogginPage() {
             // TODO: check if message is a AdminApi type or a string "Bad credentials"
             //Bad credentials
             const response = await logAdmin.execute(adminForm);
-            setAdmin(response);
+            if (typeof response !== "string") {
+                setAdmin(response);
+            }
         } catch (error:any) {
             console.error(error);
             let errorMessage: string = "Unknow error occurred";
