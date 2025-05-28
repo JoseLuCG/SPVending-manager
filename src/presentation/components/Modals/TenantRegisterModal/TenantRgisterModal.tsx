@@ -5,11 +5,10 @@ import { ModalProps } from "../../../../domain/entities/property-models/componen
 import { TenantRepositoryHttp } from "../../../../infraestructure/adapters/api/TenantRepositoryHttp";
 import { Tenant } from "../../../../domain/entities/models/tenant";
 
-
 const tenantRepo = new TenantRepositoryHttp();
 const createTenant = new CreateTenant(tenantRepo);
 
-function TenantRegisterModal({ isOpen, onClose }: ModalProps) {
+function TenantRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     // States:
     const [tenantFormData, setTenantFormData] = useState<Omit<Tenant, "tenantId" | "numberOfClubs">>({
         tenantName: "",
@@ -20,6 +19,14 @@ function TenantRegisterModal({ isOpen, onClose }: ModalProps) {
         remark: "",
         micronId: ""
     });
+
+    const showSuccess = ()=> {
+        toastRef.current?.show({ severity: 'success', summary: 'Success', detail: 'Tenant modified successfully.' });
+    }
+
+    const showError = () => {
+        toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error modifying tenant', life: 3000});
+    }
 
     // Handlers
     function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
@@ -33,12 +40,14 @@ function TenantRegisterModal({ isOpen, onClose }: ModalProps) {
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
         try {
-            await createTenant.execute(tenantFormData);
-            alert("Tenant successfully registered!");
+            const fetchData = await createTenant.execute(tenantFormData);
+            console.log(fetchData);
+            showSuccess();
             onClose();
+            // TODO: Implement a timer for page reload
             window.location.reload();
         } catch {
-            alert("Error registering tenant");
+            showError();
         }
     }
 
