@@ -7,7 +7,6 @@ import { TenantInfoDisplay } from '../../../domain/entities/models/tenant';
 import { TenantRepositoryHttp } from '../../../infraestructure/adapters/api/TenantRepositoryHttp';
 import { GetTenantList } from '../../../application/usecases/TenantUseCases/GetTenantList';
 import TenantWarningModal from '../../components/WarningsModals/TenantWarningModal/TenantWarningModal';
-import { Button } from 'primereact/button';
 
 const repository = new TenantRepositoryHttp();
 const getTenantList = new GetTenantList(repository);
@@ -16,8 +15,8 @@ function TenantsPage() {
 	const [tenants, setTenants] = useState<TenantInfoDisplay[]>([]);
 	const [uuid, setUuid] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
-	const [ position, setPosition ] = useState<string>("bottom");
-	const show = (position:string) => {
+	const [ position, setPosition ] = useState<"bottom">("bottom");
+	const show = (position:'bottom') => {
 		setPosition(position);
 		setVisible(true);
 	}
@@ -29,7 +28,7 @@ function TenantsPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			show('bottom')
+			show('bottom');
 		}
 	}, [uuid]);
 

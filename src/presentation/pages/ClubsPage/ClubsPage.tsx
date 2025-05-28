@@ -15,8 +15,8 @@ function ClubsPage() {
 	const [clubs, setClubs] = useState<ClubInfoDisplay[]>([]);
 	const [uuid, setUuid] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
-	const [ position, setPosition ] = useState<string>("bottom");
-	const show = (position:string) => {
+	const [ position, setPosition ] = useState<"bottom">("bottom");
+	const show = (position:"bottom") => {
 		setPosition(position);
 		setVisible(true);
 	}
@@ -29,7 +29,7 @@ function ClubsPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			setVisible(true);
+			show("bottom");
 		}
 	}, [uuid]);
 
