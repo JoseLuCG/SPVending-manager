@@ -14,7 +14,12 @@ const getClubList = new GetClubList(repository);
 function ClubsPage() {
 	const [clubs, setClubs] = useState<ClubInfoDisplay[]>([]);
 	const [uuid, setUuid] = useState("");
-	const [showModal, setShowModal] = useState(false);
+	const [ visible, setVisible ] = useState<boolean>(false);
+	const [ position, setPosition ] = useState<string>("bottom");
+	const show = (position:string) => {
+		setPosition(position);
+		setVisible(true);
+	}
 
 	useEffect(() => {
 		getClubList.execute()
@@ -24,7 +29,7 @@ function ClubsPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			setShowModal(true);
+			setVisible(true);
 		}
 	}, [uuid]);
 
@@ -33,10 +38,11 @@ function ClubsPage() {
 			<Header />
 			<Main textInfoDisplay={infoDisplayClub} dataToDisplay={clubs} setterUuid={setUuid} />
 			<ClubWarningModal
-				isOpen={showModal}
-				onClose={() => { setShowModal(false) }}
+				visible={visible}
+				setVisible={() => { setVisible(false) }}
 				uuid={uuid}
 				setUuid={setUuid}
+				position={position}
 			/>
 		</>
 	)

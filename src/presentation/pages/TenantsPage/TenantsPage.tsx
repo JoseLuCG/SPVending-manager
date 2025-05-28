@@ -29,7 +29,7 @@ function TenantsPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			setVisible(true);
+			show('bottom')
 		}
 	}, [uuid]);
 
@@ -37,9 +37,6 @@ function TenantsPage() {
 		<>
 			<Header />
 			<Main textInfoDisplay={infoDisplayTenant} dataToDisplay={tenants} setterUuid={setUuid} />
-			<div className="flex flex-wrap justify-content-center gap-2">
-				<Button label="Bottom" icon="pi pi-arrow-up" onClick={() => show('bottom')} style={{ minWidth: '10rem' }} />
-			</div>
 			<TenantWarningModal
 				visible={visible}
 				setVisible={() => { setVisible(false) }}

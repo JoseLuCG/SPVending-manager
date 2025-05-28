@@ -14,7 +14,12 @@ const getUserList = new GetUserList(repository);
 function UsersPage() {
 	const [ users, setUsers ] = useState<UserInfoDisplay[]>([]);
 	const [ uuid, setUuid ] = useState("");
-	const [showModal, setShowModal] = useState(false);
+	const [ visible, setVisible ] = useState<boolean>(false);
+	const [ position, setPosition ] = useState<string>("bottom");
+	const show = (position:string) => {
+		setPosition(position);
+		setVisible(true);
+	}
 
 	useEffect(()=> {
 		getUserList.execute()
@@ -24,19 +29,21 @@ function UsersPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			setShowModal(true);
+			setVisible(true);
 		}
 	}, [uuid]);
+
 
 	return (
 		<>
 			<Header />
 			<Main textInfoDisplay={ infoDisplayUsers } dataToDisplay={users} setterUuid={setUuid}/>
 			<UserWarningModal
-				isOpen={showModal}
-				onClose={() => { setShowModal(false) }}
+				visible={visible}
+				setVisible={() => { setVisible(false) }}
 				uuid={uuid}
 				setUuid={setUuid}
+				position={position}
 			/>
 		</>
 	)

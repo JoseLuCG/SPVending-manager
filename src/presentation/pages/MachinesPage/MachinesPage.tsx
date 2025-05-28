@@ -14,7 +14,12 @@ const getMachineList = new GetMachineList(repository);
 function MachinesPage() {
 	const [machines, setMachines] = useState<MachineInfoDisplay[]>([]);
 	const [uuid, setUuid] = useState("");
-	const [showModal, setShowModal] = useState(false);
+	const [ visible, setVisible ] = useState<boolean>(false);
+	const [ position, setPosition ] = useState<string>("bottom");
+	const show = (position:string) => {
+		setPosition(position);
+		setVisible(true);
+	}
 
 	useEffect(() => {
 		getMachineList.execute()
@@ -24,7 +29,7 @@ function MachinesPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			setShowModal(true);
+			setVisible(true);
 		}
 	}, [uuid]);
 
@@ -33,10 +38,11 @@ function MachinesPage() {
 			<Header />
 			<Main textInfoDisplay={infoDisplayMachines} dataToDisplay={machines} setterUuid={setUuid} />
 			<MachineWarningModal
-				isOpen={showModal}
-				onClose={() => { setShowModal(false) }}
+				visible={visible}
+				setVisible={() => { setVisible(false) }}
 				uuid={uuid}
 				setUuid={setUuid}
+				position={position}
 			/>
 		</>
 	)
