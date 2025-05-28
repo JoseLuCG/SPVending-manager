@@ -69,5 +69,5 @@ export type WarningProps = {
     setVisible: () => void,
     uuid: string,
     setUuid: (string:string) => void
-    position:string
+    position: "bottom" | "center" | "top" | "left" | "right" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | undefined
 }
