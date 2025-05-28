@@ -9,7 +9,7 @@ import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
 const machineRepository = new MachineRepositoryHttp();
 const createMachine = new CreateMachine(machineRepository);
 
-function MachineRegisterModal({ isOpen, onClose }: ModalProps) {
+function MachineRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     // States: 
     const [machineFormData, setMachineFormData] = useState<Omit<Machine, "machineId" | "state">>({
         machineCode: "",
@@ -22,6 +22,14 @@ function MachineRegisterModal({ isOpen, onClose }: ModalProps) {
         rustdeskPass: "",
         clubId: "",
     });
+
+    const showSuccess = ()=> {
+        toastRef.current?.show({ severity: 'success', summary: 'Success', detail: 'Tenant modified successfully.' });
+    }
+
+    const showError = () => {
+        toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error modifying tenant', life: 3000});
+    }
 
     // Handlers:
     function changeHandler(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -36,12 +44,14 @@ function MachineRegisterModal({ isOpen, onClose }: ModalProps) {
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
         try {
-            await createMachine.execute(machineFormData);
-            alert("Machine successfully registered!");
+            const fetchData = await createMachine.execute(machineFormData);
+            console.log(fetchData);
+            showSuccess();
             onClose();
+            // TODO: Implement a timer for page reload
             window.location.reload();
         } catch {
-            alert("Error registering machine");
+            showError();
         }
     }
 

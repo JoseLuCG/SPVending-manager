@@ -11,7 +11,7 @@ import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
 const userRepo = new UserRepositoryHttp();
 const createUser = new CreateUser(userRepo);
 
-function UserRegisterModal({ isOpen, onClose }: ModalProps) {
+function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     // States:
     const [userForm, setUserForm] = useState<Omit<User, "userId" | "clubName">>({
         username: "",
@@ -23,6 +23,14 @@ function UserRegisterModal({ isOpen, onClose }: ModalProps) {
         tenantId: "",
         clubId: ""
     });
+
+    const showSuccess = ()=> {
+        toastRef.current?.show({ severity: 'success', summary: 'Success', detail: 'Tenant modified successfully.' });
+    }
+
+    const showError = () => {
+        toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error modifying tenant', life: 3000});
+    }
 
     //Handlers:
     function changeHandler(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -37,12 +45,14 @@ function UserRegisterModal({ isOpen, onClose }: ModalProps) {
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
         try {
-            await createUser.execute(userForm);
-            alert("User successfully registered!");
+            const fetchData = await createUser.execute(userForm);
+            console.log(fetchData);
+            showSuccess();
             onClose();
+            // TODO: Implement a timer for page reload
             window.location.reload();
         } catch {
-            alert("Error  registering user")
+            showError();
         }
     }
 

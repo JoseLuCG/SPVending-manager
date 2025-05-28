@@ -10,7 +10,7 @@ import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
 const clubRepo = new ClubRepositoryHttp();
 const createClub = new CreateClub(clubRepo);
 
-function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
+function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     // States:
     const [clubFormData, setClubFormData] = useState<Omit<Club, "clubId" | "numberOfMachines">>({
         clubName: "",
@@ -24,6 +24,14 @@ function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
         tenantId: "",
     });
 
+    const showSuccess = ()=> {
+        toastRef.current?.show({ severity: 'success', summary: 'Success', detail: 'Tenant modified successfully.' });
+    }
+
+    const showError = () => {
+        toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error modifying tenant', life: 3000});
+    }
+
     // Handlers
     function changeHandler(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const { name, value } = event.target;
@@ -36,12 +44,14 @@ function ClubRegisterModal({ isOpen, onClose }: ModalProps) {
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
         try {
-            await createClub.execute(clubFormData);
-            alert("Club successfully registered!");
+            const fetchData = await createClub.execute(clubFormData);
+            console.log(fetchData);
+            showSuccess();
             onClose();
+            // TODO: Implement a timer for page reload
             window.location.reload();
         } catch {
-            alert("Error registering club");
+            showError();
         }
     }
 
