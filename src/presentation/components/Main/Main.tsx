@@ -5,11 +5,12 @@ import Aside from './../Aside/Aside';
 import { DataTable, DataTableRowClickEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { MainProps } from './../../../domain/entities/property-models/componentsProperties';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Modal from '../Modals/Modal';
 import { getEntityId } from '../../../utilities/tools/checkers';
 import { useLocation, useNavigate } from 'react-router';
 import { appRoutes } from '../../../utilities/defines/routes';
+import { Toast } from "primereact/toast";
 
 function Main({ textInfoDisplay, dataToDisplay, setterUuid }: MainProps) {
 	// ---------- States ----------
@@ -17,6 +18,7 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid }: MainProps) {
 	const [rowSelected] = useState({});
 	const navigate = useNavigate();
 	const location = useLocation();
+	const toast = useRef<Toast>(null);
 
 	// Handlers:
 	function selectionRowHandler(event: DataTableRowClickEvent) {
@@ -35,13 +37,14 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid }: MainProps) {
 
 	return (
 		<main>
+			<Toast ref={toast}/>
 			<Aside />
 			<section className={styles.sectionContainer}>
 				<div className={styles.container}>
 					<div className={styles.headerContent}>
 						<p className={styles.infText}>{textInfoDisplay.list} List</p>
 						<input className={styles.searcher} type="text" placeholder='Buscar...' />
-						<Modal typeModal={textInfoDisplay.list} isOpen={showModal} onClose={() => setShowModal(false)} />
+						<Modal typeModal={textInfoDisplay.list} isOpen={showModal} onClose={() => setShowModal(false)} toastRef={toast}/>
 						<button className={styles.addButton} onClick={() => setShowModal(true)}>+ Add {textInfoDisplay.list}</button>
 					</div>
 					<div className={styles.tableContainer}>
