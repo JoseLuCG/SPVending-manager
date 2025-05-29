@@ -32,7 +32,7 @@ export class MachineRepositoryHttp implements MachineRepository{
         return response;
     }
 
-    async modifyMachine(machine: Machine): Promise<void> {
+    async modifyMachine(machine: Omit<Machine, "state">): Promise<void> {
         const body = mapMachineToApi(machine);
         const response = await authHandler(
             this.BASEURL+`/${machine.machineId}`,
