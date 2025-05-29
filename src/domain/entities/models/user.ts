@@ -11,9 +11,11 @@ export type User = {
     micronUser: string,
     micronPass: string,
     userType: Rol,
-    clubName: string,
+    /*clubName: string,*/
     tenantId: string,
-    clubId?: string
+    clubId?: string,
+    tenantEntityName?:string,
+    clubEntityName?:string
 }
 
 export type UserApi = {
