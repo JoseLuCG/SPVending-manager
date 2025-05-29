@@ -16,7 +16,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
     // States:
     const navigate = useNavigate();
     const [isDisabled, setIsDisabled] = useState(true);
-    const [userForm, setUserForm] = useState<Omit<User, "clubName">>({
+    const [userForm, setUserForm] = useState<User>({
         username: "",
         password: "",
         micronId: "",
@@ -31,15 +31,15 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
     // Functions: 
     function itemMapper(item: UserApi): SetStateAction<Omit<User, "clubName">> | null {
         if (item != null) {
-            let dataMapped: Omit<User, "clubName"> = {
+            let dataMapped: User = {
                 username: item.username,
                 password: item.password,
                 micronId: item.micronId,
                 micronUser: item.micronUser,
                 micronPass: item.micronPass,
                 userType: Number.parseInt(item.userType),
-                tenantEntityName: item.tenantEntityName,
-                clubEntityName: item.clubEntityName,
+                tenantEntityName: item.tenantEntityName !== null?item.tenantEntityName:"",
+                clubEntityName: item.clubEntityName !== null?item.clubEntityName:"",
                 tenantId: "",
                 clubId: "",
                 userId: item.userManagerId
@@ -125,13 +125,22 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                             <label htmlFor="adminFor">Admin For</label>
                             {
                                 isDisabled ?
-                                    <input
-                                    className={styles.input}
-                                        id="adminFor"
-                                        type="text"
-                                        value={object.clubEntityName ? object.clubEntityName : object.tenantEntityName}
-                                        disabled={isDisabled}
-                                    />
+                                    object.clubEntityName ? 
+                                        <input
+                                            className={styles.input}
+                                            id="adminFor"
+                                            type="text"
+                                            value={object.clubEntityName !== null ? object.clubEntityName : ""}
+                                            disabled={isDisabled}
+                                        />
+                                        : 
+                                        <input
+                                            className={styles.input}
+                                            id="adminFor"
+                                            type="text"
+                                            value={object.tenantEntityName !== null ? object.tenantEntityName : ""}
+                                            disabled={isDisabled}
+                                        />
                                     :
                                     <div>
                                         <label htmlFor="type1">Tenant admin</label>
