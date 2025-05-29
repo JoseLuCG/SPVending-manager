@@ -18,7 +18,7 @@ export class UserRepositoryHttp implements UserRepository {
         return mapUserFromApi(json);
     }
 
-    async addUser(user: User): Promise<void> {
+    async addUser(user: Omit<User, "userId" | "clubName">): Promise<void> {
         const body = mapUserToApi(user);
         const response = await authHandler(
             this.BASEURL,
