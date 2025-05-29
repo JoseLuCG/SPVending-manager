@@ -3,7 +3,7 @@ import { Machine, MachineApi, MachineInfoDisplay } from "../entities/models/mach
 export interface MachineRepository {
     getAllMachines() : Promise<MachineInfoDisplay[]>;
     findMachineByUuid( machineUuid : string ) : Promise<MachineApi | null >;
-    addMachine( machine : Machine ) : Promise<void>;
+    addMachine( machine : Omit<Machine, "machineId" | "state"> ) : Promise<void>;
     modifyMachine( machine : Machine) : Promise<void>;
     deleteMachine( uuid : string ) : Promise<void>;
 }

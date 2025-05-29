@@ -18,7 +18,7 @@ export class MachineRepositoryHttp implements MachineRepository{
         return mapMachineFromApi(json);
     }
 
-    async addMachine(machine: Machine): Promise<void> {
+    async addMachine(machine: Omit<Machine, "machineId" | "state">): Promise<void> {
         const body = mapMachineToApi(machine);
         const response = await authHandler(
             this.BASEURL,
