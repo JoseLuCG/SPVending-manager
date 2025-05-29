@@ -18,7 +18,7 @@ export class TenantRepositoryHttp implements TenantRepository {
         return mapTenantFromApi(json);
     }
 
-    async addTenant(tenant: Tenant): Promise<void> {
+    async addTenant(tenant: Omit<Tenant, "tenantId" | "numberOfClubs">): Promise<void> {
         const body = mapTenantToApi(tenant);
         const response = await authHandler(
             this.BASEURL,

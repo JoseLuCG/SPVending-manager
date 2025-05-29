@@ -3,7 +3,7 @@ import { PotentialTenant, Tenant, TenantApi, TenantInfoDisplay } from "../entiti
 export interface TenantRepository {
     getAllTenants() : Promise<TenantInfoDisplay[]>;
     findTenantByUuid( tenantUuid : string ) : Promise<TenantApi | null >;
-    addTenant( tenant : Tenant ) : Promise<void>;
+    addTenant( tenant : Omit<Tenant, "tenantId" | "numberOfClubs">) : Promise<void>;
     modifyTenant( tenant : Tenant) : Promise<void>;
     deleteTenant( uuid : string ) : Promise<void>;
     getPotentialTenants() : Promise<PotentialTenant[]>;
