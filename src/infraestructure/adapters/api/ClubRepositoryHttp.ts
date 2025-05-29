@@ -18,7 +18,7 @@ export class ClubRepositoryHttp implements ClubRepository {
         return mapClubFromApi(json);
     }
 
-    async addClub(club: Club): Promise<void> {
+    async addClub(club: Omit<Club, "clubId" | "numberOfMachines">): Promise<void> {
         const body = mapClubToApi(club);
         const response = await authHandler(
             this.BASEURL,

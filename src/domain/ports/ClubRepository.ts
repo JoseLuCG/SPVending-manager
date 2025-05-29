@@ -3,7 +3,7 @@ import { Club, ClubApi, ClubInfoDisplay, ClubOption } from "../entities/models/c
 export interface ClubRepository {
     getAllClubs(): Promise<ClubInfoDisplay[]>;
     findClubByUuid(clubUuid: string): Promise<ClubApi | null>;
-    addClub(club: Club): Promise<void>;
+    addClub(club: Omit<Club, "clubId" | "numberOfMachines">): Promise<void>;
     modifyClub(club: Club): Promise<void>;
     deleteClub(uuid: string): Promise<void>;
     getClubOptions(): Promise<ClubOption[]>;
