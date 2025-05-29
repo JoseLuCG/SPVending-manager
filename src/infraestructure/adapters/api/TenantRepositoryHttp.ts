@@ -32,7 +32,7 @@ export class TenantRepositoryHttp implements TenantRepository {
         return response;
     }
 
-    async modifyTenant(tenant: Tenant): Promise<void> {
+    async modifyTenant(tenant: Omit<Tenant, "numberOfClubs">): Promise<void> {
         const body = mapTenantToApi(tenant);
         const response = await authHandler(
             this.BASEURL+`/${tenant.tenantId}`,

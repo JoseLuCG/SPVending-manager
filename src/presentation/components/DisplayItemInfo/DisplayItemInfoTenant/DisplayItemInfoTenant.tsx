@@ -35,7 +35,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
     }
 
     // Functions:
-    function itemMapper(item: TenantApi): SetStateAction<Omit<Tenant, "tenantId" | "numberOfClubs">> | null {
+    function itemMapper(item: TenantApi): SetStateAction<Omit<Tenant, "numberOfClubs">> | null {
         if (item != null) {
             let dataMapped: Omit<Tenant, "numberOfClubs"> = {
                 tenantName: item.name,
