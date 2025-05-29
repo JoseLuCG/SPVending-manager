@@ -32,7 +32,7 @@ export class ClubRepositoryHttp implements ClubRepository {
         return response;
     }
 
-    async modifyClub(club: Club): Promise<void> {
+    async modifyClub(club: Omit<Club, "numberOfMachines">): Promise<void> {
         const body = mapClubToApi(club);
         const response = await authHandler(
             this.BASEURL+`/${club.clubId}`,
