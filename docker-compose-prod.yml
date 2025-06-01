@@ -4,10 +4,9 @@ services:
     build: 
       context: ./
       dockerfile: Dockerfile.prod
-      args:
-        - VITE_APP_BACKEND_ADDRESS=http://localhost:8080
+#      args:
+#        - VITE_APP_BACKEND_ADDRESS=http://spvending-api-container:8080
     container_name: frontend-prod
-    restart: always
     ports:
       - 80:80
     networks:
