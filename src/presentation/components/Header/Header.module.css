@@ -1,8 +1,7 @@
 /* ---------- HEADER CSS ---------- */
 header.header {
     background-color: #021B46;
-    height: 87px;
-    /* height: 90px; */
+    height: 10vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
