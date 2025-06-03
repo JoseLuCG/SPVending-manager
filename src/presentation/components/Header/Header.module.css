@@ -40,7 +40,7 @@ header.header > h1 {
     width: 300px;
     height:fit-content;
     position: absolute;
-    top: 87px;
+    top: 10vh;
     right: 2.5%;
     padding: 20px;
     border-radius: 0px 0px 10px 10px;
@@ -65,7 +65,7 @@ header.header > h1 {
 }
 
 li.cntnrLi > button {
-    width: 100%;
+    width: 90%;
     padding: 10px 30px 10px;
     border-radius: 10px;
 }
