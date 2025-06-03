@@ -32,4 +32,14 @@ export class AdminRepositoryHttp implements AdminRepository {
         if (response.ok) return true;   
         return false
     }
+
+    async refreshAccessToken(): Promise<AdminApi | null> {
+        const URL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.refreshToken;
+        const response = await fetch(
+            URL, {
+                method: "POST",
+                credentials: "include"
+            });
+        return response.json();
+    }
 }
