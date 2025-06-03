@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 import { Toast } from "primereact/toast";
 
 const tenantRepo = new TenantRepositoryHttp();
-const modifyUser = new ModifyTenant(tenantRepo);
+const modifyTenant = new ModifyTenant(tenantRepo);
 
 function DisplayItemInfoTenant({ object }: DIITenantProps) {
     // States:
@@ -70,7 +70,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         try {
             // ? Question: Can managers be modified in the tenant tab?
             if (tenantForm.tenantId) {
-                await modifyUser.execute(tenantForm);
+                await modifyTenant.execute(tenantForm);
                 showSuccess();
             }
         } catch (error) {
