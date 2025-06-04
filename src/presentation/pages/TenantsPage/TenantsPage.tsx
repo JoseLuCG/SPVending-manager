@@ -18,7 +18,7 @@ const getTenantList = new GetTenantList(repository);
 
 function TenantsPage() {
 	const navigate = useNavigate();
-	const [ admin, setAdmin ] = useContext(Admin);
+	const [ /*admin*/, setAdmin ] = useContext(Admin);
 	const [ tenants, setTenants ] = useState<TenantInfoDisplay[]>([]);
 	const [ uuid, setUuid ] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
