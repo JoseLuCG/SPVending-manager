@@ -69,7 +69,6 @@ deploy_app_production:
           echo "=== Limpiando imágenes no usadas ==="
           docker image prune -af
           ls -la /var/www/html
-          sudo nginx -s reload
           echo "=== Despliegue completado con éxito ==="
           exit 0
         else
