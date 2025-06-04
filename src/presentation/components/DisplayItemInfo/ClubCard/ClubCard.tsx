@@ -1,16 +1,23 @@
 import styles from "./ClubCard.module.css"
 import { ClubCardProps } from "../../../../domain/entities/property-models/componentsProperties";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 
-function ClubCard({ club }: ClubCardProps) {
+function ClubCard({ clubs }: ClubCardProps) {
     return (
-        <div key={club.clubId} className={styles.clubCard}>
-            <h3>{club.name}</h3>
-            <p>{club.address}</p>
-            <p>{club.phone}</p>
-            <p>{club.machinesCount}</p>
-            <p>{club.userManagers}</p>
+        <div className={styles.section2}>
+            <DataTable
+                value={clubs}
+            >
+                <Column field="name" header="Name"/>
+                <Column field="machinesCount" header="Machines"/>
+                <Column field="phone" header="Phone"/>
+                <Column field="address" header="Address"/>
+            </DataTable>
         </div>
     );
 }
 
 export default ClubCard;
+
+// clubsInfo.map((club) => <ClubCard club={club}/>)
