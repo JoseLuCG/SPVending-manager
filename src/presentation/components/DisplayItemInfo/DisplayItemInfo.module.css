@@ -20,7 +20,7 @@
 /* ---------- Main Form Div ---------- */
 .frmMnCntnr {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-right: 5%;
     margin-left: 5%;
     padding-top: 2%;
@@ -29,6 +29,12 @@
     background-color:rgba(196, 196, 196, 0.5);
     box-shadow: 5px 5px 5px #0000006f;
     /*border: 1px solid #002A72;*/
+}
+
+/* ---------- Section 1 Main Form Div ---------- */
+.section {
+    display: flex;
+    flex-direction: row;
 }
 
 .frmDv {
@@ -92,4 +98,15 @@
     border-radius: 10px;
     border: none;
     cursor: pointer;
+}
+
+.section2 {
+    margin-left: 2%;
+}
+
+.clubCard {
+    background-color: rgba(0, 42, 114, 0.8);
+    color: #FFF;
+    border-radius: 24px;
+    padding: 20px;
 }
