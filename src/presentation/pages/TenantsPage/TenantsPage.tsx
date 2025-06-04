@@ -44,6 +44,7 @@ function TenantsPage() {
 						setTenants(tenants);
 					} catch (errorAfterRefresh) {
 						console.error(errorAfterRefresh);
+						setAdmin(null);
 						navigate(appRoutes.logginRoute);
 					}
 				} catch (refreshError) {
