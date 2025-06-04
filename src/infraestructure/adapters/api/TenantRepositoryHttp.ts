@@ -1,9 +1,9 @@
 import { TenantRepository } from "../../../domain/ports/TenantRepository";
 import { PotentialTenant, Tenant, TenantApi, TenantInfoDisplay } from "../../../domain/entities/models/tenant";
 import { BASE_URL_SERVER, API_PREFIX, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
-import { mapTenantFromApi } from "../../mappers/FromApi/TenantMapper";
+import { mapTenantCLubsFromApi, mapTenantFromApi } from "../../mappers/FromApi/TenantMapper";
 import { mapTenantToApi } from "../../mappers/ToApi/TenantMapperToApi";
-import { authHandler } from "../Auth/AuthHandler";
+import { ClubOfTenant } from "../../../domain/entities/models/club";
 
 export class TenantRepositoryHttp implements TenantRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.tenantPath;
@@ -64,5 +64,11 @@ export class TenantRepositoryHttp implements TenantRepository {
     async getPotentialTenants(): Promise<PotentialTenant[]> {
         const response = await fetch(`${this.BASEURL}/${PATH_PREFIX.potentialTenants}`,{credentials: "include"});
         return response.json();
+    }
+
+    async getTenantClubs( tenantUuid : string ) : Promise<ClubOfTenant[]> {
+        const response = await fetch(`${this.BASEURL}/${tenantUuid}/clubs`,{credentials: "include"});
+        const json = await response.json();
+        return mapTenantCLubsFromApi(json);
     }
 }
