@@ -14,7 +14,7 @@
 /* ---------- Form ---------- */
 .frmCntnr {
     width: 100%;
-    margin-top: 50px;
+    margin-top: 5%; /*margin-top: 50px;*/
 }
 
 /* ---------- Main Form Div ---------- */
@@ -23,31 +23,28 @@
     flex-direction: column;
     margin-right: 5%;
     margin-left: 5%;
-    padding-top: 2%;
     padding-bottom: 2%;
     border-radius: 25px;
     background-color:rgba(196, 196, 196, 0.5);
     box-shadow: 5px 5px 5px #0000006f;
-    /*border: 1px solid #002A72;*/
 }
 
 /* ---------- Section 1 Main Form Div ---------- */
 .section {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 4%;
 }
 
 .frmDv {
-    margin-left: 2%;
     width: 40%;
     display: flex;
     flex-direction: column;
     align-items:flex-start;
     margin-bottom: 40px;
-}
-
-.frmDv:last-child {
-    margin-left: 10%;
 }
 
 .frmDv > .fpDiv {
