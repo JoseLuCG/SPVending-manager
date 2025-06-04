@@ -1,7 +1,9 @@
 /* ---------- Club Card ---------- */
-.clubCard {
+.section2 {
     background-color: rgba(0, 42, 114, 0.8);
     color: #FFF;
     border-radius: 24px;
     padding: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
 }
