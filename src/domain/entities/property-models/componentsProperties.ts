@@ -73,5 +73,5 @@ export type WarningProps = {
 }
 
 export type ClubCardProps = {
-    clubs: ClubOfTenant[]
+    club: ClubOfTenant
 }
