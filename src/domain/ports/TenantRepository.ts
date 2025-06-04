@@ -1,3 +1,4 @@
+import { ClubOfTenant } from "../entities/models/club";
 import { PotentialTenant, Tenant, TenantApi, TenantInfoDisplay } from "../entities/models/tenant";
 
 export interface TenantRepository {
@@ -7,4 +8,5 @@ export interface TenantRepository {
     modifyTenant( tenant : Omit<Tenant, "numberOfClubs">) : Promise<void>;
     deleteTenant( uuid : string ) : Promise<void>;
     getPotentialTenants() : Promise<PotentialTenant[]>;
+    getTenantClubs( tenantUuid : string ) : Promise<ClubOfTenant[]>;
 }

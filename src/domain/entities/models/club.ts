@@ -39,3 +39,13 @@ export type ClubOption = {
     clubId: string,
     name: string
 }
+
+export type ClubOfTenant = {
+    clubId: string,
+    name: string,
+    address: string,
+    phone: string,
+    tenantEntityName: string,
+    userManagers: string[],
+    machinesCount: number
+}

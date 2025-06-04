@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { ClubApi, ClubInfoDisplay } from '../models/club';
+import { ClubApi, ClubInfoDisplay, ClubOfTenant } from '../models/club';
 import { MachineApi, MachineInfoDisplay } from '../models/machine';
 import { Tenant, TenantApi, TenantInfoDisplay } from '../models/tenant';
 import { UserApi, UserInfoDisplay } from '../models/user';
@@ -70,4 +70,8 @@ export type WarningProps = {
     uuid: string,
     setUuid: (string:string) => void
     position: "bottom" | "center" | "top" | "left" | "right" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | undefined
+}
+
+export type ClubCardProps = {
+    clubs: ClubOfTenant[]
 }

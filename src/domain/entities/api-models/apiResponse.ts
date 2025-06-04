@@ -1,4 +1,4 @@
-import { ClubInfoDisplay } from "../models/club";
+import { ClubInfoDisplay, ClubOfTenant } from "../models/club";
 import { MachineInfoDisplay } from "../models/machine";
 import { TenantInfoDisplay } from "../models/tenant";
 import { UserInfoDisplay } from "../models/user";
@@ -12,6 +12,10 @@ export type PageInfo = {
 
 export type TenantApiResponse = {
     content: TenantInfoDisplay[],
+    page: PageInfo
+}
+export type TenantClubsApiResponse = {
+    content: ClubOfTenant[],
     page: PageInfo
 }
 
