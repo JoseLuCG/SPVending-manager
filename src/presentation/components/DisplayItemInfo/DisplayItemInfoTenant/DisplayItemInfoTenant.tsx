@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 import { Toast } from "primereact/toast";
 import { GetTenantClubs } from "../../../../application/usecases/TenantUseCases/GetTenantClubs";
 import { ClubOfTenant } from "../../../../domain/entities/models/club";
+import ClubCard from "../ClubCard/ClubCard";
 
 const tenantRepo = new TenantRepositoryHttp();
 const modifyTenant = new ModifyTenant(tenantRepo);
@@ -226,16 +227,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                     </div>
                     <div className={styles.section2}>
                     {
-                        clubsInfo.map(
-                            (club) => 
-                                <div key={club.clubId} className={styles.clubCard}>
-                                    <h3>{club.name}</h3>
-                                    <p>{club.address}</p>
-                                    <p>{club.phone}</p>
-                                    <p>{club.machinesCount}</p>
-                                    <p>{club.userManagers}</p>                                    
-                                </div>
-                        )
+                        clubsInfo.map((club) => <ClubCard club={club}/>)
                     }
                     </div>
                 </main>
