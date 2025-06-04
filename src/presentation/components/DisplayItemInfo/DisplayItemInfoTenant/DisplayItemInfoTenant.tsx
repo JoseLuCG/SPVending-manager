@@ -225,11 +225,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.section2}>
-                    {
-                        clubsInfo.map((club) => <ClubCard club={club}/>)
-                    }
-                    </div>
+                    <ClubCard clubs={clubsInfo}/>
                 </main>
                 <div className={styles.editButtonContainer}>
                     <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
