@@ -86,7 +86,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
 
     if (!object) {
         return (
-            <Loader/>
+            <Loader />
         );
     }
 
@@ -94,137 +94,139 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
         <>
             <form className={styles.frmCntnr} onSubmit={submitHandler}>
                 <main className={styles.frmMnCntnr}>
-                    <div className={styles.frmDv}>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="clubName">Club Name</label>
-                            <input
-                                className={styles.input}
-                                id="clubName"
-                                name="clubName"
-                                type="text"
-                                value={isDisabled ? object.name : clubFormData.clubName}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.name}
-                                onChange={changeHandler}
-                            />
+                    <div className={styles.section}>
+                        <div className={styles.frmDv}>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="clubName">Club Name</label>
+                                <input
+                                    className={styles.input}
+                                    id="clubName"
+                                    name="clubName"
+                                    type="text"
+                                    value={isDisabled ? object.name : clubFormData.clubName}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.name}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="tenantEntity">Tenant Owner</label>
+                                {
+                                    isDisabled ?
+                                        <input
+                                            className={styles.input}
+                                            id="tenantEntity"
+                                            name="tenantId"
+                                            type="text"
+                                            disabled
+                                            value={object.tenantEntityName}
+                                        /> :
+                                        <SelectTenantOptions onSelectTenant={changeHandler} />
+                                }
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="address">Club Address</label>
+                                <input
+                                    className={styles.input}
+                                    id="address"
+                                    name="address"
+                                    type="text"
+                                    value={isDisabled ? object.address : clubFormData.address}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.address}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="email">Club email</label>
+                                <input
+                                    className={styles.input}
+                                    id="email"
+                                    name="email"
+                                    type="text"
+                                    value={isDisabled ? object.email : clubFormData.email}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.email}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="remark">Remark</label>
+                                <input
+                                    className={styles.input}
+                                    id="remark"
+                                    name="remark"
+                                    type="text"
+                                    value={isDisabled ? object.remark : clubFormData.remark}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.remark}
+                                    onChange={changeHandler}
+                                />
+                            </div>
                         </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="tenantEntity">Tenant Owner</label>
-                            {
-                                isDisabled ?
-                                    <input
-                                        className={styles.input}    
-                                        id="tenantEntity"
-                                        name="tenantId"
-                                        type="text"
-                                        disabled
-                                        value={object.tenantEntityName}
-                                    /> :
-                                    <SelectTenantOptions onSelectTenant={changeHandler} />
-                            }
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="address">Club Address</label>
-                            <input
-                                className={styles.input}
-                                id="address"
-                                name="address"
-                                type="text"
-                                value={isDisabled ? object.address : clubFormData.address}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.address}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="email">Club email</label>
-                            <input
-                                className={styles.input}
-                                id="email"
-                                name="email"
-                                type="text"
-                                value={isDisabled ? object.email : clubFormData.email}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.email}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="remark">Remark</label>
-                            <input
-                                className={styles.input}
-                                id="remark"
-                                name="remark"
-                                type="text"
-                                value={isDisabled ? object.remark : clubFormData.remark}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.remark}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                    </div>
-                    <div className={styles.frmDv}>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="clubCIF">CIF</label>
-                            <input
-                                className={styles.input}
-                                id="clubCIF"
-                                name="cif"
-                                type="text"
-                                value={isDisabled ? object.cif : clubFormData.cif}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.cif}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="accountingId">Accounting ID</label>
-                            <input
-                                className={styles.input}
-                                id="accountingId"
-                                name="accountingId"
-                                type="text"
-                                value={isDisabled ? object.accountingId : clubFormData.accountingId}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.accountingId}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="phone">Phone</label>
-                            <input
-                                className={styles.input}
-                                id="phone"
-                                name="phone"
-                                type="text"
-                                value={isDisabled ? object.phone : clubFormData.phone}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.phone}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="micronId">Micron ID</label>
-                            <input
-                                className={styles.input}
-                                id="micronId"
-                                name="micronId"
-                                type="text"
-                                value={isDisabled ? object.micronId : clubFormData.micronId}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.micronId}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="managers">Managers</label>
-                            <input
-                                className={styles.input}
-                                id="managers"
-                                type="text"
-                                value={object.userManagers}
-                                disabled
-                            />
+                        <div className={styles.frmDv}>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="clubCIF">CIF</label>
+                                <input
+                                    className={styles.input}
+                                    id="clubCIF"
+                                    name="cif"
+                                    type="text"
+                                    value={isDisabled ? object.cif : clubFormData.cif}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.cif}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="accountingId">Accounting ID</label>
+                                <input
+                                    className={styles.input}
+                                    id="accountingId"
+                                    name="accountingId"
+                                    type="text"
+                                    value={isDisabled ? object.accountingId : clubFormData.accountingId}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.accountingId}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="phone">Phone</label>
+                                <input
+                                    className={styles.input}
+                                    id="phone"
+                                    name="phone"
+                                    type="text"
+                                    value={isDisabled ? object.phone : clubFormData.phone}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.phone}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="micronId">Micron ID</label>
+                                <input
+                                    className={styles.input}
+                                    id="micronId"
+                                    name="micronId"
+                                    type="text"
+                                    value={isDisabled ? object.micronId : clubFormData.micronId}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.micronId}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="managers">Managers</label>
+                                <input
+                                    className={styles.input}
+                                    id="managers"
+                                    type="text"
+                                    value={object.userManagers}
+                                    disabled
+                                />
+                            </div>
                         </div>
                     </div>
                 </main>

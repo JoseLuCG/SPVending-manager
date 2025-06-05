@@ -213,16 +213,6 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                     onChange={changeHandler}
                                 />
                             </div>
-                            <div className={styles.fpDiv}>
-                                <label htmlFor="managers">Managers</label>
-                                <input
-                                    className={styles.input}
-                                    id="managers"
-                                    type="text"
-                                    value={object.managers}
-                                    disabled
-                                />
-                            </div>
                         </div>
                     </div>
                     <ClubCard clubs={clubsInfo}/>

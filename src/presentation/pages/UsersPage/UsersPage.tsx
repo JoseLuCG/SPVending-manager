@@ -15,8 +15,8 @@ function UsersPage() {
 	const [ users, setUsers ] = useState<UserInfoDisplay[]>([]);
 	const [ uuid, setUuid ] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
-	const [ position, setPosition ] = useState<"bottom">("bottom");
-	const show = (position:'bottom') => {
+	const [ position, setPosition ] = useState<"center">("center");
+	const show = (position:'center') => {
 		setPosition(position);
 		setVisible(true);
 	}
@@ -29,7 +29,7 @@ function UsersPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			show('bottom');
+			show('center');
 		}
 	}, [uuid]);
 

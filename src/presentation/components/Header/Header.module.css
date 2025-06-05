@@ -21,7 +21,7 @@ header.header > h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
+    width: 230px;
     margin-right: 3%;
     padding: 1% 2% 0px 2%;
     cursor: pointer;

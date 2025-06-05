@@ -22,8 +22,8 @@ function TenantsPage() {
 	const [ tenants, setTenants ] = useState<TenantInfoDisplay[]>([]);
 	const [ uuid, setUuid ] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
-	const [ position, setPosition ] = useState<"bottom">("bottom");
-	const show = (position:'bottom') => {
+	const [ position, setPosition ] = useState<"center">("center");
+	const show = (position:'center') => {
 		setPosition(position);
 		setVisible(true);
 	}
@@ -64,7 +64,7 @@ function TenantsPage() {
 
 	useEffect(() => {
 		if (uuid != "") {
-			show('bottom');
+			show('center');
 		}
 	}, [uuid]);
 

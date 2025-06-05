@@ -24,7 +24,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 /* ----- Information text ----- */
@@ -104,4 +104,15 @@ p.infText {
 .tableRow:hover td:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+/* ---------- DELETE BUTTON ---------- */
+.deleteButton {
+    border: none;
+    background-color: #FFF;
+}
+
+.deleteButton:hover {
+    border: none;
+    background-color: #C4C4C4;
 }

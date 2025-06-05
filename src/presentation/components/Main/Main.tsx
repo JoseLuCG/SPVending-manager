@@ -1,6 +1,6 @@
 import styles from "./Main.module.css";
 //import searchIcon from './../../assets/icons/Search-more.svg';
-import trashIcon from "./../../../assets/icons/Trash.svg";
+import trashIcon from "./../../../assets/icons/unnamed.png";
 import Aside from './../Aside/Aside';
 import { DataTable, DataTableRowClickEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -63,8 +63,8 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid }: MainProps) {
 							<Column headerClassName={styles.headerTB} field="" header="Actions"
 								body={(rowData) => (
 									<div>
-										<button onClick={() => onClickHandler(rowData)}>
-											<img src={trashIcon} alt="" />
+										<button onClick={() => onClickHandler(rowData)} className={styles.deleteButton}>
+											<img src={trashIcon} alt="" height="30px" width="30px"/>
 										</button>
 									</div>
 								)}

@@ -28,8 +28,8 @@ function ClubWarningModal({visible, setVisible, uuid, setUuid, position}: Warnin
 
     const footerContent = (
         <div>
-            <Button label="No" icon="pi pi-times" onClick={closeWindow} className={`p-button-text ${styles.btnPddng}`} />
-            <Button label="Yes" icon="pi pi-check" onClick={onDeleteHandler} className={styles.btnPddng} autoFocus />
+            <Button label="No" icon="pi pi-times" onClick={closeWindow} className={`p-button-text ${styles.btnPddngN}`} />
+            <Button label="Yes" icon="pi pi-check" onClick={onDeleteHandler} className={styles.btnPddngY} autoFocus />
         </div>
     );
     const header = (
@@ -40,9 +40,9 @@ function ClubWarningModal({visible, setVisible, uuid, setUuid, position}: Warnin
     );
     return(
         <div className="card px-2">
-            <Dialog header={header} visible={visible} position={position} style={{ width: '50vw', padding:20, background:'#ffffff' }} onHide={() => {if (!visible) return; setVisible }} footer={footerContent} draggable={false} resizable={false}>
+            <Dialog header={header} visible={visible} position={position} style={{ width: '500px', padding:20, background:'#ffffff' }} onHide={() => {if (!visible) return; setVisible() }} footer={footerContent} draggable={false} resizable={false}>
                 <p className="m-0">
-                    Are you sure you want to delete this tenant?
+                    Are you sure you want to delete this club?
                 </p>
             </Dialog>
         </div>
