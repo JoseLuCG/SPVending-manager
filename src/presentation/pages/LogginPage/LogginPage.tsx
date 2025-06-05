@@ -67,37 +67,37 @@ function LogginPage() {
     return (
         <>
             <div className={styles.mainContainer}>
+                <div className={styles.footer}>
+                    <img className={styles.img} src={logo} alt="logo" />
+                </div>
                 <div className={styles.registerContainer}>
                     <form onSubmit={submitHandler} className={styles.form}>
-                        <label className={styles.label} htmlFor="adminProfile">Administrator profile</label>
+                        <label className={styles.label} id="adminLabel" htmlFor="adminProfile">Username</label>
+
                         <input
                             className={styles.inputStyle}
                             id="adminProfile"
                             name="username"
-                            placeholder="admin-example"
                             type="text"
                             value={adminForm.username}
                             onChange={changeHandler}
                             required
                         />
-                        <label className={styles.label} htmlFor="adminProfile">Administrator password</label>
+                        <label className={styles.label} htmlFor="adminProfile">Password</label>
                         <input
                             className={styles.inputStyle}
                             id="adminPassword"
                             name="password"
-                            placeholder="password"
                             type="password"
                             value={adminForm.password}
                             onChange={changeHandler}
                             required
                         />
                         <p className={styles.errMessage}>{errorMessage}</p>
-                        <button type="submit" className={styles.logginButton}>Log in</button>
+                        <button type="submit" className={styles.logginButton}>LOGIN</button>
                     </form>
                 </div>
-                <div className={styles.footer}>
-                    <img className={styles.img} src={logo} alt="logo" />
-                </div>
+
             </div>
         </>
     );
