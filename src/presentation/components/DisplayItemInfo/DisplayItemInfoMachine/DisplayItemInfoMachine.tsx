@@ -87,7 +87,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
 
     if (!object) {
         return (
-            <Loader/>
+            <Loader />
         );
     }
 
@@ -95,113 +95,115 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
         <>
             <form className={styles.frmCntnr} onSubmit={submitHandler}>
                 <main className={styles.frmMnCntnr}>
-                    <div className={styles.frmDv}>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="machineCode">Machine Code</label>
-                            <input
-                                className={styles.input}
-                                id="machineCode"
-                                name="machineCode"
-                                type="text"
-                                value={isDisabled ? object.code : machineForm.machineCode}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.code}
-                                onChange={changeHandler}
-                            />
+                    <div className={styles.section}>
+                        <div className={styles.frmDv}>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="machineCode">Machine Code</label>
+                                <input
+                                    className={styles.input}
+                                    id="machineCode"
+                                    name="machineCode"
+                                    type="text"
+                                    value={isDisabled ? object.code : machineForm.machineCode}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.code}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="clubName">Club Name</label>
+                                {
+                                    isDisabled ?
+                                        <input
+                                            className={styles.input}
+                                            id="clubName"
+                                            type="text"
+                                            disabled
+                                            value={object.clubName}
+                                        /> :
+                                        <SelectClubOptions onSelectClub={changeHandler} />
+                                }
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="smartFridgeId">Smart Fridge Id</label>
+                                <input
+                                    className={styles.input}
+                                    id="smartFridgeId"
+                                    name="smartFridgeld"
+                                    type="text"
+                                    value={isDisabled ? object.smartFridgeId : machineForm.smartFridgeld}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.smartFridgeId}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="terminalId">Terminal ID</label>
+                                <input
+                                    className={styles.input}
+                                    id="terminalId"
+                                    name="terminalId"
+                                    type="text"
+                                    value={isDisabled ? object.terminalId : machineForm.terminalId}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.terminalId}
+                                    onChange={changeHandler}
+                                />
+                            </div>
                         </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="clubName">Club Name</label>
-                            {
-                                isDisabled ?
-                                    <input
-                                        className={styles.input}
-                                        id="clubName"
-                                        type="text"
-                                        disabled
-                                        value={object.clubName}
-                                    /> :
-                                    <SelectClubOptions onSelectClub={changeHandler} />
-                            }
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="smartFridgeId">Smart Fridge Id</label>
-                            <input
-                                className={styles.input}
-                                id="smartFridgeId"
-                                name="smartFridgeld"
-                                type="text"
-                                value={isDisabled ? object.smartFridgeId : machineForm.smartFridgeld}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.smartFridgeId}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="terminalId">Terminal ID</label>
-                            <input
-                                className={styles.input}
-                                id="terminalId"
-                                name="terminalId"
-                                type="text"
-                                value={isDisabled ? object.terminalId : machineForm.terminalId}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.terminalId}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                    </div>
-                    <div className={styles.frmDv}>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="rustdeskId">Rust Desk ID</label>
-                            <input
-                                className={styles.input}
-                                id="rustdeskId"
-                                name="rustdeskId"
-                                type="text"
-                                value={isDisabled ? object.rustdeskId : machineForm.rustdeskId}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.rustdeskId}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="rustdeskPass">Rust Desk Password</label>
-                            <input
-                                className={styles.input}
-                                id="rustdeskPass"
-                                name="rustdeskPass"
-                                type="text"
-                                value={isDisabled ? object.rustdeskPass : machineForm.rustdeskPass}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.rustdeskPass}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="smartFridgePassword">Smart Fridge Password</label>
-                            <input
-                                className={styles.input}
-                                id="smartFridgePassword"
-                                name="smartFridgePassword"
-                                type="text"
-                                value={isDisabled ? object.smartFridgePassword : machineForm.smartFridgePassword}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.smartFridgePassword}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="toaSerialNumber">Terminal Serial Number</label>
-                            <input
-                                className={styles.input}
-                                id="toaSerialNumber"
-                                name="tnaSerialNumber"
-                                type="text"
-                                value={isDisabled ? object.toaSerialNumber : machineForm.tnaSerialNumber}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.toaSerialNumber}
-                                onChange={changeHandler}
-                            />
+                        <div className={styles.frmDv}>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="rustdeskId">Rust Desk ID</label>
+                                <input
+                                    className={styles.input}
+                                    id="rustdeskId"
+                                    name="rustdeskId"
+                                    type="text"
+                                    value={isDisabled ? object.rustdeskId : machineForm.rustdeskId}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.rustdeskId}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="rustdeskPass">Rust Desk Password</label>
+                                <input
+                                    className={styles.input}
+                                    id="rustdeskPass"
+                                    name="rustdeskPass"
+                                    type="text"
+                                    value={isDisabled ? object.rustdeskPass : machineForm.rustdeskPass}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.rustdeskPass}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="smartFridgePassword">Smart Fridge Password</label>
+                                <input
+                                    className={styles.input}
+                                    id="smartFridgePassword"
+                                    name="smartFridgePassword"
+                                    type="text"
+                                    value={isDisabled ? object.smartFridgePassword : machineForm.smartFridgePassword}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.smartFridgePassword}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="toaSerialNumber">Terminal Serial Number</label>
+                                <input
+                                    className={styles.input}
+                                    id="toaSerialNumber"
+                                    name="tnaSerialNumber"
+                                    type="text"
+                                    value={isDisabled ? object.toaSerialNumber : machineForm.tnaSerialNumber}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.toaSerialNumber}
+                                    onChange={changeHandler}
+                                />
+                            </div>
                         </div>
                     </div>
                 </main>

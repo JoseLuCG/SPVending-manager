@@ -95,7 +95,8 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
         <>
             <form className={styles.frmCntnr} onSubmit={submitHandler}>
                 <main className={styles.frmMnCntnr}>
-                    <div className={styles.frmDv}>
+                <div className={styles.section}>
+                <div className={styles.frmDv}>
                         <div className={styles.fpDiv}>
                             <label htmlFor="username">User Name</label>
                             <input
@@ -209,6 +210,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                             />
                         </div>
                     </div>
+                </div>
                 </main>
                 <div className={styles.editButtonContainer}>
                     <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>

@@ -109,4 +109,10 @@ p.infText {
 /* ---------- DELETE BUTTON ---------- */
 .deleteButton {
     border: none;
+    background-color: #FFF;
+}
+
+.deleteButton:hover {
+    border: none;
+    background-color: #C4C4C4;
 }
