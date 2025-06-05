@@ -41,7 +41,7 @@ function MachineWarningModal({visible, setVisible, uuid, setUuid, position}: War
     
     return (
         <div className="card px-2">
-            <Dialog header={header} visible={visible} position={position} style={{ width: '50vw', padding:20, background:'#ffffff' }} onHide={() => {if (!visible) return; setVisible }} footer={footerContent} draggable={false} resizable={false}>
+            <Dialog header={header} visible={visible} position={position} style={{ width: '50vw', padding:20, background:'#ffffff' }} onHide={() => {if (!visible) return; setVisible() }} footer={footerContent} draggable={false} resizable={false}>
                 <p className="m-0">
                     Are you sure you want to delete this machine?
                 </p>
