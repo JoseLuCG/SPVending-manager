@@ -105,3 +105,8 @@ p.infText {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+/* ---------- DELETE BUTTON ---------- */
+.deleteButton {
+    border: none;
+}
