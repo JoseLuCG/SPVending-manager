@@ -1,6 +1,6 @@
 :root {
     --bkgd-clr-register-container: #0A3072;
-    --text-color: #FFF;
+    --text-colorSPV: #FFF;
 }
 
 /* ---------- Background Container ---------- */
@@ -39,7 +39,7 @@
 
 /* ---------- Label Style ---------- */
 .label {
-    color: var(--text-color);
+    color: var(--text-colorSPV);
     margin-bottom: 2%;
 }
 
