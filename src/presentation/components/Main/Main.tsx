@@ -71,6 +71,10 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid }: MainProps) {
 							/>
 						</DataTable>
 					</div>
+					<nav className={styles.paginatorContainer}>
+						<button className={styles.pagBtn}> &lt;&lt; </button>
+						<button className={styles.pagBtn}> &gt;&gt; </button>
+					</nav>
 				</div>
 			</section>
 		</main>
