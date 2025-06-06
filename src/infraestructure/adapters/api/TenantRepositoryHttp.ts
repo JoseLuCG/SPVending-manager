@@ -19,16 +19,12 @@ export class TenantRepositoryHttp implements TenantRepository {
             const json = await response.json();
             return mapTenantFromApi(json);
         }
-        if (!response.ok) throw new Error(`${response.status}`);
-        const nullResponse:TenantInfoDisplay[] = [{
-            tenantId: "null",
-            name: "null",
-            cif: "null",
-            phone: "null",
-            email: "null",
-            clubsCount: 0
-        }]
-        return nullResponse;
+
+        if (response.status === 404){
+            return [];
+        }
+
+        throw new Error(`Error fetching tenants: ${response.statusText}`);
     }
 
     async addTenant(tenant: Omit<Tenant, "tenantId" | "numberOfClubs">): Promise<void> {
