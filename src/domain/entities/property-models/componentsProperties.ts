@@ -22,7 +22,8 @@ export type MenuButtonProps = {
 export type MainProps = {
     textInfoDisplay: InfoDisplay,
     dataToDisplay: TenantInfoDisplay[] | ClubInfoDisplay[] | MachineInfoDisplay[] | UserInfoDisplay[],
-    setterUuid: Dispatch<SetStateAction<string>>
+    setterUuid: Dispatch<SetStateAction<string>>,
+    setPage: Dispatch<SetStateAction<number>>
 }
 
 export type ModalProps = {
