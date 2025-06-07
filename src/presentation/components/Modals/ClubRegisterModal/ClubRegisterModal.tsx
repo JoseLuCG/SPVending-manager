@@ -80,7 +80,7 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club email: </label>
-                        <input name="email" placeholder="Email" value={clubFormData.email} onChange={changeHandler} type="email" required />
+                        <input name="email" placeholder="Email" value={clubFormData.email.toLowerCase()} onChange={changeHandler} type="email" required />
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club Remark: </label>

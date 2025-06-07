@@ -76,7 +76,7 @@ function TenantRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label>Tenant email: </label>
-                        <input name="email" placeholder="Email" value={tenantFormData.email} onChange={changeHandler} type="email" required />
+                        <input name="email" placeholder="Email" value={tenantFormData.email.toLowerCase()} onChange={changeHandler} type="email" required />
                     </div>
                     <div className={styles.inputPack}>
                         <label>Tenant Remark: </label>
