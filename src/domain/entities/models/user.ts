@@ -27,7 +27,10 @@ export type UserApi = {
     micronPass: string,
     userType: string,
     tenantEntityName: string | null,
-    clubEntityName: string | null
+    tenantEntityId: string | null,
+    clubEntityName: string | null,
+    clubEntityId:string | null
+
 }
 
 export type UserInfoDisplay = {
