@@ -13,8 +13,8 @@ export class TenantRepositoryHttp implements TenantRepository {
         return await response.json();
     }
 
-    async getAllTenants(): Promise<TenantInfoDisplay[]> {
-        const response = await fetch(this.BASEURL,{credentials:"include"});
+    async getAllTenants(page:number): Promise<TenantInfoDisplay[]> {
+        const response = await fetch(`${this.BASEURL}?page=${page}`,{credentials:"include"});
         if (response.ok) {
             const json = await response.json();
             return mapTenantFromApi(json);
