@@ -6,6 +6,7 @@ import { UserRepositoryHttp } from "../../../../infraestructure/adapters/api/Use
 import { User } from "../../../../domain/entities/models/user";
 import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
 import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
+import { generate } from "generate-password-browser";
 
 
 const userRepo = new UserRepositoryHttp();
@@ -42,6 +43,19 @@ function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
         });
     }
 
+    function onClickGeneratePassword() {
+        const generatedPassword = generate({
+            length:12,
+            numbers:true,
+            lowercase:true,
+            uppercase:true
+        });
+        setUserForm({
+            ...userForm,
+            ["password"]:generatedPassword
+        });
+    }
+
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
         try {
@@ -69,7 +83,8 @@ function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">User password: </label>
-                        <input name="password" type="password" placeholder="User password" value={userForm.password} onChange={changeHandler} required />
+                        <button onClick={onClickGeneratePassword}>G</button>
+                        <input name="password" type="text" placeholder="User password" value={userForm.password} onChange={changeHandler} required />
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">User Micron Id</label>
