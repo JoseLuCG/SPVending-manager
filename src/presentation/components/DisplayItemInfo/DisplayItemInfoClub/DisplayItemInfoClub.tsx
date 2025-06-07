@@ -19,7 +19,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
         clubName: "",
         cif: 0,
         address: "",
-        phone: 0,
+        phone: Number.parseInt(""),
         email: "",
         remark: "",
         micronId: "",
@@ -57,7 +57,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
         const { name, value } = event.target;
         setClubFormData(prev => ({
             ...prev,
-            [name]: name === "cif" || name === "phone" ? Number(value) : value
+            [name]: name === "cif" /*|| name === "phone"*/ ? Number(value) : value
         }));
     }
 
@@ -171,7 +171,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                     className={styles.input}
                                     id="clubCIF"
                                     name="cif"
-                                    type="text"
+                                    type="number"
                                     value={isDisabled ? object.cif : clubFormData.cif}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.cif}
@@ -197,7 +197,8 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                     className={styles.input}
                                     id="phone"
                                     name="phone"
-                                    type="text"
+                                    type="tel"
+                                    pattern="^[6789][0-9]{8}$"
                                     value={isDisabled ? object.phone : clubFormData.phone}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.phone}

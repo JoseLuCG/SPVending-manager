@@ -143,7 +143,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                                     className={styles.input}
                                     id="terminalId"
                                     name="terminalId"
-                                    type="text"
+                                    type="number"
                                     value={isDisabled ? object.terminalId : machineForm.terminalId}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.terminalId}
