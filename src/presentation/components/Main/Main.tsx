@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { appRoutes } from '../../../utilities/defines/routes';
 import { Toast } from "primereact/toast";
 
-function Main({ textInfoDisplay, dataToDisplay, setterUuid }: MainProps) {
+function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps) {
 	// ---------- States ----------
 	const [showModal, setShowModal] = useState(false);
 	const [rowSelected] = useState({});
@@ -30,6 +30,21 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid }: MainProps) {
 		const dataId = getEntityId(data);
 		setterUuid(dataId);
 	}
+
+	function onClickBackPage() {
+		console.log("Botón hacia atrás");
+		
+	}
+
+	function onClickNextPage() {
+		console.log("Botón hacia adelante");
+		setPage(
+			page => 
+				page ++
+		);
+		
+	}
+
 	// ---------- Styles ----------
 	const rowClassName = () => {
 		return `${styles.tableRow} ${styles.pDatatableThead}`;
@@ -72,8 +87,8 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid }: MainProps) {
 						</DataTable>
 					</div>
 					<nav className={styles.paginatorContainer}>
-						<button className={styles.pagBtn}> &lt;&lt; </button>
-						<button className={styles.pagBtn}> &gt;&gt; </button>
+						<button className={styles.pagBtn} onClick={onClickBackPage}> &lt;&lt; </button>
+						<button className={styles.pagBtn} onClick={onClickNextPage}> &gt;&gt; </button>
 					</nav>
 				</div>
 			</section>
