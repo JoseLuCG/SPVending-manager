@@ -142,6 +142,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                 value={isDisabled ? object.password : userForm.password}
                                 disabled={isDisabled}
                                 placeholder={isDisabled ? "" : object.password}
+                                onChange={changeHandler}
                             />
                         </div>
                         <div className={styles.fpDiv}>
@@ -209,6 +210,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                 value={isDisabled ? object.micronId : userForm.micronId}
                                 disabled={isDisabled}
                                 placeholder={isDisabled ? "" : object.micronId}
+                                onChange={changeHandler}
                             />
                         </div>
                         <div className={styles.fpDiv}>
@@ -221,6 +223,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                 value={isDisabled ? object.micronUser : userForm.micronUser}
                                 disabled={isDisabled}
                                 placeholder={isDisabled ? "" : object.micronUser}
+                                onChange={changeHandler}
                             />
                         </div>
                         <div className={styles.fpDiv}>
@@ -233,6 +236,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                 value={isDisabled ? object.micronPass : userForm.micronPass}
                                 disabled={isDisabled}
                                 placeholder={isDisabled ? "" : object.micronPass}
+                                onChange={changeHandler}
                             />
                         </div>
                     </div>
