@@ -23,6 +23,7 @@ export type ClubApi = {
     phone:string
     remark:string
     tenantEntityName:string
+    tenantId: string,
     userManagers:[]
 }
 
