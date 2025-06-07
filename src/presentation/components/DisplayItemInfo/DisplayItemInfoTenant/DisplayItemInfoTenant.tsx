@@ -206,6 +206,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                 <input
                                     className={styles.input}
                                     id="micronId"
+                                    name="micronId"
                                     type="text"
                                     value={isDisabled ? object.micronId : tenantForm.micronId}
                                     disabled={isDisabled}
