@@ -2,7 +2,7 @@ import { ClubOfTenant } from "../entities/models/club";
 import { PotentialTenant, Tenant, TenantApi, TenantInfoDisplay } from "../entities/models/tenant";
 
 export interface TenantRepository {
-    getAllTenants() : Promise<TenantInfoDisplay[]>;
+    getAllTenants(page:number) : Promise<TenantInfoDisplay[]>;
     findTenantByUuid( tenantUuid : string ) : Promise<TenantApi | null >;
     addTenant( tenant : Omit<Tenant, "tenantId" | "numberOfClubs">) : Promise<void>;
     modifyTenant( tenant : Omit<Tenant, "numberOfClubs">) : Promise<void>;
