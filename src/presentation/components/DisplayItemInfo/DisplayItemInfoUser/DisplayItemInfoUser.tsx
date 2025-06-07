@@ -8,6 +8,7 @@ import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
 import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
 import Loader from "../../Loader/Loader";
 import { useNavigate } from "react-router";
+import { generate } from "generate-password-browser";
 
 const userRepository = new UserRepositoryHttp();
 const modifyUser = new ModifyUser(userRepository);
@@ -53,6 +54,19 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
     // Handlers:
     function onClickHandler() {
         setIsDisabled(previous => !previous)
+    }
+
+    function onClickGeneratePassword() {
+        const generatedPassword = generate({
+            length:12,
+            numbers:true,
+            lowercase:true,
+            uppercase:true
+        });
+        setUserForm({
+            ...userForm,
+            ["password"]:generatedPassword
+        });
     }
 
     function changeHandler(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -118,6 +132,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                         </div>
                         <div className={styles.fpDiv}>
                             <label htmlFor="password">Password</label>
+                            <button onClick={onClickGeneratePassword} type="button">G</button>
                             <input
                                 className={styles.input}
                                 id="password"
