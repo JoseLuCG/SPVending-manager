@@ -40,7 +40,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                 remark: item.remark,
                 micronId: item.micronId,
                 accountingId: item.accountingId,
-                tenantId: item.tenantEntityName,
+                tenantId: item.tenantId,
                 clubId: item.clubId
             }
             return dataMapped;
