@@ -25,7 +25,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         tenantName: "",
         cif: 0,
         address: "",
-        phone: 0,
+        phone: Number.parseInt(""),
         email: "",
         remark: "",
         micronId: "",
@@ -66,7 +66,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         const { name, value } = event.target;
         setTenantForm(prev => ({
             ...prev,
-            [name]: name === "cif" || name === "phone" ? Number(value) : value
+            [name]: name === "cif" /*|| name === "phone"*/ ? Number(value) : value
         }));
     }
 
@@ -181,7 +181,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                     className={styles.input}
                                     id="tenantCIF"
                                     name="cif"
-                                    type="text"
+                                    type="number"
                                     value={isDisabled ? object.cif : tenantForm.cif}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.cif}
@@ -194,7 +194,8 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                     className={styles.input}
                                     id="phone"
                                     name="phone"
-                                    type="phone"
+                                    type="tel"
+                                    pattern="^[6789][0-9]{8}$"
                                     value={isDisabled ? object.phone : tenantForm.phone}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.phone}
