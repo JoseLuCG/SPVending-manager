@@ -27,6 +27,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
         clubId: "",
         userId: ""
     });
+    const [ hasUserTypeBeenChanged, setHasUserTypeBeenChanged ] = useState(false);
 
     // Functions: 
     function itemMapper(item: UserApi): SetStateAction<Omit<User, "clubName">> | null {
@@ -57,6 +58,11 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
     function changeHandler(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const { name, value } = event.target;
         const mappedname = name === "clubEntityId" ? "clubId" : name;
+
+        if (mappedname === "userType") {
+            setHasUserTypeBeenChanged(true);
+        }
+
         setUserForm({
             ...userForm,
             [mappedname]: mappedname === "userType" ? Number(value) : value
@@ -165,9 +171,20 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                             onChange={changeHandler}
                                         />
                                         <br />
+                                        {
+                                            hasUserTypeBeenChanged && (
+                                                userForm.userType === 2?
+                                                        <SelectTenantOptions onSelectTenant={changeHandler} />:
+                                                        <SelectClubOptions onSelectClub={changeHandler} />
+                                            )
+}
+                                        {
+                                        /*
                                         <SelectClubOptions onSelectClub={changeHandler} />
                                         <br />
-                                        <SelectTenantOptions onSelectTenant={changeHandler} />
+                                        <SelectTenantOptions onSelectTenant={changeHandler} />*/
+                                        }   
+                                        
                                     </div>
                             }
                         </div>
