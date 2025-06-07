@@ -154,7 +154,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                     id="email"
                                     name="email"
                                     type="text"
-                                    value={isDisabled ? object.email : tenantForm.email}
+                                    value={isDisabled ? object.email : tenantForm.email.toLowerCase()}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.email}
                                     onChange={changeHandler}

@@ -144,7 +144,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                     id="email"
                                     name="email"
                                     type="text"
-                                    value={isDisabled ? object.email : clubFormData.email}
+                                    value={isDisabled ? object.email : clubFormData.email.toLowerCase()}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.email}
                                     onChange={changeHandler}
