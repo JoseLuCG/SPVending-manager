@@ -19,10 +19,8 @@ export class TenantRepositoryHttp implements TenantRepository {
             const json = await response.json();
             return mapTenantFromApi(json);
         }
-
-        if (response.status === 404){
-            return [];
-        }
+        if (response.status === 401) throw new Error(`${response.status}`);
+        if (response.status === 404){return [];}
 
         throw new Error(`Error fetching tenants: ${response.statusText}`);
     }
