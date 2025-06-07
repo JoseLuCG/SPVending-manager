@@ -48,7 +48,8 @@ function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
             length:12,
             numbers:true,
             lowercase:true,
-            uppercase:true
+            uppercase:true,
+            strict: true
         });
         setUserForm({
             ...userForm,
@@ -83,7 +84,7 @@ function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">User password: </label>
-                        <button onClick={onClickGeneratePassword}>G</button>
+                        <button onClick={onClickGeneratePassword} type="button">G</button>
                         <input name="password" type="text" placeholder="User password" value={userForm.password} onChange={changeHandler} required />
                     </div>
                     <div className={styles.inputPack}>
