@@ -23,6 +23,7 @@ function TenantsPage() {
 	const [ uuid, setUuid ] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
 	const [ position, setPosition ] = useState<"center">("center");
+	const [ page, setPage ] = useState<number>(0);
 	const show = (position:'center') => {
 		setPosition(position);
 		setVisible(true);
@@ -30,7 +31,7 @@ function TenantsPage() {
 
 	async function fetchTenants() {
 		try {
-			await getTenantList.execute().then(setTenants); 
+			await getTenantList.execute(page).then(setTenants); 
 		} catch (error:any) {
 			console.error(error);
 			if(error?.message === "401") {
@@ -40,7 +41,7 @@ function TenantsPage() {
 					const response = await refreshToken.execute();
 					setAdmin(response);
 					try {
-						const tenants = await getTenantList.execute();
+						const tenants = await getTenantList.execute(page);
 						setTenants(tenants);
 					} catch (errorAfterRefresh) {
 						console.error(errorAfterRefresh);
@@ -60,7 +61,7 @@ function TenantsPage() {
 
 	useEffect(() => {
 		fetchTenants();
-	}, []);
+	}, [page]);
 
 	useEffect(() => {
 		if (uuid != "") {
@@ -71,7 +72,7 @@ function TenantsPage() {
 	return (
 		<>
 			<Header />
-			<Main textInfoDisplay={infoDisplayTenant} dataToDisplay={tenants} setterUuid={setUuid} />
+			<Main textInfoDisplay={infoDisplayTenant} dataToDisplay={tenants} setterUuid={setUuid} setPage={setPage}/>
 			<TenantWarningModal
 				visible={visible}
 				setVisible={() => { setVisible(false) }}
