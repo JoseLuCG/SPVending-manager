@@ -32,17 +32,11 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps
 	}
 
 	function onClickBackPage() {
-		console.log("Botón hacia atrás");
-		
+		setPage(page => page = page - 1);
 	}
 
 	function onClickNextPage() {
-		console.log("Botón hacia adelante");
-		setPage(
-			page => 
-				page ++
-		);
-		
+		setPage(page => page = page + 1);
 	}
 
 	// ---------- Styles ----------
