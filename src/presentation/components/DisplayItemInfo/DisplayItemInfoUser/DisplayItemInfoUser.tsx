@@ -42,8 +42,8 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                 userType: Number.parseInt(item.userType),
                 tenantEntityName: item.tenantEntityName !== null?item.tenantEntityName:"",
                 clubEntityName: item.clubEntityName !== null?item.clubEntityName:"",
-                tenantId: "",
-                clubId: "",
+                tenantId: item.tenantEntityId !== null?item.tenantEntityId:"",
+                clubId: item.clubEntityId !== null?item.clubEntityId: "",
                 userId: item.userManagerId
             }
             return dataMapped;
@@ -61,7 +61,8 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
             length:12,
             numbers:true,
             lowercase:true,
-            uppercase:true
+            uppercase:true,
+            strict: true
         });
         setUserForm({
             ...userForm,
@@ -192,14 +193,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                                         <SelectTenantOptions onSelectTenant={changeHandler} />:
                                                         <SelectClubOptions onSelectClub={changeHandler} />
                                             )
-}
-                                        {
-                                        /*
-                                        <SelectClubOptions onSelectClub={changeHandler} />
-                                        <br />
-                                        <SelectTenantOptions onSelectTenant={changeHandler} />*/
-                                        }   
-                                        
+                                        }
                                     </div>
                             }
                         </div>
