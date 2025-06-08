@@ -1,31 +1,53 @@
+:root {
+    --tbbdr-rds: 0.40rem
+}
+
 /* ---------- Club Card ---------- */
 .section2 {
-    background-color: rgba(0, 42, 114, 0.8);
+    /*background-color: rgba(0, 42, 114, 0.8);*/
     color: #FFF;
     border-radius: 24px;
-    padding: 1px;
     margin-left: 5%;
     margin-right: 5%;
+    box-shadow:
+        0 0 12px rgba(0, 0, 0, 0.06),/* resplandor general */
+        4px 0 10px rgba(0, 0, 0, 0.05),/* derecha */
+        -4px 0 10px rgba(0, 0, 0, 0.05);/* izquierda */
 }
+
 /* ---------- TABLE ---------- */
 /* ----- Table borders ----- */
 .headerTB:first-child {
-    border-top-left-radius: 24px;
+    border-top-left-radius: var(--tbbdr-rds);
 }
 
 .headerTB:last-child {
-    border-top-right-radius: 24px;
+    border-top-right-radius: var(--tbbdr-rds);
 }
 
-.tableRow:last-child > td:first-child{
-    border-bottom-left-radius: 24px;
+.tableRow:last-child>td:first-child {
+    border-bottom-left-radius: var(--tbbdr-rds);
 }
 
-.tableRow:last-child > td:last-child{
-    border-bottom-right-radius: 24px;
+.tableRow:last-child>td:last-child {
+    border-bottom-right-radius: var(--tbbdr-rds);
 }
+
+/* General style */
+.headerTB {
+    padding: 25px 15px;
+    background-color: #002A72;
+    color: #FFF;
+}
+
+/* Header text size */
+.headerTB>div>span {
+    font-size: 1.15rem;
+}
+
 /* ----- Styles ----- */
-.tableRow td, .headerTB {
+.tableRow td,
+.headerTB {
     text-align: center;
     justify-items: center;
     padding: 10px 15px;
