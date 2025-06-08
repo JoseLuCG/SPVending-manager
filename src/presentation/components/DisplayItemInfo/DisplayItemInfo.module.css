@@ -7,14 +7,10 @@
     flex-wrap: wrap;
 }
 
-.btnContainer {
-    width: 100%;
-}
-
 /* ---------- Form ---------- */
 .frmCntnr {
     width: 100%;
-    margin-top: 5%; /*margin-top: 50px;*/
+    margin-top: 5%;
 }
 
 /* ---------- Main Form Div ---------- */
@@ -24,10 +20,12 @@
     margin-right: 5%;
     margin-left: 5%;
     padding-bottom: 2%;
-    border-radius: 25px;
-    background-color: rgba(0, 150, 255, 0.25);
-    /*background-color:rgba(196, 196, 196, 0.5);*/
-    box-shadow: 5px 5px 5px #0000006f;
+    border-radius: 0.5rem;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.08), /* sombra suave abajo */
+        0 0 12px rgba(0, 0, 0, 0.06), /* resplandor general */
+        4px 0 10px rgba(0, 0, 0, 0.05), /* derecha */
+        -4px 0 10px rgba(0, 0, 0, 0.05); /* izquierda */
 }
 
 /* ---------- Section 1 Main Form Div ---------- */
@@ -52,21 +50,28 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     margin-bottom: 2%;
-    border-bottom: 2px dotted; 
 }
 
 .input {
-    background-color: rgba(196, 196, 196, 0.5);
+    background-color:#0053e31b;
+    color: rgb(69, 68, 68);
     border: none;
-    border-radius: 10px;
-    padding: 5px 15px 5px;
-    margin-bottom: 10px;
+    padding: 10px 0px 0px 10px;
 }
 
 .input:focus {
     outline: none;
-    border: 2px solid #0A3072;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid #0A3072;
+    background-color:  #0053e33c;
+}
+
+.input[disabled] {
+    color: black;
+    background-color:  rgb(250, 250, 250);
 }
 /* #C4C4C4 */
 
