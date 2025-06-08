@@ -100,14 +100,29 @@ p.infText {
 
 
 /* ---------- Table styles ---------- */
+/* ----- HEADER ----- */
+/* Border-radius */
+.headerTB:first-child {
+    border-top-left-radius: 0.40rem;
+}
+.headerTB:last-child {
+    border-top-right-radius: 0.40rem;
+}
+/* General style */
 .headerTB {
-    padding: 10px 15px;
+    padding: 25px 15px;
+    background-color: #002A72;
+    color: #FFF;
+}
+/* Header text size */
+.headerTB > div > span {
+    font-size: 1.15rem;
 }
 
 .headerTB:last-child {
     justify-items: right;
 }
-
+/* Table padding */
 .tableRow td,
 .pDatatableThead > tr > th {
     padding: 10px 15px;
@@ -117,26 +132,26 @@ p.infText {
     justify-items: right;
 }
 
+/* Item hovered */
 .tableRow:hover {
-    background-color: #021b4640;
+    background-color: #0053e33c;
     cursor: pointer;
-    border-radius: var(--tbcntr-border-radius);
 }
 
+/* Item hovered border radius */
 .tableRow:hover td:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
 }
 
 .tableRow:hover td:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
 }
 
 /* ---------- DELETE BUTTON ---------- */
 .deleteButton {
     border: none;
-    background-color: #FFF;
 }
 
 .deleteButton:hover {
