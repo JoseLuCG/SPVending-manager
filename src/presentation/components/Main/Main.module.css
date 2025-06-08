@@ -1,7 +1,13 @@
+:root {
+    --tbcntr-border-radius: 0.5rem;
+    --bgc-mncnr: rgb(250, 250, 250);
+}
+
 /* ---------- Main ---------- */
 main {
     display: flex;
     flex-direction: row;
+    background-color: var(--bgc-mncnr);
 }
 /* ---------- SECTION CONTAINER ---------- */
 .sectionContainer {
@@ -15,8 +21,8 @@ main {
     margin-top: 3%;
     border-radius: 20px;
     padding: 20px;
-    border: 1px solid #002A72;
-    box-shadow: 5px 5px 5px #0000006f;
+    /*border: 1px solid #002A72;*/
+    /*box-shadow: 5px 5px 5px #0000006f;*/
 }
 
 /* ---------- Header content ---------- */
@@ -65,9 +71,13 @@ p.infText {
 
 /* ---------- TABLE CONTAINER ---------- */
 .tableContainer {
-    border-radius: 20px;
+    border-radius: var(--tbcntr-border-radius);
     padding: 20px;
-    border: 1px solid #002A72;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.08), /* sombra suave abajo */
+        0 0 12px rgba(0, 0, 0, 0.06), /* resplandor general */
+        4px 0 10px rgba(0, 0, 0, 0.05), /* derecha */
+        -4px 0 10px rgba(0, 0, 0, 0.05); /* izquierda */
 }
 
 
@@ -91,9 +101,9 @@ p.infText {
 }
 
 .tableRow:hover {
-    background-color: #C4C4C4;
+    background-color: #021b4640;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: var(--tbcntr-border-radius);
 }
 
 .tableRow:hover td:first-child {
