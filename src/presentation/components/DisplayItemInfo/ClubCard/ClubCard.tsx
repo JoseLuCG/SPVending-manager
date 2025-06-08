@@ -9,6 +9,8 @@ function ClubCard({ clubs }: ClubCardProps) {
     const rowClassName = () => {
         return `${styles.tableRow}`;
     }
+
+    if (!clubs) return null
     return (
         <div className={styles.section2}>
             <DataTable
