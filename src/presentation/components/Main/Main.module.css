@@ -95,6 +95,8 @@ p.infText {
         0 0 12px rgba(0, 0, 0, 0.06), /* resplandor general */
         4px 0 10px rgba(0, 0, 0, 0.05), /* derecha */
         -4px 0 10px rgba(0, 0, 0, 0.05); /* izquierda */
+    overflow: scroll;
+    height: 60vh;
 }
 
 
