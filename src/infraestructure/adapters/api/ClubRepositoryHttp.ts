@@ -1,9 +1,9 @@
 import { ClubRepository } from "../../../domain/ports/ClubRepository";
-import { Club, ClubApi, ClubInfoDisplay, ClubOption } from "../../../domain/entities/models/club";
+import { Club, ClubApi, ClubOption } from "../../../domain/entities/models/club";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
-import { mapClubFromApi } from "../../mappers/FromApi/ClubMapper";
 import { mapClubToApi } from "../../mappers/ToApi/ClubMapperToApi";
 import { authHandler } from "../Auth/AuthHandler";
+import { ClubApiResponse } from "../../../domain/entities/api-models/apiResponse";
 
 export class ClubRepositoryHttp implements ClubRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.clubPath;
@@ -13,9 +13,9 @@ export class ClubRepositoryHttp implements ClubRepository {
         return response;
     }
 
-    async getAllClubs(): Promise<ClubInfoDisplay[]> {
+    async getAllClubs(): Promise<ClubApiResponse> {
         const json = await authHandler(this.BASEURL, {credentials: "include"});
-        return mapClubFromApi(json);
+        return json;
     }
 
     async addClub(club: Omit<Club, "clubId" | "numberOfMachines">): Promise<void> {

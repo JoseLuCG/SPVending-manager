@@ -1,11 +1,11 @@
 import { ClubRepository } from "../../../domain/ports/ClubRepository";
-import { ClubInfoDisplay } from "../../../domain/entities/models/club";
+import { ClubApiResponse } from "../../../domain/entities/api-models/apiResponse";
 
 export class GetClubList {
     constructor(private clubRepository: ClubRepository){};
 
-    async execute(): Promise<ClubInfoDisplay[]> {
-        const clubs = await this.clubRepository.getAllClubs();
+    async execute(): Promise<ClubApiResponse> {
+        const clubs: ClubApiResponse = await this.clubRepository.getAllClubs();
         
         if (!clubs) throw new Error("Club list is not available");
 
