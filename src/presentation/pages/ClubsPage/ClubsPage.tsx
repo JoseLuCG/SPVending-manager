@@ -4,14 +4,16 @@ import Header from './../../components/Header/Header';
 import { infoDisplayClub } from '../../../utilities/infoDisplay';
 import { ClubRepositoryHttp } from '../../../infraestructure/adapters/api/ClubRepositoryHttp';
 import { GetClubList } from '../../../application/usecases/ClubUseCases/GetClubList';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ClubWarningModal from '../../components/WarningsModals/ClubWarningModal/ClubWarningModal';
 import { ClubApiResponse } from '../../../domain/entities/api-models/apiResponse';
+import { Admin } from '../../../contexts/AdminContext';
 
 const repository = new ClubRepositoryHttp();
 const getClubList = new GetClubList(repository);
 
 function ClubsPage() {
+	const [ admin, /*setAdmin*/ ] = useContext(Admin);
 	const [clubs, setClubs] = useState<ClubApiResponse|null>(null);
 	const [uuid, setUuid] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
@@ -26,7 +28,7 @@ function ClubsPage() {
 		getClubList.execute(page)
 			.then(setClubs)
 			.catch(console.error);
-	}, []);
+	}, [page,admin]);
 
 	useEffect(() => {
 		if (uuid != "") {
