@@ -1,9 +1,10 @@
 import { TenantRepository } from "../../../domain/ports/TenantRepository";
 import { PotentialTenant, Tenant, TenantApi, TenantInfoDisplay } from "../../../domain/entities/models/tenant";
 import { BASE_URL_SERVER, API_PREFIX, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
-import { mapTenantCLubsFromApi, mapTenantFromApi } from "../../mappers/FromApi/TenantMapper";
+import { mapTenantCLubsFromApi } from "../../mappers/FromApi/TenantMapper";
 import { mapTenantToApi } from "../../mappers/ToApi/TenantMapperToApi";
 import { ClubOfTenant } from "../../../domain/entities/models/club";
+import { TenantApiResponse } from "../../../domain/entities/api-models/apiResponse";
 
 export class TenantRepositoryHttp implements TenantRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.tenantPath;
@@ -13,14 +14,14 @@ export class TenantRepositoryHttp implements TenantRepository {
         return await response.json();
     }
 
-    async getAllTenants(page:number): Promise<TenantInfoDisplay[]> {
+    async getAllTenants(page:number): Promise<TenantApiResponse> {
         const response = await fetch(`${this.BASEURL}?page=${page}`,{credentials:"include"});
         if (response.ok) {
             const json = await response.json();
-            return mapTenantFromApi(json);
+            return json;
         }
         if (response.status === 401) throw new Error(`${response.status}`);
-        if (response.status === 404){return [];}
+        if (response.status === 404){return {content:[],page:{number:0,size:0,totalElements:0,totalPages:0}};}
 
         throw new Error(`Error fetching tenants: ${response.statusText}`);
     }
