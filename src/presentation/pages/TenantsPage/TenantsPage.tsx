@@ -31,7 +31,7 @@ function TenantsPage() {
 
 	async function fetchTenants() {
 		try {
-			await getTenantList.execute(page).then(setTenants); 
+			await getTenantList.execute(page).then((response)=> setTenants(response.content)); 
 		} catch (error:any) {
 			console.error(error);
 			if(error?.message === "401") {
@@ -42,7 +42,7 @@ function TenantsPage() {
 					setAdmin(response);
 					try {
 						const tenants = await getTenantList.execute(page);
-						setTenants(tenants);
+						setTenants(tenants.content);
 					} catch (errorAfterRefresh) {
 						console.error(errorAfterRefresh);
 						setAdmin(null);
