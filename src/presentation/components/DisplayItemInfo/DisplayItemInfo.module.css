@@ -73,7 +73,20 @@
     color: black;
     background-color:  rgb(250, 250, 250);
 }
-/* #C4C4C4 */
+
+/* ---------- Generate Password Button ---------- */
+.passCont {
+	width: 50%;
+}
+
+.passCont > input.input {
+	width: 90%;
+}
+
+.passCont > button {
+	width: 10%;
+	padding: 0.5rem 0rem 0rem 0.5rem;
+}
 
 /* ---------- Buttons Container ---------- */
 .editButtonContainer {
@@ -105,11 +118,4 @@
 
 .section2 {
     margin-left: 2%;
-}
-
-.clubCard {
-    background-color: rgba(0, 42, 114, 0.8);
-    color: #FFF;
-    border-radius: 24px;
-    padding: 20px;
 }
