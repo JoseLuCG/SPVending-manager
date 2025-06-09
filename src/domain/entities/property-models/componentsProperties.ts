@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
-import { ClubApi, ClubInfoDisplay, ClubOfTenant } from '../models/club';
-import { MachineApi, MachineInfoDisplay } from '../models/machine';
-import { Tenant, TenantApi, TenantInfoDisplay } from '../models/tenant';
-import { UserApi, UserInfoDisplay } from '../models/user';
+import { ClubApi, ClubOfTenant } from '../models/club';
+import { MachineApi } from '../models/machine';
+import { Tenant, TenantApi } from '../models/tenant';
+import { UserApi } from '../models/user';
 import { InfoDisplay } from './genericModels';
 import { Toast } from 'primereact/toast';
-import { TenantApiResponse } from '../api-models/apiResponse';
+import { ClubApiResponse, MachineApiResponse, TenantApiResponse, UserApiResponse } from '../api-models/apiResponse';
 
 
 export type DataRowProps = {
@@ -22,7 +22,7 @@ export type MenuButtonProps = {
 
 export type MainProps = {
     textInfoDisplay: InfoDisplay,
-    dataToDisplay: TenantApiResponse | ClubInfoDisplay[] | MachineInfoDisplay[] | UserInfoDisplay[] | null,
+    dataToDisplay: TenantApiResponse | ClubApiResponse | MachineApiResponse | UserApiResponse | null,
     setterUuid: Dispatch<SetStateAction<string>>,
     setPage: Dispatch<SetStateAction<number>>
 }
