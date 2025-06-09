@@ -13,8 +13,8 @@ export class ClubRepositoryHttp implements ClubRepository {
         return response;
     }
 
-    async getAllClubs(): Promise<ClubApiResponse> {
-        const json = await authHandler(this.BASEURL, {credentials: "include"});
+    async getAllClubs(page:number): Promise<ClubApiResponse> {
+        const json = await authHandler(`${this.BASEURL}?page=${page}`, {credentials: "include"});
         return json;
     }
 

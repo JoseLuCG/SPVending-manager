@@ -5,24 +5,25 @@ import { infoDisplayClub } from '../../../utilities/infoDisplay';
 import { ClubRepositoryHttp } from '../../../infraestructure/adapters/api/ClubRepositoryHttp';
 import { GetClubList } from '../../../application/usecases/ClubUseCases/GetClubList';
 import { useEffect, useState } from 'react';
-import { ClubInfoDisplay } from '../../../domain/entities/models/club';
 import ClubWarningModal from '../../components/WarningsModals/ClubWarningModal/ClubWarningModal';
+import { ClubApiResponse } from '../../../domain/entities/api-models/apiResponse';
 
 const repository = new ClubRepositoryHttp();
 const getClubList = new GetClubList(repository);
 
 function ClubsPage() {
-	const [clubs, setClubs] = useState<ClubInfoDisplay[]>([]);
+	const [clubs, setClubs] = useState<ClubApiResponse|null>(null);
 	const [uuid, setUuid] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
 	const [ position, setPosition ] = useState<'center'>('center');
+	const [ page, setPage ] = useState<number>(0);
 	const show = (position:'center') => {
 		setPosition(position);
 		setVisible(true);
 	}
 
 	useEffect(() => {
-		getClubList.execute()
+		getClubList.execute(page)
 			.then(setClubs)
 			.catch(console.error);
 	}, []);
@@ -36,7 +37,7 @@ function ClubsPage() {
 	return (
 		<>
 			<Header />
-			<Main textInfoDisplay={infoDisplayClub} dataToDisplay={clubs} setterUuid={setUuid} />
+			<Main textInfoDisplay={infoDisplayClub} dataToDisplay={clubs} setterUuid={setUuid} setPage={setPage}/>
 			<ClubWarningModal
 				visible={visible}
 				setVisible={() => { setVisible(false) }}
