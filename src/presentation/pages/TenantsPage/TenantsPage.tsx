@@ -12,6 +12,7 @@ import { RefreshToken } from '../../../application/usecases/AdminUseCases/Refres
 import { Admin } from '../../../contexts/AdminContext';
 import { useNavigate } from 'react-router';
 import { appRoutes } from '../../../utilities/defines/routes';
+import { TenantApiResponse } from '../../../domain/entities/api-models/apiResponse';
 
 const repository = new TenantRepositoryHttp();
 const getTenantList = new GetTenantList(repository);
@@ -19,7 +20,7 @@ const getTenantList = new GetTenantList(repository);
 function TenantsPage() {
 	const navigate = useNavigate();
 	const [ admin, setAdmin ] = useContext(Admin);
-	const [ tenants, setTenants ] = useState<TenantInfoDisplay[]>([]);
+	const [ tenants, setTenants ] = useState<TenantApiResponse | null >(null);
 	const [ uuid, setUuid ] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
 	const [ position, setPosition ] = useState<"center">("center");
@@ -31,7 +32,7 @@ function TenantsPage() {
 
 	async function fetchTenants() {
 		try {
-			await getTenantList.execute(page).then((response)=> setTenants(response.content)); 
+			await getTenantList.execute(page).then(setTenants); 
 		} catch (error:any) {
 			console.error(error);
 			if(error?.message === "401") {
@@ -42,7 +43,7 @@ function TenantsPage() {
 					setAdmin(response);
 					try {
 						const tenants = await getTenantList.execute(page);
-						setTenants(tenants.content);
+						setTenants(tenants);
 					} catch (errorAfterRefresh) {
 						console.error(errorAfterRefresh);
 						setAdmin(null);
@@ -72,7 +73,7 @@ function TenantsPage() {
 	return (
 		<>
 			<Header />
-			<Main textInfoDisplay={infoDisplayTenant} dataToDisplay={tenants} setterUuid={setUuid} setPage={setPage}/>
+			<Main textInfoDisplay={infoDisplayTenant} dataToDisplay={tenants as TenantApiResponse} setterUuid={setUuid} setPage={setPage}/>
 			<TenantWarningModal
 				visible={visible}
 				setVisible={() => { setVisible(false) }}
