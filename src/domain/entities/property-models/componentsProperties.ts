@@ -5,6 +5,7 @@ import { Tenant, TenantApi, TenantInfoDisplay } from '../models/tenant';
 import { UserApi, UserInfoDisplay } from '../models/user';
 import { InfoDisplay } from './genericModels';
 import { Toast } from 'primereact/toast';
+import { TenantApiResponse } from '../api-models/apiResponse';
 
 
 export type DataRowProps = {
@@ -21,7 +22,7 @@ export type MenuButtonProps = {
 
 export type MainProps = {
     textInfoDisplay: InfoDisplay,
-    dataToDisplay: TenantInfoDisplay[] | ClubInfoDisplay[] | MachineInfoDisplay[] | UserInfoDisplay[],
+    dataToDisplay: TenantApiResponse | ClubInfoDisplay[] | MachineInfoDisplay[] | UserInfoDisplay[] | null,
     setterUuid: Dispatch<SetStateAction<string>>,
     setPage: Dispatch<SetStateAction<number>>
 }
