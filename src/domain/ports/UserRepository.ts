@@ -1,7 +1,8 @@
-import { User, UserApi, UserInfoDisplay } from "./../entities/models/user"
+import { UserApiResponse } from "../entities/api-models/apiResponse";
+import { User, UserApi } from "./../entities/models/user"
 
 export interface UserRepository {
-    getAllUsers() : Promise<UserInfoDisplay[]>;
+    getAllUsers() : Promise<UserApiResponse>;
     findUserByUuid( userUuid : string ) : Promise< UserApi | null >;
     addUser( user : Omit<User, "userId" | "clubName"> ) : Promise<void>;
     modifyUser( user :User) : Promise<void>;

@@ -1,9 +1,9 @@
 import { UserRepository } from "../../../domain/ports/UserRepository";
-import { User, UserApi, UserInfoDisplay } from "../../../domain/entities/models/user";
-import { mapUserFromApi } from "../../mappers/FromApi/UserMapper";
+import { User, UserApi } from "../../../domain/entities/models/user";
 import { API_PREFIX, BASE_URL_SERVER, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapUserToApi } from "../../mappers/ToApi/UserMapperToApi";
 import { authHandler } from "../Auth/AuthHandler";
+import { UserApiResponse } from "../../../domain/entities/api-models/apiResponse";
 
 export class UserRepositoryHttp implements UserRepository {
     private BASEURL = BASE_URL_SERVER + API_PREFIX + PATH_PREFIX.usersPath;
@@ -13,9 +13,9 @@ export class UserRepositoryHttp implements UserRepository {
         return await response;
     }
 
-    async getAllUsers(): Promise<UserInfoDisplay[]> {
+    async getAllUsers(): Promise<UserApiResponse> {
         const json = await authHandler(this.BASEURL, {credentials: "include"});
-        return mapUserFromApi(json);
+        return json;
     }
 
     async addUser(user: Omit<User, "userId" | "clubName">): Promise<void> {
