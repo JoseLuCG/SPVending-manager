@@ -28,7 +28,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
         clubId: "",
         userId: ""
     });
-    const [ hasUserTypeBeenChanged, setHasUserTypeBeenChanged ] = useState(false);
+    const [hasUserTypeBeenChanged, setHasUserTypeBeenChanged] = useState(false);
 
     // Functions: 
     function itemMapper(item: UserApi): SetStateAction<Omit<User, "clubName">> | null {
@@ -40,10 +40,10 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                 micronUser: item.micronUser,
                 micronPass: item.micronPass,
                 userType: Number.parseInt(item.userType),
-                tenantEntityName: item.tenantEntityName !== null?item.tenantEntityName:"",
-                clubEntityName: item.clubEntityName !== null?item.clubEntityName:"",
-                tenantId: item.tenantEntityId !== null?item.tenantEntityId:"",
-                clubId: item.clubEntityId !== null?item.clubEntityId: "",
+                tenantEntityName: item.tenantEntityName !== null ? item.tenantEntityName : "",
+                clubEntityName: item.clubEntityName !== null ? item.clubEntityName : "",
+                tenantId: item.tenantEntityId !== null ? item.tenantEntityId : "",
+                clubId: item.clubEntityId !== null ? item.clubEntityId : "",
                 userId: item.userManagerId
             }
             return dataMapped;
@@ -58,15 +58,15 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
 
     function onClickGeneratePassword() {
         const generatedPassword = generate({
-            length:12,
-            numbers:true,
-            lowercase:true,
-            uppercase:true,
+            length: 12,
+            numbers: true,
+            lowercase: true,
+            uppercase: true,
             strict: true
         });
         setUserForm({
             ...userForm,
-            ["password"]:generatedPassword
+            ["password"]: generatedPassword
         });
     }
 
@@ -108,7 +108,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
 
     if (!object) {
         return (
-            <Loader/>
+            <Loader />
         );
     }
 
@@ -116,131 +116,133 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
         <>
             <form className={styles.frmCntnr} onSubmit={submitHandler}>
                 <main className={styles.frmMnCntnr}>
-                <div className={styles.section}>
-                <div className={styles.frmDv}>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="username">User Name</label>
-                            <input
-                                className={styles.input}
-                                id="username"
-                                name="username"
-                                type="text"
-                                value={isDisabled ? object.username : userForm.username}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.username}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="password">Password</label>
-                            <button onClick={onClickGeneratePassword} type="button">G</button>
-                            <input
-                                className={styles.input}
-                                id="password"
-                                name="password"
-                                type="text"
-                                value={isDisabled ? object.password : userForm.password}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.password}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="adminFor">Admin For</label>
-                            {
-                                isDisabled ?
-                                    object.clubEntityName ? 
-                                        <input
-                                            className={styles.input}
-                                            id="adminFor"
-                                            type="text"
-                                            value={object.clubEntityName !== null ? object.clubEntityName : ""}
-                                            disabled={isDisabled}
-                                        />
-                                        : 
-                                        <input
-                                            className={styles.input}
-                                            id="adminFor"
-                                            type="text"
-                                            value={object.tenantEntityName !== null ? object.tenantEntityName : ""}
-                                            disabled={isDisabled}
-                                        />
-                                    :
-                                    <div>
-                                        <label htmlFor="type1">Tenant admin</label>
-                                        <input
-                                            className="rdbttn"
-                                            type="radio"
-                                            id="type1"
-                                            name="userType"
-                                            value="2"
-                                            checked={userForm.userType === 2}
-                                            onChange={changeHandler}
-                                        />
-                                        <label htmlFor="type2">Club admin</label>
-                                        <input
-                                            className="rdbttn"
-                                            type="radio"
-                                            id="type2"
-                                            name="userType"
-                                            value="1"
-                                            checked={userForm.userType === 1}
-                                            onChange={changeHandler}
-                                        />
-                                        <br />
-                                        {
-                                            hasUserTypeBeenChanged && (
-                                                userForm.userType === 2?
-                                                        <SelectTenantOptions onSelectTenant={changeHandler} />:
+                    <div className={styles.section}>
+                        <div className={styles.frmDv}>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="username">User Name</label>
+                                <input
+                                    className={styles.input}
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    value={isDisabled ? object.username : userForm.username}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.username}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="password">Password</label>
+                                <div className={styles.passCont}>
+                                    <button onClick={onClickGeneratePassword} type="button">G</button>
+                                    <input
+                                        className={styles.input}
+                                        id="password"
+                                        name="password"
+                                        type="text"
+                                        value={isDisabled ? object.password : userForm.password}
+                                        disabled={isDisabled}
+                                        placeholder={isDisabled ? "" : object.password}
+                                        onChange={changeHandler}
+                                    />
+                                </div>
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="adminFor">Admin For</label>
+                                {
+                                    isDisabled ?
+                                        object.clubEntityName ?
+                                            <input
+                                                className={styles.input}
+                                                id="adminFor"
+                                                type="text"
+                                                value={object.clubEntityName !== null ? object.clubEntityName : ""}
+                                                disabled={isDisabled}
+                                            />
+                                            :
+                                            <input
+                                                className={styles.input}
+                                                id="adminFor"
+                                                type="text"
+                                                value={object.tenantEntityName !== null ? object.tenantEntityName : ""}
+                                                disabled={isDisabled}
+                                            />
+                                        :
+                                        <div>
+                                            <label htmlFor="type1">Tenant admin</label>
+                                            <input
+                                                className="rdbttn"
+                                                type="radio"
+                                                id="type1"
+                                                name="userType"
+                                                value="2"
+                                                checked={userForm.userType === 2}
+                                                onChange={changeHandler}
+                                            />
+                                            <label htmlFor="type2">Club admin</label>
+                                            <input
+                                                className="rdbttn"
+                                                type="radio"
+                                                id="type2"
+                                                name="userType"
+                                                value="1"
+                                                checked={userForm.userType === 1}
+                                                onChange={changeHandler}
+                                            />
+                                            <br />
+                                            {
+                                                hasUserTypeBeenChanged && (
+                                                    userForm.userType === 2 ?
+                                                        <SelectTenantOptions onSelectTenant={changeHandler} /> :
                                                         <SelectClubOptions onSelectClub={changeHandler} />
-                                            )
-                                        }
-                                    </div>
-                            }
+                                                )
+                                            }
+                                        </div>
+                                }
+                            </div>
+                        </div>
+                        <div className={styles.frmDv}>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="micronId">Micron ID</label>
+                                <input
+                                    className={styles.input}
+                                    id="micronId"
+                                    name="micronId"
+                                    type="text"
+                                    value={isDisabled ? object.micronId : userForm.micronId}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.micronId}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="micronUser">Micron User</label>
+                                <input
+                                    className={styles.input}
+                                    id="micronUser"
+                                    name="micronUser"
+                                    type="text"
+                                    value={isDisabled ? object.micronUser : userForm.micronUser}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.micronUser}
+                                    onChange={changeHandler}
+                                />
+                            </div>
+                            <div className={styles.fpDiv}>
+                                <label htmlFor="micronPass">Micron Pass</label>
+                                <input
+                                    className={styles.input}
+                                    id="micronPass"
+                                    name="micronPass"
+                                    type="text"
+                                    value={isDisabled ? object.micronPass : userForm.micronPass}
+                                    disabled={isDisabled}
+                                    placeholder={isDisabled ? "" : object.micronPass}
+                                    onChange={changeHandler}
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div className={styles.frmDv}>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="micronId">Micron ID</label>
-                            <input
-                                className={styles.input}
-                                id="micronId"
-                                name="micronId"
-                                type="text"
-                                value={isDisabled ? object.micronId : userForm.micronId}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.micronId}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="micronUser">Micron User</label>
-                            <input
-                                className={styles.input}
-                                id="micronUser"
-                                name="micronUser"
-                                type="text"
-                                value={isDisabled ? object.micronUser : userForm.micronUser}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.micronUser}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                        <div className={styles.fpDiv}>
-                            <label htmlFor="micronPass">Micron Pass</label>
-                            <input
-                                className={styles.input}
-                                id="micronPass"
-                                name="micronPass"
-                                type="text"
-                                value={isDisabled ? object.micronPass : userForm.micronPass}
-                                disabled={isDisabled}
-                                placeholder={isDisabled ? "" : object.micronPass}
-                                onChange={changeHandler}
-                            />
-                        </div>
-                    </div>
-                </div>
                 </main>
                 <div className={styles.editButtonContainer}>
                     <button className={styles.button} type="button" onClick={onClickHandler}>Edit</button>
