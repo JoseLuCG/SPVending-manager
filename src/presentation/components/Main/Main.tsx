@@ -11,6 +11,7 @@ import { getEntityId } from '../../../utilities/tools/checkers';
 import { useLocation, useNavigate } from 'react-router';
 import { appRoutes } from '../../../utilities/defines/routes';
 import { Toast } from "primereact/toast";
+import Loader from "../Loader/Loader";
 
 function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps) {
 	// ---------- States ----------
@@ -44,6 +45,32 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps
 		return `${styles.tableRow} ${styles.pDatatableThead}`;
 	};
 
+	if (dataToDisplay == null) {
+		return(
+			<main>
+			<Toast ref={toast}/>
+			<Aside />
+			<section className={styles.sectionContainer}>
+				<div className={styles.container}>
+					<div className={styles.headerContent}>
+						<p className={styles.infText}>{textInfoDisplay.list} List</p>
+						<input className={styles.searcher} type="text" placeholder='Buscar...' />
+						<Modal typeModal={textInfoDisplay.list} isOpen={showModal} onClose={() => setShowModal(false)} toastRef={toast}/>
+						<button className={styles.addButton} onClick={() => setShowModal(true)}>+ Add {textInfoDisplay.list}</button>
+					</div>
+					<div className={styles.tableContainer}>
+						<Loader />
+					</div>
+					<nav className={styles.paginatorContainer}>
+						<button className={styles.pagBtn} onClick={onClickBackPage}> &lt;&lt; </button>
+						<button className={styles.pagBtn} onClick={onClickNextPage}> &gt;&gt; </button>
+					</nav>
+				</div>
+			</section>
+		</main>
+		);
+	}
+
 	return (
 		<main>
 			<Toast ref={toast}/>
@@ -58,7 +85,7 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps
 					</div>
 					<div className={styles.tableContainer}>
 						<DataTable
-							value={dataToDisplay}
+							value={dataToDisplay.content}
 							selectionMode="single"
 							rowClassName={rowClassName}
 							selection={rowSelected}
