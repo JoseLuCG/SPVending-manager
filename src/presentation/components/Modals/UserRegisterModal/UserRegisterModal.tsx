@@ -84,8 +84,10 @@ function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">User password: </label>
-                        <button onClick={onClickGeneratePassword} type="button">G</button>
-                        <input name="password" type="text" placeholder="User password" value={userForm.password} onChange={changeHandler} required />
+                        <div className={styles.passCont}>
+                            <button onClick={onClickGeneratePassword} type="button">G</button>
+                            <input name="password" type="text" placeholder="User password" value={userForm.password} onChange={changeHandler} required />
+                        </div>
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">User Micron Id</label>
