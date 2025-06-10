@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useState } from "react";
+import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import { DIIClubProps } from "../../../../domain/entities/property-models/componentsProperties";
 import styles from "./../DisplayItemInfo.module.css";
 import { Club, ClubApi } from "../../../../domain/entities/models/club";
@@ -7,6 +7,7 @@ import { ModifyClub } from "../../../../application/usecases/ClubUseCases/Modify
 import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
 import Loader from "../../Loader/Loader";
 import { useNavigate } from "react-router";
+import { Toast } from "primereact/toast";
 
 const clubRepo = new ClubRepositoryHttp();
 const modifyClub = new ModifyClub(clubRepo);
@@ -14,6 +15,7 @@ const modifyClub = new ModifyClub(clubRepo);
 function DisplayItemInfoClub({ object }: DIIClubProps) {
     // States:
     const navigate = useNavigate();
+    const toast = useRef<Toast>(null);
     const [isDisabled, setIsDisabled] = useState(true);
     const [clubFormData, setClubFormData] = useState<Omit<Club, "numberOfMachines">>({
         clubName: "",
@@ -27,6 +29,13 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
         tenantId: "",
         clubId: ""
     });
+    const showSuccess = () => {
+        toast.current?.show({ severity: 'success', summary: 'Success', detail: 'Club modified successfully.' });
+    }
+
+    const showError = () => {
+        toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Error modifying club', life: 3000 });
+    }
 
     // Functions: 
     function itemMapper(item: ClubApi): SetStateAction<Omit<Club, "numberOfMachines">> | null {
@@ -65,10 +74,10 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
         event.preventDefault();
         try {
             await modifyClub.execute(clubFormData);
-            alert("Club successfully modified!");
+            showSuccess();
         } catch (error) {
             console.error(error);
-            alert("An error has occurred");
+            showError();
         }
     }
 
@@ -92,6 +101,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
 
     return (
         <>
+            <Toast ref={toast}/>
             <form className={styles.frmCntnr} onSubmit={submitHandler}>
                 <main className={styles.frmMnCntnr}>
                     <div className={styles.section}>

@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useState } from "react";
+import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import { ModifyMachine } from "../../../../application/usecases/MachineUseCases/ModifyMachine";
 import { DIIMachineProps } from "../../../../domain/entities/property-models/componentsProperties";
 import { MachineRepositoryHttp } from "../../../../infraestructure/adapters/api/MachineRepositoryHttp";
@@ -7,6 +7,7 @@ import { Machine, MachineApi } from "../../../../domain/entities/models/machine"
 import SelectClubOptions from "../../SelectClubOptions/SelectClubOptions";
 import Loader from "../../Loader/Loader";
 import { useNavigate } from "react-router";
+import { Toast } from "primereact/toast";
 
 const machineRepository = new MachineRepositoryHttp();
 const modifyMachine = new ModifyMachine(machineRepository);
@@ -14,6 +15,7 @@ const modifyMachine = new ModifyMachine(machineRepository);
 function DisplayItemInfoMachine({ object }: DIIMachineProps) {
     // States:
     const navigate = useNavigate();
+    const toast = useRef<Toast>(null);
     const [isDisabled, setIsDisabled] = useState(true);
     const [machineForm, setMachineForm] = useState<Omit<Machine, "state">>({
         machineCode: "",
@@ -27,6 +29,13 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
         clubId: "",
         machineId: ""
     });
+    const showSuccess = () => {
+        toast.current?.show({ severity: 'success', summary: 'Success', detail: 'Machine modified successfully.' });
+    }
+
+    const showError = () => {
+        toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Error modifying machine', life: 3000 });
+    }
 
     // Functions:
     function itemMapper(item: MachineApi): SetStateAction<Omit<Machine, "state">> | null {
@@ -66,10 +75,10 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
         event.preventDefault();
         try {
             await modifyMachine.execute(machineForm);
-            alert("Machine successfully modified!");
+            showSuccess();
         } catch (error) {
             console.error(error);
-            alert("An error has occurred");
+            showError();
         }
     }
 
@@ -93,6 +102,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
 
     return (
         <>
+            <Toast ref={toast}/>
             <form className={styles.frmCntnr} onSubmit={submitHandler}>
                 <main className={styles.frmMnCntnr}>
                     <div className={styles.section}>

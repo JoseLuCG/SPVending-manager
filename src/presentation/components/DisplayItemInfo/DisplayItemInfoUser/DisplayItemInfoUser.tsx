@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import { ModifyUser } from "../../../../application/usecases/UserUseCases/ModifyUser";
 import { DIIUserProps } from "../../../../domain/entities/property-models/componentsProperties";
 import { UserRepositoryHttp } from "../../../../infraestructure/adapters/api/UserRepositoryHttp";
@@ -9,6 +9,7 @@ import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
 import Loader from "../../Loader/Loader";
 import { useNavigate } from "react-router";
 import { generate } from "generate-password-browser";
+import { Toast } from "primereact/toast";
 
 const userRepository = new UserRepositoryHttp();
 const modifyUser = new ModifyUser(userRepository);
@@ -16,6 +17,7 @@ const modifyUser = new ModifyUser(userRepository);
 function DisplayItemInfoUser({ object }: DIIUserProps) {
     // States:
     const navigate = useNavigate();
+    const toast = useRef<Toast>(null);
     const [isDisabled, setIsDisabled] = useState(true);
     const [userForm, setUserForm] = useState<User>({
         username: "",
@@ -28,6 +30,13 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
         clubId: "",
         userId: ""
     });
+    const showSuccess = () => {
+        toast.current?.show({ severity: 'success', summary: 'Success', detail: 'User modified successfully.' });
+    }
+
+    const showError = () => {
+        toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Error modifying user', life: 3000 });
+    }
     const [hasUserTypeBeenChanged, setHasUserTypeBeenChanged] = useState(false);
 
     // Functions: 
@@ -88,9 +97,9 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
         event.preventDefault();
         try {
             await modifyUser.execute(userForm);
-            alert("User successfully modified!");
+            showSuccess();
         } catch {
-            alert("Error  registering user")
+            showError();
         }
     }
 
@@ -114,6 +123,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
 
     return (
         <>
+            <Toast ref={toast}/>
             <form className={styles.frmCntnr} onSubmit={submitHandler}>
                 <main className={styles.frmMnCntnr}>
                     <div className={styles.section}>
