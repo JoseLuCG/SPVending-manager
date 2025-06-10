@@ -8,7 +8,7 @@ import { SelectTenantOptionProps } from "../../../domain/entities/property-model
 const tenantRepo = new TenantRepositoryHttp();
 const getPotentialTenant = new GetPotentialTenants(tenantRepo);
 
-function SelectTenantOptions({onSelectTenant}: SelectTenantOptionProps) {
+function SelectTenantOptions({onSelectTenant, tenantName, tenantUuid}: SelectTenantOptionProps) {
     // States:
     const [ potentialTenants, setPotentialTenants ] = useState<PotentialTenant[]>([]);
     const [ selectOpen, setSelectOpen ] = useState(false);
@@ -31,7 +31,7 @@ function SelectTenantOptions({onSelectTenant}: SelectTenantOptionProps) {
             <label htmlFor="tenants">Choose a tenant:</label>
             <br/>
             <select name="tenantId" id="tenants" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectTenant}>
-                <option>----- -----</option>
+                <option key={tenantUuid} value={tenantUuid}>{tenantName}</option>
                 {
                     potentialTenants.map(
                         (t) => <option key={t.tenantId} value={t.tenantId}>{t.name}</option>

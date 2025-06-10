@@ -6,10 +6,9 @@ import { ClubOption } from "../../../domain/entities/models/club";
 import { GetClubOptions } from "../../../application/usecases/ClubUseCases/GetClubOptions";
 
 const clubRepo = new ClubRepositoryHttp();
-// TODO: Replace the GetClubList class with the corresponding class (A new class must be created).
 const getClubOptions = new GetClubOptions(clubRepo);
 
-function SelectClubOptions({onSelectClub}: SelectClubOptionProps) {
+function SelectClubOptions({onSelectClub, clubName, clubUuid}: SelectClubOptionProps) {
     // States:
     const [ clubsOptions, setClubOptions ] = useState<ClubOption[]>([]);
     const [ selectOpen, setSelectOpen ] = useState(false);
@@ -32,7 +31,7 @@ function SelectClubOptions({onSelectClub}: SelectClubOptionProps) {
             <label htmlFor="clubs">Choose a club:</label>
             <br />
             <select name="clubEntityId" id="club-select" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectClub}>
-                <option>----- -----</option>
+                <option key={clubUuid} value={clubUuid}>{clubName}</option>
                 {
                     clubsOptions.map(
                         (c) => <option key={c.clubId} value={c.clubId}>{c.name}</option>
