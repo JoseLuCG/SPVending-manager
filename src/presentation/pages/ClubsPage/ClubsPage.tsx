@@ -14,8 +14,8 @@ const getClubList = new GetClubList(repository);
 
 function ClubsPage() {
 	const [ admin, /*setAdmin*/ ] = useContext(Admin);
-	const [clubs, setClubs] = useState<ClubApiResponse|null>(null);
-	const [uuid, setUuid] = useState("");
+	const [ clubs, setClubs] = useState<ClubApiResponse|null>(null);
+	const [ uuid, setUuid] = useState("");
 	const [ visible, setVisible ] = useState<boolean>(false);
 	const [ position, setPosition ] = useState<'center'>('center');
 	const [ page, setPage ] = useState<number>(0);
@@ -39,7 +39,12 @@ function ClubsPage() {
 	return (
 		<>
 			<Header />
-			<Main textInfoDisplay={infoDisplayClub} dataToDisplay={clubs} setterUuid={setUuid} setPage={setPage}/>
+			<Main 
+				textInfoDisplay={infoDisplayClub} 
+				dataToDisplay={clubs} 
+				setterUuid={setUuid} 
+				setPage={setPage}
+			/>
 			<ClubWarningModal
 				visible={visible}
 				setVisible={() => { setVisible(false) }}
