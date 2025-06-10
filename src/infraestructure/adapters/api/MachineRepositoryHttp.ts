@@ -13,8 +13,8 @@ export class MachineRepositoryHttp implements MachineRepository{
         return await response;
     }
 
-    async getAllMachines(): Promise<MachineApiResponse> {
-        const json = await authHandler(this.BASEURL, {credentials: "include"});
+    async getAllMachines(page:number): Promise<MachineApiResponse> {
+        const json = await authHandler(`${this.BASEURL}?page=${page}`, {credentials: "include"});
         return json;
     }
 

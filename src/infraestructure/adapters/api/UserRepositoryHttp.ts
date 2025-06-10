@@ -13,8 +13,8 @@ export class UserRepositoryHttp implements UserRepository {
         return await response;
     }
 
-    async getAllUsers(): Promise<UserApiResponse> {
-        const json = await authHandler(this.BASEURL, {credentials: "include"});
+    async getAllUsers(page:number): Promise<UserApiResponse> {
+        const json = await authHandler(`${this.BASEURL}?page=${page}`, {credentials: "include"});
         return json;
     }
 
