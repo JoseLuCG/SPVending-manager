@@ -4,10 +4,11 @@ import { GetClubList } from "../../../application/usecases/ClubUseCases/GetClubL
 import { SelectClubOptionProps } from "../../../domain/entities/property-models/componentsProperties";
 import { ClubRepositoryHttp } from "../../../infraestructure/adapters/api/ClubRepositoryHttp";
 import { ClubOption } from "../../../domain/entities/models/club";
+import { GetClubOptions } from "../../../application/usecases/ClubUseCases/GetClubOptions";
 
 const clubRepo = new ClubRepositoryHttp();
 // TODO: Replace the GetClubList class with the corresponding class (A new class must be created).
-const getClubOptions = new GetClubList(clubRepo);
+const getClubOptions = new GetClubOptions(clubRepo);
 
 function SelectClubOptions({onSelectClub}: SelectClubOptionProps) {
     // States:
