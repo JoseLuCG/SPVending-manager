@@ -1,6 +1,5 @@
 //import styles from "./SelectClubOptions.module.css";
 import { useState } from "react";
-import { GetClubList } from "../../../application/usecases/ClubUseCases/GetClubList";
 import { SelectClubOptionProps } from "../../../domain/entities/property-models/componentsProperties";
 import { ClubRepositoryHttp } from "../../../infraestructure/adapters/api/ClubRepositoryHttp";
 import { ClubOption } from "../../../domain/entities/models/club";
