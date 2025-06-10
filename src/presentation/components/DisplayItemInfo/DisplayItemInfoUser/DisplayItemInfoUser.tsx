@@ -193,8 +193,8 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                             {
                                                 hasUserTypeBeenChanged && (
                                                     userForm.userType === 2 ?
-                                                        <SelectTenantOptions onSelectTenant={changeHandler} /> :
-                                                        <SelectClubOptions onSelectClub={changeHandler} />
+                                                        <SelectTenantOptions onSelectTenant={changeHandler} tenantUuid={object.tenantEntityId as string} tenantName={object.tenantEntityName as string}/> :
+                                                        <SelectClubOptions onSelectClub={changeHandler} clubUuid={object.clubEntityId as string} clubName={object.clubEntityName as string}/>
                                                 )
                                             }
                                         </div>

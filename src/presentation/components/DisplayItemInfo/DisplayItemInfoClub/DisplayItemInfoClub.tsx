@@ -121,7 +121,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                             disabled
                                             value={object.tenantEntityName}
                                         /> :
-                                        <SelectTenantOptions onSelectTenant={changeHandler} />
+                                        <SelectTenantOptions onSelectTenant={changeHandler} tenantName={object.tenantEntityName} tenantUuid={object.tenantId}/>
                                 }
                             </div>
                             <div className={styles.fpDiv}>

@@ -40,7 +40,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                 tnaSerialNumber: item.toaSerialNumber,
                 rustdeskId: item.rustdeskId,
                 rustdeskPass: item.rustdeskPass,
-                clubId: item.clubName,
+                clubId: item.clubId,
                 machineId: item.machineId
             }
             return dataMapped;
@@ -121,7 +121,7 @@ function DisplayItemInfoMachine({ object }: DIIMachineProps) {
                                             disabled
                                             value={object.clubName}
                                         /> :
-                                        <SelectClubOptions onSelectClub={changeHandler} />
+                                        <SelectClubOptions onSelectClub={changeHandler} clubUuid={object.clubId} clubName={object.clubName}/>
                                 }
                             </div>
                             <div className={styles.fpDiv}>
