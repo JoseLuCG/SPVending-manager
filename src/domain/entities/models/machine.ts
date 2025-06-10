@@ -21,7 +21,8 @@ export type MachineApi = {
     toaSerialNumber: string,
     rustdeskId: string,
     rustdeskPass: string,
-    clubName: string
+    clubName: string,
+    clubId: string
 }
 
 export type MachineInfoDisplay = {
