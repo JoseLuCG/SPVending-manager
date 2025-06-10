@@ -22,7 +22,6 @@ function ClubCard({ clubs }: ClubCardProps) {
                 <Column headerClassName={styles.headerTB} field="machinesCount" header="Machines"/>
                 <Column headerClassName={styles.headerTB} field="phone" header="Phone"/>
                 <Column headerClassName={styles.headerTB} field="address" header="Address"/>
-                <Column headerClassName={styles.headerTB} field="userManagers" header="Managers"/>
             </DataTable>
         </div>
     );
