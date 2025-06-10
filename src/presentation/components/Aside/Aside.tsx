@@ -1,4 +1,3 @@
-import logo from "./../../../assets/logo.png";
 import { useState } from 'react';
 import MenuButton from '../MenuButton/MenuButton';
 import NavButtons from './components/NavButtons/NavButtons';
@@ -15,9 +14,6 @@ function Aside() {
         >
             <MenuButton isAbove={isAbove}/>
             <NavButtons isAbove={isAbove}/>
-            <div className={styles.imgContainer}>
-                <img src={logo} alt="" height={200} width={310}/>
-            </div>
         </aside>
     );
 }
