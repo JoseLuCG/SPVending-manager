@@ -78,7 +78,7 @@ export const infoDisplayUsers = {
     },
     column2: {
         field: "clubEntityName",
-        header: "Place"
+        header: "Club Name"
     },
     column3: {
         field: "tenantEntityName",
