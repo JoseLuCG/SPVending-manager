@@ -41,11 +41,15 @@ export type GenericModalProps = {
 }
 
 export type SelectTenantOptionProps = {
-    onSelectTenant: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    onSelectTenant: (event: React.ChangeEvent<HTMLSelectElement>) => void,
+    tenantUuid?: string,
+    tenantName?: string
 }
 
 export type SelectClubOptionProps = {
-    onSelectClub: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    onSelectClub: (event: React.ChangeEvent<HTMLSelectElement>) => void,
+    clubUuid?: string,
+    clubName?: string
 }
 
 export type SelectedItemType = UserApi | MachineApi | TenantApi | ClubApi | null;
