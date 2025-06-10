@@ -20,6 +20,7 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps
 	const navigate = useNavigate();
 	const location = useLocation();
 	const toast = useRef<Toast>(null);
+	const totalPages = dataToDisplay?.page.totalPages;
 
 	// Handlers:
 	function selectionRowHandler(event: DataTableRowClickEvent) {
@@ -33,11 +34,18 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps
 	}
 
 	function onClickBackPage() {
-		setPage(page => page = page - 1);
+		if (dataToDisplay) {
+			if (dataToDisplay.page.number > 0) setPage(page => page = page - 1);
+			if (dataToDisplay.page.number == 0) setPage(page => page = 0);
+		}
 	}
 
 	function onClickNextPage() {
-		setPage(page => page = page + 1);
+		console.log(dataToDisplay?.page.number);
+		if (dataToDisplay) {
+			if (dataToDisplay.page.number < dataToDisplay.page.totalPages -1) setPage(page => page = page + 1);
+			if (dataToDisplay.page.number == dataToDisplay.page.totalPages -1) setPage(page => page = dataToDisplay.page.totalPages -1);
+		}
 	}
 
 	// ---------- Styles ----------
@@ -109,6 +117,17 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps
 					</div>
 					<nav className={styles.paginatorContainer}>
 						<button className={styles.pagBtn} onClick={onClickBackPage}> &lt;&lt; </button>
+						{
+								Array.from({ length: totalPages ?? 0 }, (_, index) => (
+									<button
+										key={index}
+										className={styles.pagBtn}
+										onClick={() => setPage(index)}
+									>
+										{index + 1}
+									</button>
+								))
+						}
 						<button className={styles.pagBtn} onClick={onClickNextPage}> &gt;&gt; </button>
 					</nav>
 				</div>
