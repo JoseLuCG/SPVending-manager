@@ -127,12 +127,16 @@ function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                         />
                         </div>
                     </div>
-                    <div className={styles.inputPack}>
-                        <SelectTenantOptions onSelectTenant={changeHandler} />
-                    </div>
-                    <div className={styles.inputPack}>
-                        <SelectClubOptions onSelectClub={changeHandler} />
-                    </div>
+                    {
+                        userForm.userType == 1?
+                            <div className={styles.inputPack}>
+                                <SelectClubOptions onSelectClub={changeHandler} />
+                            </div>:
+                            <div className={styles.inputPack}>
+                                <SelectTenantOptions onSelectTenant={changeHandler} />
+                            </div>
+                    }
+
                     <div className={styles.buttonsContainer}>
                         <button className={styles.button} type="submit">Registrar</button>
                         <button className={styles.button} type="button" onClick={onClose}>Cancelar</button>
