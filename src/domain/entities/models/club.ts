@@ -1,7 +1,7 @@
 export type Club = {
     clubId: string,
     clubName: string,
-    cif: number,
+    cif: string,
     address: string,
     phone: number,
     email: string,
