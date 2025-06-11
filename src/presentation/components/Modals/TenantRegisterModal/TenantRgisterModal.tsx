@@ -4,6 +4,7 @@ import { CreateTenant } from "../../../../application/usecases/TenantUseCases/Cr
 import { ModalProps } from "../../../../domain/entities/property-models/componentsProperties";
 import { TenantRepositoryHttp } from "../../../../infraestructure/adapters/api/TenantRepositoryHttp";
 import { Tenant } from "../../../../domain/entities/models/tenant";
+import { isValidEmail } from "../../../../utilities/tools/checkers";
 
 const tenantRepo = new TenantRepositoryHttp();
 const createTenant = new CreateTenant(tenantRepo);
@@ -12,7 +13,7 @@ function TenantRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     // States:
     const [tenantFormData, setTenantFormData] = useState<Omit<Tenant, "tenantId" | "numberOfClubs">>({
         tenantName: "",
-        cif: 0,
+        cif: "",
         address: "",
         phone: 0,
         email: "",
@@ -28,17 +29,25 @@ function TenantRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
         toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error modifying tenant', life: 3000});
     }
 
+    const showEmailError = () => {
+        toastRef.current?.show({ severity: 'error', summary: 'Error', detail: 'Invalid email format', life: 3000 });
+    }
+
     // Handlers
     function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = event.target;
         setTenantFormData({
             ...tenantFormData,
-            [name]: name === "cif" || name === "phone" ? Number(value) : value
+            [name]: value
         });
     }
 
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
+        if(!isValidEmail(tenantFormData.email)) {
+            showEmailError();
+            return;
+        }
         try {
             const fetchData = await createTenant.execute(tenantFormData);
             console.log(fetchData);
@@ -76,7 +85,7 @@ function TenantRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label>Tenant email: </label>
-                        <input name="email" placeholder="Email" value={tenantFormData.email.toLowerCase()} onChange={changeHandler} type="email" required />
+                        <input name="email" placeholder="Email" value={tenantFormData.email.toLowerCase()} onChange={changeHandler} type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required />
                     </div>
                     <div className={styles.inputPack}>
                         <label>Tenant Remark: </label>

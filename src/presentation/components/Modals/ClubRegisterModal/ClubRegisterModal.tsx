@@ -5,6 +5,7 @@ import { Club } from "../../../../domain/entities/models/club";
 import { ClubRepositoryHttp } from "../../../../infraestructure/adapters/api/ClubRepositoryHttp";
 import { CreateClub } from "../../../../application/usecases/ClubUseCases/CreateClub";
 import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
+import { isValidEmail } from "../../../../utilities/tools/checkers";
 
 
 const clubRepo = new ClubRepositoryHttp();
@@ -32,6 +33,10 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
         toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error modifying tenant', life: 3000});
     }
 
+    const showEmailError = () => {
+        toastRef.current?.show({ severity: 'error', summary: 'Error', detail: 'Invalid email format', life: 3000 });
+    }
+
     // Handlers
     function changeHandler(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const { name, value } = event.target;
@@ -43,6 +48,10 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
 
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
+                if(!isValidEmail(clubFormData.email)) {
+                    showEmailError();
+                    return;
+                }
         try {
             const fetchData = await createClub.execute(clubFormData);
             console.log(fetchData);
@@ -80,7 +89,7 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club email: </label>
-                        <input name="email" placeholder="Email" value={clubFormData.email.toLowerCase()} onChange={changeHandler} type="email" required />
+                        <input name="email" placeholder="Email" value={clubFormData.email.toLowerCase()} onChange={changeHandler} type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required />
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club Remark: </label>
