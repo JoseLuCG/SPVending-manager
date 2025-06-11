@@ -73,7 +73,7 @@ function TenantRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label>Tenant CIF: </label>
-                        <input name="cif" placeholder="CIF" value={tenantFormData.cif || ""} onChange={changeHandler} type="number" required />
+                        <input name="cif" placeholder="CIF" value={tenantFormData.cif || ""} onChange={changeHandler} type="text" required />
                     </div>
                     <div className={styles.inputPack}>
                         <label>Tenant Address: </label>
@@ -81,7 +81,7 @@ function TenantRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label>Tenant Phone: </label>
-                        <input name="phone" placeholder="Teléfono" value={tenantFormData.phone || ""} onChange={changeHandler} type="number" required />
+                        <input name="phone" placeholder="Teléfono" value={tenantFormData.phone || ""} onChange={changeHandler} type="tel" pattern="^\+?\d+$" required />
                     </div>
                     <div className={styles.inputPack}>
                         <label>Tenant email: </label>

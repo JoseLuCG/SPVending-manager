@@ -219,7 +219,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                     id="phone"
                                     name="phone"
                                     type="tel"
-                                    pattern="^[6789][0-9]{8}$"
+                                    pattern="^\+?\d+$"
                                     value={isDisabled ? object.phone : clubFormData.phone}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.phone}
