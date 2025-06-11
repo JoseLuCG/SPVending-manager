@@ -33,8 +33,10 @@ function SelectClubOptions({onSelectClub, clubName, clubUuid}: SelectClubOptionP
             <select name="clubEntityId" id="club-select" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectClub}>
                 <option key={clubUuid} value={clubUuid}>{clubName}</option>
                 {
-                    clubsOptions.map(
-                        (c) => <option key={c.clubId} value={c.clubId}>{c.name}</option>
+                    clubsOptions
+                        .filter(t => t.clubId !== clubUuid)
+                        .map(
+                            (c) => <option key={c.clubId} value={c.clubId}>{c.name}</option>
                     )
                 }
             </select>
