@@ -1,7 +1,7 @@
 export type Tenant = {
 	tenantId: string,
 	tenantName: string,
-	cif: number,
+	cif: string,
 	address: string,
 	phone: number,
 	email: string,
