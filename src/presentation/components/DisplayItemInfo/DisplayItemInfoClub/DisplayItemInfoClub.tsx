@@ -8,6 +8,7 @@ import SelectTenantOptions from "../../SelectTenantOptions/SelectTenantOptions";
 import Loader from "../../Loader/Loader";
 import { useNavigate } from "react-router";
 import { Toast } from "primereact/toast";
+import { isValidEmail } from "../../../../utilities/tools/checkers";
 
 const clubRepo = new ClubRepositoryHttp();
 const modifyClub = new ModifyClub(clubRepo);
@@ -35,6 +36,10 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
 
     const showError = () => {
         toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Error modifying club', life: 3000 });
+    }
+
+    const showEmailError = () => {
+        toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Invalid email format', life: 3000 });
     }
 
     // Functions: 
@@ -72,6 +77,10 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
 
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
+        if(!isValidEmail(clubFormData.email)) {
+            showEmailError();
+            return;
+        }
         try {
             await modifyClub.execute(clubFormData);
             showSuccess();
@@ -153,11 +162,13 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                     className={styles.input}
                                     id="email"
                                     name="email"
-                                    type="text"
+                                    type="email"
+                                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                                     value={isDisabled ? object.email : clubFormData.email.toLowerCase()}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.email}
                                     onChange={changeHandler}
+                                    required
                                 />
                             </div>
                             <div className={styles.fpDiv}>

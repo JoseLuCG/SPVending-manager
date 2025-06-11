@@ -10,6 +10,7 @@ import { Toast } from "primereact/toast";
 import { GetTenantClubs } from "../../../../application/usecases/TenantUseCases/GetTenantClubs";
 import { ClubOfTenant } from "../../../../domain/entities/models/club";
 import ClubCard from "../ClubCard/ClubCard";
+import { isValidEmail } from "../../../../utilities/tools/checkers";
 
 const tenantRepo = new TenantRepositoryHttp();
 const modifyTenant = new ModifyTenant(tenantRepo);
@@ -39,6 +40,9 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Error modifying tenant', life: 3000 });
     }
 
+    const showEmailError = () => {
+        toast.current?.show({ severity: 'error', summary: 'Error', detail: 'Invalid email format', life: 3000 });
+    }
     // Functions:
     function itemMapper(item: TenantApi): SetStateAction<Omit<Tenant, "numberOfClubs">> | null {
         if (item != null) {
@@ -72,6 +76,10 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
 
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
+        if(!isValidEmail(tenantForm.email)) {
+            showEmailError();
+            return;
+        }
         try {
             if (tenantForm.tenantId) {
                 await modifyTenant.execute(tenantForm);
@@ -154,6 +162,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                     id="email"
                                     name="email"
                                     type="text"
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                                     value={isDisabled ? object.email : tenantForm.email.toLowerCase()}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.email}
