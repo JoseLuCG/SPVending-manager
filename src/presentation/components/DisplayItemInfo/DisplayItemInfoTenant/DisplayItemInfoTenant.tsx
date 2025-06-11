@@ -23,7 +23,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
     const [isDisabled, setIsDisabled] = useState(true);
     const [tenantForm, setTenantForm] = useState<Omit<Tenant, "numberOfClubs">>({
         tenantName: "",
-        cif: 0,
+        cif: "",
         address: "",
         phone: Number.parseInt(""),
         email: "",
@@ -44,7 +44,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         if (item != null) {
             let dataMapped: Omit<Tenant, "numberOfClubs"> = {
                 tenantName: item.name,
-                cif: Number.parseInt(item.cif),
+                cif: item.cif,
                 address: item.address,
                 phone: Number.parseInt(item.phone),
                 email: item.email,
@@ -66,7 +66,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         const { name, value } = event.target;
         setTenantForm(prev => ({
             ...prev,
-            [name]: name === "cif" /*|| name === "phone"*/ ? Number(value) : value
+            [name]: value
         }));
     }
 
@@ -181,7 +181,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                     className={styles.input}
                                     id="tenantCIF"
                                     name="cif"
-                                    type="number"
+                                    type="text"
                                     value={isDisabled ? object.cif : tenantForm.cif}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.cif}
@@ -195,7 +195,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                     id="phone"
                                     name="phone"
                                     type="tel"
-                                    pattern="^[6789][0-9]{8}$"
+                                    pattern="^\+?\d+$"
                                     value={isDisabled ? object.phone : tenantForm.phone}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.phone}
@@ -223,7 +223,7 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
                                     name="userManagers"
                                     type="text"
                                     value={object.managers}
-                                    disabled={isDisabled}
+                                    disabled
                                 />
                             </div>
                         </div>
