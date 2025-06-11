@@ -15,7 +15,7 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     // States:
     const [clubFormData, setClubFormData] = useState<Omit<Club, "clubId" | "numberOfMachines">>({
         clubName: "",
-        cif: 0,
+        cif: "",
         address: "",
         phone: 0,
         email: "",
@@ -48,10 +48,10 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
 
     async function submitHandler(event: React.FormEvent) {
         event.preventDefault();
-                if(!isValidEmail(clubFormData.email)) {
-                    showEmailError();
-                    return;
-                }
+        if(!isValidEmail(clubFormData.email)) {
+            showEmailError();
+            return;
+        }
         try {
             const fetchData = await createClub.execute(clubFormData);
             console.log(fetchData);
@@ -77,7 +77,7 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club CIF: </label>
-                        <input name="cif" placeholder="CIF" value={clubFormData.cif || ""} onChange={changeHandler} type="number" required />
+                        <input name="cif" placeholder="CIF" value={clubFormData.cif || ""} onChange={changeHandler} type="text" required />
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club Address: </label>
@@ -85,7 +85,7 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club Phone: </label>
-                        <input name="phone" placeholder="Teléfono" value={clubFormData.phone || ""} onChange={changeHandler} type="number" required />
+                        <input name="phone" placeholder="Teléfono" value={clubFormData.phone || ""} onChange={changeHandler} type="tel" pattern="^\+?\d+$" required />
                     </div>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club email: </label>
