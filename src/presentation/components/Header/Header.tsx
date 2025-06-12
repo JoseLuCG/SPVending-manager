@@ -1,6 +1,6 @@
 import styles from './Header.module.css';
 import userIcon from './../../../assets/icons/UserIcon.svg';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Admin } from '../../../contexts/AdminContext';
 import { AdminRepositoryHttp } from '../../../infraestructure/adapters/api/AdminRepositoryHttp';
 import { LogOutAdmin } from '../../../application/usecases/AdminUseCases/LogOutAdmin';
