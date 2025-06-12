@@ -1,5 +1,5 @@
 import { TenantRepository } from "../../../domain/ports/TenantRepository";
-import { PotentialTenant, Tenant, TenantApi, TenantInfoDisplay } from "../../../domain/entities/models/tenant";
+import { PotentialTenant, Tenant, TenantApi } from "../../../domain/entities/models/tenant";
 import { BASE_URL_SERVER, API_PREFIX, PATH_PREFIX } from "../../../utilities/defines/api/api-routes";
 import { mapTenantCLubsFromApi } from "../../mappers/FromApi/TenantMapper";
 import { mapTenantToApi } from "../../mappers/ToApi/TenantMapperToApi";
