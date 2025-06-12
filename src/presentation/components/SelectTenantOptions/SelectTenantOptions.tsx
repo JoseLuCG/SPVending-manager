@@ -29,7 +29,7 @@ function SelectTenantOptions({onSelectTenant, tenantName, tenantUuid}: SelectTen
     useEffect(
         ()=>{
             fetchTenants();
-        }
+        },[]
     );
 
     return(

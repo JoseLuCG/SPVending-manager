@@ -30,7 +30,7 @@ function SelectClubOptions({onSelectClub, clubName, clubUuid}: SelectClubOptionP
     useEffect(
         ()=>{
             fetchClubs();
-        }
+        },[]
     );
 
     return(
