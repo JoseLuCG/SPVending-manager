@@ -2,36 +2,48 @@
     display: flex;
 }
 
-/* ---------- LIST CSS ---------- */
 ul {
     width: 277px;
-    height: 287px;
-    margin-left: 16px;
-    margin-right: 16px;
+    height: auto;
+    margin: 16px;
+    padding: 0;
     list-style: none;
 }
 
-/* ---------- List Elements CSS ---------- */
-.nav > ul > li:first-child {
-    background-color: #D9D9D9;
-    margin-top: 0px;
-
-}
-
+/* Elementos de la lista */
 .nav > ul > li {
-    background-color: #D9D9D9;
+    background-color: #0041ad;
     margin-top: 20px;
     height: 56px;
     width: 100%;
-    text-align: center;
-    align-content: center;
-    border-radius: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
     cursor: pointer;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+
+.nav > ul > li:first-child {
+    margin-top: 0;
 }
 
 .nav > ul > li:hover {
-    background-color: #0A3072;
-    color: #FFFFFF;
+    background: linear-gradient(to right, #133B7D, #021B46);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nav > ul > li:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .hidden {
