@@ -1,58 +1,102 @@
 /* ---------- HEADER CSS ---------- */
 header.header {
-    background: linear-gradient(to right, #021b46, #0041ad );
+    background: linear-gradient(to right, #021b46, #0041ad); /* Mismo gradiente que el aside */
     height: 10vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada para mayor profundidad, similar al aside */
+    z-index: 10;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil para definir el espacio */
 }
 
 /* ---------- Text decoration ---------- */
 header.header > h1, header > div.userContainer > h2 {
     color: #fff;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+    font-weight: 600; /* Ligeramente más negrita para consistencia */
 }
 
 header.header > h1 {
-    margin-left: 32px;
+    margin-left: 0;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8); /* Sombra de texto más profunda */
 }
 
 /* ---------- USER CONTAINER CSS ---------- */
 .userContainer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 230px;
-    margin-right: 3%;
-    padding: 1% 2% 0px 2%;
+    gap: 1rem;
+    width: auto;
+    margin-right: 0;
+    padding: 0.5rem 1.2rem; /* Aumentado el padding para el texto */
     cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    text-align: right;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    border-radius: 9999px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo más sutil */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil para el contenedor */
+}
+
+.userContainer:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Fondo más visible en hover */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.5); /* Sombra más pronunciada y elevación */
+    transform: translateY(-3px); /* Pequeño levantamiento en hover */
 }
 
 .picContainer {
-    background-color: #D9D9D9;
+    background-color: #D9D9D9; /* Fondo de imagen */
     height: 60px;
     width: 60px;
     border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.7); /* Sombra más fuerte y definida */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.6); /* Borde más visible */
+    flex-shrink: 0; /* Evita que la imagen se encoja */
+}
+
+.picContainer img, .picContainer svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* ---------- PROFILE MENU ---------- */
 .menuProfileHidden {
-    background-color: #021B46;
-    width: 300px;
-    height:fit-content;
+    background-color: #0041ad;
+    width: clamp(200px, 80%, 300px);
+    max-width: 300px;
+    height: fit-content;
     position: absolute;
     top: 10vh;
-    right: 2.5%;
-    padding: 20px;
-    border-radius: 0px 0px 10px 10px;
+    right: 1rem;
+    border-radius: 0 0 10px 10px;
     opacity: 0;
-    transform: translateY(-10px);
+    padding: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-1.5rem) scaleY(0.8);
+    transform-origin: top;
     pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    z-index: 5;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Borde sutil para el menú */
 }
 
 .menuProfile {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scaleY(1);
     pointer-events: auto;
 }
 
@@ -62,10 +106,107 @@ header.header > h1 {
 
 .cntnrUl {
     height: fit-content;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+li.cntnrLi:last-child {
+    margin-bottom: 0;
 }
 
 li.cntnrLi > button {
-    width: 90%;
-    padding: 10px 30px 10px;
+    width: 100%;
+    padding: 12px 20px;
     border-radius: 10px;
+    background-color: #0A2A6C; /* Color de fondo del botón, similar a aside */
+    color: #fff;
+    border: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    margin: 0 auto; /* FIX: Centrar el botón horizontalmente dentro de su padre */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4); /* Sombra para el botón */
+    outline: none; /* Eliminar el contorno al hacer focus */
+}
+
+li.cntnrLi > button:hover {
+    background-color: #133B7D; /* Color de hover del botón, similar a aside */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Sombra más pronunciada en hover */
+}
+
+li.cntnrLi > button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    header.header {
+        padding: 0 1rem;
+        height: 8vh; /* Ajustado para más coherencia con aside */
+    }
+
+    header.header > h1 {
+        font-size: clamp(1.2rem, 5vw, 1.8rem);
+    }
+
+    .userContainer {
+        font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+        padding: 0.3rem 0.8rem; /* Ajuste del padding */
+    }
+
+    .picContainer {
+        height: 50px;
+        width: 50px;
+    }
+
+    .menuProfileHidden {
+        width: clamp(180px, 90%, 250px);
+        right: 0.5rem;
+        padding: 0.75rem;
+        top: 8vh; /* Ajustar posición del menú a la nueva altura del header */
+    }
+
+    li.cntnrLi > button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header.header {
+        height: 7vh;
+        padding: 0 0.5rem;
+    }
+
+    header.header > h1 {
+        font-size: clamp(1rem, 6vw, 1.5rem);
+    }
+
+    .userContainer {
+        gap: 0.5rem;
+        padding: 0.2rem 0.6rem; /* Ajuste del padding */
+    }
+
+    .picContainer {
+        height: 40px;
+        width: 40px;
+    }
+
+    .menuProfileHidden {
+        top: 7vh;
+        width: clamp(150px, 95%, 200px);
+        right: 0.25rem;
+        padding: 0.5rem;
+    }
+
+    li.cntnrLi > button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
 }

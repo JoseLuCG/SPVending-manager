@@ -22,11 +22,11 @@ function Header() {
         setIsHidden(prev => !prev);
     }
 
-    async function onClickLogOutHanler() {
+    async function onClickLogOutHandler() {
         try {
             const response = await logOutAdmin.execute();
             console.log(response);
-            if (response == true) {
+            if (response) {
                 setAdmin(null);
                 navigate(appRoutes.logginRoute);
             } else {
@@ -34,7 +34,7 @@ function Header() {
             }
         } catch (err) {
             console.error(err);
-        } 
+        }
     }
 
     useEffect(
@@ -45,6 +45,8 @@ function Header() {
             }
         }, [admin]
     );
+
+
 
     return(
         <header className={styles.header}>
@@ -59,7 +61,7 @@ function Header() {
                     <nav className={styles.cntnrNv}>
                         <ul className={styles.cntnrUl}>
                             <li className={styles.cntnrLi}>
-                                <button className={styles.cntnrBtn} onClick={onClickLogOutHanler}>Sing Out</button>
+                                <button className={styles.cntnrBtn} onClick={onClickLogOutHandler}>Sing Out</button>
                             </li>
                         </ul>
                     </nav>
