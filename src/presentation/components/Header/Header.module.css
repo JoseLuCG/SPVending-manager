@@ -1,6 +1,6 @@
 /* ---------- HEADER CSS ---------- */
 header.header {
-    background-color: #021B46;
+    background: linear-gradient(to right, #021b46, #0041ad );
     height: 10vh;
     display: flex;
     justify-content: space-between;

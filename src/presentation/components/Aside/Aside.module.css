@@ -1,6 +1,6 @@
 /* ---------- ASIDE CSS ---------- */
 .aside {
-    background-color: #021B46;
+    background: linear-gradient(to bottom, #021b46, #0041ad);
     width: 100px;
     height: 90vh;
     transition: width 0.5s;
