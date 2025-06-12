@@ -3,7 +3,6 @@ import Main from './../../components/Main/Main';
 import Header from './../../components/Header/Header';
 import { infoDisplayTenant } from '../../../utilities/infoDisplay';
 import { useContext, useEffect, useState } from 'react';
-import { TenantInfoDisplay } from '../../../domain/entities/models/tenant';
 import { TenantRepositoryHttp } from '../../../infraestructure/adapters/api/TenantRepositoryHttp';
 import { GetTenantList } from '../../../application/usecases/TenantUseCases/GetTenantList';
 import TenantWarningModal from '../../components/WarningsModals/TenantWarningModal/TenantWarningModal';
@@ -51,11 +50,13 @@ function TenantsPage() {
 					}
 				} catch (refreshError) {
 					console.error(refreshError);
+					setAdmin(null);
 					navigate(appRoutes.logginRoute)
 					
 				}
 			} else {
-				navigate(appRoutes.logginRoute)
+				navigate(appRoutes.logginRoute);
+				setAdmin(null);
 			}
 		}
 	}
