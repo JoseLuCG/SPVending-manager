@@ -14,8 +14,11 @@ export class UserRepositoryHttp implements UserRepository {
     }
 
     async getAllUsers(page:number): Promise<UserApiResponse> {
-        const json = await authHandler(`${this.BASEURL}?page=${page}`, {credentials: "include"});
-        return json;
+        const response = await fetch(`${this.BASEURL}?page=${page}`, {credentials: "include"});
+        if (response.ok) return await response.json();
+        if (response.status === 401) throw new Error(`${response.status}`);
+        if (response.status === 404) return {content:[],page:{number:0,size:0,totalElements:0,totalPages:0}};
+        throw new Error(`Error fetching users: ${response.statusText}`);
     }
 
     async addUser(user: Omit<User, "userId" | "clubName">): Promise<void> {

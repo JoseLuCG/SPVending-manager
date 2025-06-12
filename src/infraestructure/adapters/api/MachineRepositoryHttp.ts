@@ -14,8 +14,11 @@ export class MachineRepositoryHttp implements MachineRepository{
     }
 
     async getAllMachines(page:number): Promise<MachineApiResponse> {
-        const json = await authHandler(`${this.BASEURL}?page=${page}`, {credentials: "include"});
-        return json;
+        const response = await fetch(`${this.BASEURL}?page=${page}`, {credentials: "include"});
+        if (response.ok) return await response.json();
+        if (response.status === 401) throw new Error(`${response.status}`);
+        if (response.status === 404) return {content:[],page:{number:0,size:0,totalElements:0,totalPages:0}};
+        throw new Error(`Error fetching machines: ${response.statusText}`);
     }
 
     async addMachine(machine: Omit<Machine, "machineId" | "state">): Promise<void> {
