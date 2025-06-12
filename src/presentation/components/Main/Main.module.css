@@ -1,6 +1,7 @@
 :root {
-    --tbcntr-border-radius: 0.5rem;
+    --tbcntr-border-radius: 5px;
     --bgc-mncnr: rgb(250, 250, 250);
+    --bgc-button: #0041ad;
 }
 
 /* ---------- Main ---------- */
@@ -42,7 +43,7 @@ p.infText {
 
 /* ----- Add button ----- */
 .addButton {
-    background-color: #002A72;
+    background-color: var(--bgc-button);
     color: #FFF;
     padding: 10px 30px 10px;
     border-radius: 0.25rem;
@@ -51,8 +52,8 @@ p.infText {
 }
 
 .addButton:hover {
-    background-color: #D9D9D9;
-    color: #000000;
+    background: linear-gradient(to right, #133B7D, #021B46);
+    color: #ffffff;
     padding: 10px 30px 10px;
     border-radius: 0.25rem;
     border: none;
@@ -64,10 +65,7 @@ p.infText {
     background-color: #002a722c;
     border-radius: 0.25rem;
     outline: none;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: 1px solid #021B46;
+    border: none;
     padding: 0 20px;
     text-align: center;
     margin-right: 50%;
@@ -77,10 +75,7 @@ p.infText {
     background-color: #0053e33c;
     border-radius: 0.25rem;
     outline: none;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: 1px solid #021b4621;
+    border: none;
     padding: 0 20px;
     text-align: center;
     margin-right: 50%;
@@ -113,16 +108,19 @@ p.infText {
 /* General style */
 .headerTB {
     padding: 25px 15px;
-    background-color: #002A72;
+    background-color: var(--bgc-button);
+
     color: #FFF;
 }
 /* Header text size */
 .headerTB > div > span {
     font-size: 1.15rem;
+
 }
 
 .headerTB:last-child {
     justify-items: right;
+
 }
 /* Table padding */
 .tableRow td,
@@ -133,6 +131,7 @@ p.infText {
 .tableRow td:last-child {
     justify-items: right;
 }
+
 
 /* Item hovered */
 .tableRow:hover {
@@ -154,6 +153,7 @@ p.infText {
 /* ---------- DELETE BUTTON ---------- */
 .deleteButton {
     border: none;
+    background-color: white;
 }
 
 .deleteButton:hover {
@@ -168,15 +168,16 @@ p.infText {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: end;
 }
 
 .pagBtn {
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    border: none;
     margin-left: 1%;
     margin-right: 1%;
-    background-color: #002A72;
+    background-color: var(--bgc-button);
     color: #FFF;
 }
