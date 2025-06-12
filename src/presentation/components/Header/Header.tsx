@@ -13,7 +13,6 @@ const logOutAdmin = new LogOutAdmin(adminRepository);
 function Header() {
     // States:
     const [admin, setAdmin] = useContext(Admin);
-    const [ adminUser, setAdminUser ] = useState("User Name");
     const [ isHidden, setIsHidden ] = useState(true);
     const navigate = useNavigate();
 
@@ -37,22 +36,11 @@ function Header() {
         }
     }
 
-    useEffect(
-        () => {
-            if (admin != null) {
-                const user:string = admin.name
-                setAdminUser(user);
-            }
-        }, [admin]
-    );
-
-
-
     return(
         <header className={styles.header}>
             <h1>SPVending Manager</h1>
             <div className={styles.userContainer} onClick={onClickHandlerDisplayMenuProfile}>
-                <h2>{adminUser}</h2>
+                <h2>{admin?.name}</h2>
                 <div className={styles.picContainer}>
                     <img src={userIcon} alt="profile pic" height="60" width="60"/>
                 </div>
