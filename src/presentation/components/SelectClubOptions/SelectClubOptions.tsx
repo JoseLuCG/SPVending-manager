@@ -1,5 +1,5 @@
 //import styles from "./SelectClubOptions.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SelectClubOptionProps } from "../../../domain/entities/property-models/componentsProperties";
 import { ClubRepositoryHttp } from "../../../infraestructure/adapters/api/ClubRepositoryHttp";
 import { ClubOption } from "../../../domain/entities/models/club";
@@ -25,6 +25,13 @@ function SelectClubOptions({onSelectClub, clubName, clubUuid}: SelectClubOptionP
             setSelectOpen(true);
         }
     }
+
+    
+    useEffect(
+        ()=>{
+            fetchClubs();
+        }
+    );
 
     return(
         <>

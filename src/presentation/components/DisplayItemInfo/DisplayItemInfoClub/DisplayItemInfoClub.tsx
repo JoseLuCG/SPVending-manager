@@ -20,7 +20,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
     const [isDisabled, setIsDisabled] = useState(true);
     const [clubFormData, setClubFormData] = useState<Omit<Club, "numberOfMachines">>({
         clubName: "",
-        cif: 0,
+        cif: "",
         address: "",
         phone: Number.parseInt(""),
         email: "",
@@ -47,7 +47,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
         if (item != null) {
             let dataMapped: Omit<Club, "numberOfMachines"> = {
                 clubName: item.name,
-                cif: Number.parseInt(item.cif),
+                cif: item.cif,
                 address: item.address,
                 phone: Number.parseInt(item.phone),
                 email: item.email,
@@ -71,7 +71,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
         const { name, value } = event.target;
         setClubFormData(prev => ({
             ...prev,
-            [name]: name === "cif" /*|| name === "phone"*/ ? Number(value) : value
+            [name] : value
         }));
     }
 
@@ -192,7 +192,7 @@ function DisplayItemInfoClub({ object }: DIIClubProps) {
                                     className={styles.input}
                                     id="clubCIF"
                                     name="cif"
-                                    type="number"
+                                    type="text"
                                     value={isDisabled ? object.cif : clubFormData.cif}
                                     disabled={isDisabled}
                                     placeholder={isDisabled ? "" : object.cif}

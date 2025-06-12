@@ -1,5 +1,5 @@
 //import styles from "./SelectTenantOptions.modules.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PotentialTenant } from "../../../domain/entities/models/tenant";
 import { TenantRepositoryHttp } from "../../../infraestructure/adapters/api/TenantRepositoryHttp";
 import { GetPotentialTenants } from "../../../application/usecases/TenantUseCases/GetPotentialTenants";
@@ -25,6 +25,12 @@ function SelectTenantOptions({onSelectTenant, tenantName, tenantUuid}: SelectTen
             setSelectOpen(true);
         }
     }
+
+    useEffect(
+        ()=>{
+            fetchTenants();
+        }
+    );
 
     return(
         <>
