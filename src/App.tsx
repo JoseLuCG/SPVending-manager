@@ -9,8 +9,29 @@ import SelectedItemPage from './presentation/pages/SelectedItemPage/SelectedItem
 import LogginPage from './presentation/pages/LogginPage/LogginPage';
 import Authorization from './security/Authorization';
 import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
+import { useContext, useEffect } from 'react';
+import { Admin } from './contexts/AdminContext';
+import { ADMIN_INFO_KEY } from './utilities/defines/statements';
 
 function App() {
+	// States:
+	const [ admin, setAdmin ] = useContext(Admin);
+	
+	// Functions:
+	function loadData(){
+		const adminInfoStored = localStorage.getItem(ADMIN_INFO_KEY);
+		if (adminInfoStored !== null) {
+			const parsedAdmin = JSON.parse(adminInfoStored);
+			setAdmin(parsedAdmin);
+		}
+	}
+
+	// UseEffects:
+	useEffect(
+		()=> {
+			loadData();
+		},[]
+	  );
 
 	return (
 		<>
