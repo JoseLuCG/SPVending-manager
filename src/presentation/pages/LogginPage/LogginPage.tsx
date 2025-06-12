@@ -6,6 +6,8 @@ import { LogAdmin } from "../../../application/usecases/AdminUseCases/LogAdmin";
 import { Admin } from "../../../contexts/AdminContext";
 import { useNavigate } from "react-router";
 import { appRoutes } from "../../../utilities/defines/routes";
+import { AdminApi } from "../../../domain/entities/models/admin";
+import { ADMIN_INFO_KEY } from "../../../utilities/defines/statements";
 
 const repository = new AdminRepositoryHttp();
 const logAdmin = new LogAdmin(repository);
@@ -18,10 +20,15 @@ function LogginPage() {
     });
     const [ errorMessage, setErrorMessage ] = useState("");
     const navigate = useNavigate();
-/*
+    /*
 	username:"Admin",
 	password:"abc123.2"
-*/
+    */
+
+    // Functions:
+    function setLocalStorage(admin: AdminApi) {
+        localStorage.setItem(ADMIN_INFO_KEY, JSON.stringify(admin));
+    }
 
     // Handlers:
     function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
@@ -35,11 +42,10 @@ function LogginPage() {
     async function submitHandler(event:React.FormEvent) {
         event.preventDefault();
         try {
-            // TODO: check if message is a AdminApi type or a string "Bad credentials"
-            //Bad credentials
             const response = await logAdmin.execute(adminForm);
             if (typeof response !== "string") {
                 setAdmin(response);
+                setLocalStorage(response);
             }
         } catch (error:any) {
             console.error(error);
