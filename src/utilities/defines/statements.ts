@@ -1,0 +1,1 @@
+export const ADMIN_INFO_KEY:string = "admin-info"
