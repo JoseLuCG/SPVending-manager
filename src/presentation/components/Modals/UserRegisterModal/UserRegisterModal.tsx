@@ -26,11 +26,11 @@ function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     });
 
     const showSuccess = ()=> {
-        toastRef.current?.show({ severity: 'success', summary: 'Success', detail: 'Tenant modified successfully.' });
+        toastRef.current?.show({ severity: 'success', summary: 'Success', detail: 'User created successfully.' });
     }
 
     const showError = () => {
-        toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error modifying tenant', life: 3000});
+        toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error creating user', life: 3000});
     }
 
     //Handlers:
