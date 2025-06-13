@@ -39,11 +39,13 @@ function SelectTenantOptions({onSelectTenant, tenantName, tenantUuid}: SelectTen
             <select name="tenantId" id="tenants" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectTenant}>
                 <option key={tenantUuid} value={tenantUuid}>{tenantName}</option>
                 {
+                    potentialTenants?
                     potentialTenants
                         .filter(t => t.tenantId !== tenantUuid)
                         .map(
                             (t) => <option key={t.tenantId} value={t.tenantId}>{t.name}</option>
                     )
+                    : ""
                 }
             </select>
         </>
