@@ -130,9 +130,13 @@ function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                     {
                         userForm.userType == 1?
                             <div className={styles.inputPack}>
+                                <label htmlFor="clubs">Choose a club:</label>
+                                <br />
                                 <SelectClubOptions onSelectClub={changeHandler} />
                             </div>:
                             <div className={styles.inputPack}>
+                                <label htmlFor="tenants">Choose a tenant:</label>
+                                <br/>
                                 <SelectTenantOptions onSelectTenant={changeHandler} />
                             </div>
                     }

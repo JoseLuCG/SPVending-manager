@@ -103,6 +103,8 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                         <input name="accountingId" placeholder="Cuenta ID" value={clubFormData.accountingId} onChange={changeHandler} required />
                     </div>
                     <div className={styles.inputPack}>
+                        <label htmlFor="tenants">Choose a tenant:</label>
+                        <br/>
                         <SelectTenantOptions onSelectTenant={changeHandler} />
                     </div>
                     <div className={styles.buttonsContainer}>

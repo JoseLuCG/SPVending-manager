@@ -151,6 +151,8 @@ function MachineRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
                         />
                     </div>
                     <div className={styles.inputPack}>
+                        <label htmlFor="clubs">Choose a club:</label>
+                        <br />
                         <SelectClubOptions onSelectClub={changeHandler} />
                     </div>
                     <div className={styles.buttonsContainer}>
