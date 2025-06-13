@@ -60,8 +60,8 @@ function MachineRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2 className={styles.h2}>REGISTER MACHINE</h2>
                 <form onSubmit={submitHandler} className={styles.form}>
+                    <h2 className={styles.h2}>REGISTER MACHINE</h2>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Machine Code: </label>
                         <input

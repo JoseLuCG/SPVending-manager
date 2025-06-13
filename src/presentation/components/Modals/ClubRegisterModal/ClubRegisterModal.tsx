@@ -68,8 +68,8 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2 className={styles.h2}>REGISTER CLUB</h2>
                 <form onSubmit={submitHandler} className={styles.form}>
+                    <h2 className={styles.h2}>REGISTER CLUB</h2>
                     <div className={styles.inputPack}>
                         <label htmlFor="">Club Name: </label>
                         <input name="clubName" placeholder="Nombre" value={clubFormData.clubName} onChange={changeHandler} required />

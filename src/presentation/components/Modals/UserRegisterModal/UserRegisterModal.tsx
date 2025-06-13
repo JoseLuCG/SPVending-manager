@@ -76,8 +76,8 @@ function UserRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2 className={styles.h2}>REGISTER USER</h2>
                 <form onSubmit={submitHandler} className={styles.form}>
+                    <h2 className={styles.h2}>REGISTER USER</h2>
                     <div className={styles.inputPack}>
                         <label htmlFor="">User name: </label>
                         <input name="username" type="text" placeholder="User name" value={userForm.username} onChange={changeHandler} required />
