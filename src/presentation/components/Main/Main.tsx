@@ -35,8 +35,8 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps
 
 	function onClickBackPage() {
 		if (dataToDisplay) {
-			if (dataToDisplay.page.number > 0) setPage(page => page = page - 1);
-			if (dataToDisplay.page.number == 0) setPage(page => page = 0);
+			if (dataToDisplay.page.number > 0) setPage(prev => prev = prev - 1);
+			if (dataToDisplay.page.number == 0) setPage(0);
 		}
 	}
 
@@ -44,7 +44,7 @@ function Main({ textInfoDisplay, dataToDisplay, setterUuid, setPage }: MainProps
 		console.log(dataToDisplay?.page.number);
 		if (dataToDisplay) {
 			if (dataToDisplay.page.number < dataToDisplay.page.totalPages -1) setPage(page => page = page + 1);
-			if (dataToDisplay.page.number == dataToDisplay.page.totalPages -1) setPage(page => page = dataToDisplay.page.totalPages -1);
+			if (dataToDisplay.page.number == dataToDisplay.page.totalPages -1) setPage(dataToDisplay.page.totalPages -1);
 		}
 	}
 
