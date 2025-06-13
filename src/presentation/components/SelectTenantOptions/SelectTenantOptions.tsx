@@ -10,7 +10,7 @@ const getPotentialTenant = new GetPotentialTenants(tenantRepo);
 
 function SelectTenantOptions({onSelectTenant, tenantName, tenantUuid}: SelectTenantOptionProps) {
     // States:
-    const [ potentialTenants, setPotentialTenants ] = useState<PotentialTenant[]>([]);
+    const [ potentialTenants, setPotentialTenants ] = useState<PotentialTenant[]| null>(null);
     const [ selectOpen, setSelectOpen ] = useState(false);
     
     // Handlers
@@ -39,7 +39,7 @@ function SelectTenantOptions({onSelectTenant, tenantName, tenantUuid}: SelectTen
             <select name="tenantId" id="tenants" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectTenant}>
                 <option key={tenantUuid} value={tenantUuid}>{tenantName}</option>
                 {
-                    potentialTenants?
+                    potentialTenants !== null?
                     potentialTenants
                         .filter(t => t.tenantId !== tenantUuid)
                         .map(
