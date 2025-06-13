@@ -1,8 +1,12 @@
+:root {
+    --page-font: Montserrat;
+}
+
 * {
     margin: 0px;
     padding: 0px;
     font-size: 20px;
-    font-family: Montserrat;
+    font-family: var(--page-font);
     font-weight: normal;
 }
 
