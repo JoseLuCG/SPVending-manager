@@ -50,8 +50,9 @@ p.infText {
 }
 
 .addButton:hover {
-    background-color: #D9D9D9;
-    color: #000000;
+    background: linear-gradient(to right, #2273ff, #025ad5);
+    color: #ffffff;
+
     padding: 10px 30px 10px;
     border-radius: 0.25rem;
     border: none;
@@ -133,8 +134,12 @@ p.infText {
 
 /* Item hovered */
 .tableRow:hover {
-    background-color: #0053e33c;
+    background-color: rgba(0, 83, 227, 0.24);
     cursor: pointer;
+}
+
+.tableRow:hover button{
+    background-color: rgba(0, 83, 227, 0);
 }
 
 /* Item hovered border radius */
@@ -149,14 +154,15 @@ p.infText {
 }
 
 /* ---------- DELETE BUTTON ---------- */
-.deleteButton {
+button {
     border: none;
-    background-color: white;
+    background-color: rgba(250, 250, 250, 0);
+    cursor: pointer;
 }
 
-.deleteButton:hover {
+button:hover {
     border: none;
-    background-color: #C4C4C4;
+    background-color: #0053e33c;
 }
 
 /* ---------- Paginator buttons ---------- */
@@ -182,7 +188,6 @@ p.infText {
 }
 
 .pagBtn:hover {
-    background-color: #D9D9D9;
-    color: #000000;
+    background: linear-gradient(to right, #2273ff, #025ad5);
     cursor: pointer;
 }
