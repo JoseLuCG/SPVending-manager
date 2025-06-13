@@ -33,7 +33,8 @@ export default defineConfig({
 	port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'http://spvending-api-container:8080',
+        /*target: 'http://localhost:8080',*/
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
