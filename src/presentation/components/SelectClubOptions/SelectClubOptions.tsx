@@ -1,4 +1,4 @@
-//import styles from "./SelectClubOptions.module.css";
+import styles from "./SelectClubOptions.module.css";
 import { useEffect, useState } from "react";
 import { SelectClubOptionProps } from "../../../domain/entities/property-models/componentsProperties";
 import { ClubRepositoryHttp } from "../../../infraestructure/adapters/api/ClubRepositoryHttp";
@@ -34,20 +34,18 @@ function SelectClubOptions({onSelectClub, clubName, clubUuid}: SelectClubOptionP
     );
 
     return(
-        <>
-            <label htmlFor="clubs">Choose a club:</label>
-            <br />
-            <select name="clubEntityId" id="club-select" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectClub}>
-                <option key={clubUuid} value={clubUuid}>{clubName}</option>
-                {
-                    clubsOptions
-                        .filter(t => t.clubId !== clubUuid)
-                        .map(
-                            (c) => <option key={c.clubId} value={c.clubId}>{c.name}</option>
-                    )
-                }
-            </select>
-        </>
+        <select className={styles.select} name="clubEntityId" id="club-select" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectClub}>
+            <option key={clubUuid} value={clubUuid} className={styles.option}>{clubName}</option>
+            {   
+                clubsOptions.length > 0?
+                clubsOptions
+                    .filter(t => t.clubId !== clubUuid)
+                    .map(
+                        (c) => <option key={c.clubId} value={c.clubId} className={styles.option}>{c.name}</option>
+                )
+                : ""
+            }
+        </select>
     );
 }
 

@@ -1,4 +1,4 @@
-//import styles from "./SelectTenantOptions.modules.css"
+import styles from "./SelectTenantOptions.module.css"
 import { useEffect, useState } from "react";
 import { PotentialTenant } from "../../../domain/entities/models/tenant";
 import { TenantRepositoryHttp } from "../../../infraestructure/adapters/api/TenantRepositoryHttp";
@@ -33,22 +33,19 @@ function SelectTenantOptions({onSelectTenant, tenantName, tenantUuid}: SelectTen
     );
 
     return(
-        <>
-            <label htmlFor="tenants">Choose a tenant:</label>
-            <br/>
-            <select name="tenantId" id="tenants" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectTenant}>
-                <option key={tenantUuid} value={tenantUuid}>{tenantName}</option>
-                {
-                    potentialTenants.length > 0?
-                    potentialTenants
-                        .filter(t => t.tenantId !== tenantUuid)
-                        .map(
-                            (t) => <option key={t.tenantId} value={t.tenantId}>{t.name}</option>
-                    )
-                    : ""
-                }
-            </select>
-        </>
+        <select className={styles.select} name="tenantId" id="tenants" onClick={onClickHandler} onBlur={()=> setSelectOpen(false)} onChange={onSelectTenant}>
+            <option key={tenantUuid} value={tenantUuid} className={styles.option}>{tenantName}</option>
+            {
+                potentialTenants.length > 0?
+                potentialTenants
+                    .filter(t => t.tenantId !== tenantUuid)
+                    .map(
+                        (t) => <option key={t.tenantId} value={t.tenantId} className={styles.option}>{t.name}</option>
+                )
+                : ""
+            }
+        </select>
+
     );
 }
 
