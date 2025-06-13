@@ -111,11 +111,6 @@ function DisplayItemInfoTenant({ object }: DIITenantProps) {
         }
 	}, [object]);
     
-    useEffect(() => {
-        console.log(clubsInfo);
-        
-	}, [clubsInfo]);
-    
     if (!object) {
         return (
             <Loader />
