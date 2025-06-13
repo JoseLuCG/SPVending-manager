@@ -32,7 +32,7 @@ header.header > h1 {
     align-items: center;
     gap: 1rem;
     width: auto;
-    margin-right: 0;
+    margin-right: 4%;
     padding: 0.5rem 1.2rem; /* Aumentado el padding para el texto */
     cursor: pointer;
     color: #ffffff;
@@ -92,6 +92,7 @@ header.header > h1 {
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
     z-index: 5;
     border: 1px solid rgba(255, 255, 255, 0.15); /* Borde sutil para el menú */
+    margin-right: 3%;
 }
 
 .menuProfile {
@@ -115,6 +116,7 @@ header.header > h1 {
 
 li.cntnrLi:last-child {
     margin-bottom: 0;
+    margin-right: 7%;
 }
 
 li.cntnrLi > button {
