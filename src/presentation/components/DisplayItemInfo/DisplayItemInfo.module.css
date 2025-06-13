@@ -76,13 +76,14 @@
 }
 
 /* ---------- Generate Password Button ---------- */
+/*
 .passCont {
 
 }
 
 .passCont > input.input {
 }
-
+*/
 .passCont > button {
 	padding: 5px 10px 5px 10px;
     border-radius: 5px;
