@@ -15,7 +15,7 @@ import { ADMIN_INFO_KEY } from './utilities/defines/statements';
 
 function App() {
 	// States:
-	const [ admin, setAdmin ] = useContext(Admin);
+	const [ /*admin*/, setAdmin ] = useContext(Admin);
 	
 	// Functions:
 	function loadData(){
