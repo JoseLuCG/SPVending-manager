@@ -168,7 +168,7 @@ p.infText {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: center;
 }
 
 .pagBtn {
