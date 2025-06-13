@@ -36,7 +36,7 @@ ul {
 }
 
 .nav > ul > li:hover {
-    background: linear-gradient(to right, #133B7D, #021B46);
+    background: linear-gradient(to right, #2273ff, #025ad5);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }

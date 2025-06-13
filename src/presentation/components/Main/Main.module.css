@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
     --tbcntr-border-radius: 5px;
     --bgc-mncnr: rgb(250, 250, 250);
     --bgc-button: #0041ad;
+    --fontweight: 500;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    font-weight: var(--fontweight);
 }
 
 /* ---------- Main ---------- */
@@ -26,6 +33,8 @@ main {
 
 /* ---------- Header content ---------- */
 .headerContent {
+    font-weight: var(--fontweight);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -41,6 +50,8 @@ p.infText {
 
 /* ----- Add button ----- */
 .addButton {
+    font-weight: var(--fontweight);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
     background-color: var(--bgc-button);
     color: #FFF;
     padding: 10px 30px 10px;
@@ -50,8 +61,9 @@ p.infText {
 }
 
 .addButton:hover {
-    background-color: #D9D9D9;
-    color: #000000;
+    background: linear-gradient(to right, #2273ff, #025ad5);
+    color: #ffffff;
+
     padding: 10px 30px 10px;
     border-radius: 0.25rem;
     border: none;
@@ -66,6 +78,8 @@ p.infText {
     border: none;
     padding: 0 20px;
     text-align: center;
+    font-weight: var(--fontweight);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
     margin-right: 50%;
 }
 
@@ -105,6 +119,7 @@ p.infText {
 }
 /* General style */
 .headerTB {
+
     padding: 25px 15px;
     background-color: var(--bgc-button);
 
@@ -113,7 +128,8 @@ p.infText {
 /* Header text size */
 .headerTB > div > span {
     font-size: 1.15rem;
-
+    font-weight: var(--fontweight);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
 
 .headerTB:last-child {
@@ -130,11 +146,19 @@ p.infText {
     justify-items: right;
 }
 
+.tableRow{
+    font-weight: var(--fontweight);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.51);
+}
 
 /* Item hovered */
 .tableRow:hover {
-    background-color: #0053e33c;
+    background-color: rgba(0, 83, 227, 0.24);
     cursor: pointer;
+}
+
+.tableRow:hover button{
+    background-color: rgba(0, 83, 227, 0);
 }
 
 /* Item hovered border radius */
@@ -149,14 +173,15 @@ p.infText {
 }
 
 /* ---------- DELETE BUTTON ---------- */
-.deleteButton {
+button {
     border: none;
-    background-color: white;
+    background-color: rgba(250, 250, 250, 0);
+    cursor: pointer;
 }
 
-.deleteButton:hover {
+button:hover {
     border: none;
-    background-color: #C4C4C4;
+    background-color: #0053e33c;
 }
 
 /* ---------- Paginator buttons ---------- */
@@ -179,10 +204,11 @@ p.infText {
     background-color: var(--bgc-button);
     color: #FFF;
     transition: background-color 0.2s ease-out;
+    font-weight: var(--fontweight);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
 
 .pagBtn:hover {
-    background-color: #D9D9D9;
-    color: #000000;
+    background: linear-gradient(to right, #2273ff, #025ad5);
     cursor: pointer;
 }

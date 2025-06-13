@@ -129,8 +129,8 @@
 }
 
 .button:hover {
-    background-color: #D9D9D9;
-    color: #000000;
+    background: linear-gradient(to right, #2273ff, #025ad5);
+    color: #ffffff;
     padding: 10px 30px 10px;
     border-radius: 10px;
     border: none;
