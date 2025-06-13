@@ -178,4 +178,11 @@ p.infText {
     margin-right: 1%;
     background-color: var(--bgc-button);
     color: #FFF;
+    transition: background-color 0.2s ease-out;
+}
+
+.pagBtn:hover {
+    background-color: #D9D9D9;
+    color: #000000;
+    cursor: pointer;
 }
