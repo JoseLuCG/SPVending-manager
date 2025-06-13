@@ -55,6 +55,10 @@
     margin-bottom: 2%;
 }
 
+.fpDiv > input {
+    width: 50%;
+}
+
 .input {
     background-color:#0053e31b;
     color: rgb(69, 68, 68);
@@ -76,14 +80,6 @@
 }
 
 /* ---------- Generate Password Button ---------- */
-/*
-.passCont {
-
-}
-
-.passCont > input.input {
-}
-*/
 .passCont > button {
 	padding: 5px 10px 5px 10px;
     border-radius: 5px;
