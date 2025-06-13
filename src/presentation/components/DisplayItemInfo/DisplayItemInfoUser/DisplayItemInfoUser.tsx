@@ -143,7 +143,6 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                             </div>
                             <div className={styles.fpDiv}>
                                 <label htmlFor="password">Password</label>
-                                <div className={styles.passCont}>
                                     <button onClick={onClickGeneratePassword} type="button" hidden={isDisabled?true:false}>Generate</button>
                                     <input
                                         className={styles.input}
@@ -155,7 +154,6 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                         placeholder={isDisabled ? "" : object.password}
                                         onChange={changeHandler}
                                     />
-                                </div>
                             </div>
                             <div className={styles.fpDiv}>
                                 <label htmlFor="adminFor">Admin For</label>
