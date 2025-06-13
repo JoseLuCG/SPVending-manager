@@ -1,7 +1,7 @@
 /* ---------- HEADER CSS ---------- */
 header.header {
     background: linear-gradient(to right, #021b46, #0041ad); /* Mismo gradiente que el aside */
-    height: 10vh;
+    height: 12vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,7 +80,7 @@ header.header > h1 {
     max-width: 300px;
     height: fit-content;
     position: absolute;
-    top: 10vh;
+    top: 12vh;
     right: 1rem;
     border-radius: 0 0 10px 10px;
     opacity: 0;
@@ -99,6 +99,7 @@ header.header > h1 {
     opacity: 1;
     transform: translateY(0) scaleY(1);
     pointer-events: auto;
+
 }
 
 .cntnrNv {
