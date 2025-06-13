@@ -50,8 +50,8 @@ p.infText {
 }
 
 .addButton:hover {
-    background: linear-gradient(to right, #133B7D, #021B46);
-    color: #ffffff;
+    background-color: #D9D9D9;
+    color: #000000;
     padding: 10px 30px 10px;
     border-radius: 0.25rem;
     border: none;
