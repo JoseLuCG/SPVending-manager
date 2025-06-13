@@ -26,11 +26,11 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
     });
 
     const showSuccess = ()=> {
-        toastRef.current?.show({ severity: 'success', summary: 'Success', detail: 'Tenant modified successfully.' });
+        toastRef.current?.show({ severity: 'success', summary: 'Success', detail: 'CLub created successfully.' });
     }
 
     const showError = () => {
-        toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error modifying tenant', life: 3000});
+        toastRef.current?.show({severity:'error', summary: 'Error', detail:'Error creating the club', life: 3000});
     }
 
     const showEmailError = () => {
@@ -42,7 +42,7 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
         const { name, value } = event.target;
         setClubFormData({
             ...clubFormData,
-            [name]: name === "cif" || name === "phone" ? Number(value) : value
+            [name]: name === "phone" ? Number(value) : value
         });
     }
 
@@ -57,7 +57,6 @@ function ClubRegisterModal({ isOpen, onClose, toastRef }: ModalProps) {
             console.log(fetchData);
             showSuccess();
             onClose();
-            // TODO: Implement a timer for page reload
             window.location.reload();
         } catch {
             showError();
