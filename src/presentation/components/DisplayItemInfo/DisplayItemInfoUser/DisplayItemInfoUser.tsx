@@ -123,7 +123,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
 
     return (
         <>
-            <Toast ref={toast}/>
+            <Toast ref={toast} />
             <form className={styles.frmCntnr} onSubmit={submitHandler}>
                 <main className={styles.frmMnCntnr}>
                     <div className={styles.section}>
@@ -143,7 +143,8 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                             </div>
                             <div className={styles.fpDiv}>
                                 <label htmlFor="password">Password</label>
-                                    <button onClick={onClickGeneratePassword} type="button" hidden={isDisabled?true:false}>Generate</button>
+                                <div className={styles.passCont}>
+                                    <button onClick={onClickGeneratePassword} type="button" hidden={isDisabled ? true : false}>Generate</button>
                                     <input
                                         className={styles.input}
                                         id="password"
@@ -154,6 +155,7 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                         placeholder={isDisabled ? "" : object.password}
                                         onChange={changeHandler}
                                     />
+                                </div>
                             </div>
                             <div className={styles.fpDiv}>
                                 <label htmlFor="adminFor">Admin For</label>
@@ -176,33 +178,47 @@ function DisplayItemInfoUser({ object }: DIIUserProps) {
                                                 disabled={isDisabled}
                                             />
                                         :
-                                        <div>
-                                            <label htmlFor="type1">Tenant admin</label>
-                                            <input
-                                                className="rdbttn"
-                                                type="radio"
-                                                id="type1"
-                                                name="userType"
-                                                value="2"
-                                                checked={userForm.userType === 2}
-                                                onChange={changeHandler}
-                                            />
-                                            <label htmlFor="type2">Club admin</label>
-                                            <input
-                                                className="rdbttn"
-                                                type="radio"
-                                                id="type2"
-                                                name="userType"
-                                                value="1"
-                                                checked={userForm.userType === 1}
-                                                onChange={changeHandler}
-                                            />
+                                        <div className={styles.radioButtons}>
+                                            <label htmlFor="type1">Tenant admin
+                                                <input
+                                                    className="rdbttn"
+                                                    type="radio"
+                                                    id="type1"
+                                                    name="userType"
+                                                    value="2"
+                                                    checked={userForm.userType === 2}
+                                                    onChange={changeHandler}
+                                                />
+                                            </label>
+                                            <label htmlFor="type2">Club admin
+                                                <input
+                                                    className="rdbttn"
+                                                    type="radio"
+                                                    id="type2"
+                                                    name="userType"
+                                                    value="1"
+                                                    checked={userForm.userType === 1}
+                                                    onChange={changeHandler}
+                                                />
+                                            </label>
                                             <br />
                                             {
                                                 hasUserTypeBeenChanged && (
-                                                    userForm.userType === 2 ?
-                                                        <SelectTenantOptions onSelectTenant={changeHandler} tenantUuid={object.tenantEntityId as string} tenantName={object.tenantEntityName as string}/> :
-                                                        <SelectClubOptions onSelectClub={changeHandler} clubUuid={object.clubEntityId as string} clubName={object.clubEntityName as string}/>
+                                                    <div className={styles.fullWidthGridItem}>
+                                                        {userForm.userType === 2 ? (
+                                                            <SelectTenantOptions
+                                                                onSelectTenant={changeHandler}
+                                                                tenantUuid={object.tenantEntityId as string}
+                                                                tenantName={object.tenantEntityName as string}
+                                                            />
+                                                        ) : (
+                                                            <SelectClubOptions
+                                                                onSelectClub={changeHandler}
+                                                                clubUuid={object.clubEntityId as string}
+                                                                clubName={object.clubEntityName as string}
+                                                            />
+                                                        )}
+                                                    </div>
                                                 )
                                             }
                                         </div>
