@@ -122,23 +122,32 @@ input.rdbttn {
 }
 
 .passCont > input{
-	width: 72%;
+	width: 70%;
 }
 
 .passCont > button {
 	padding: 5px 10px 5px 10px;
     border-radius: 5px;
+    border-radius: var(--bttn-brdr-rds);
     border: none;
     color: #FFF;
-    background-color: #002A72;
+    background-color: #0041ad;
     transition: background-color 0.2s ease-out;
 }
 
 .passCont > button:hover {
-    background-color: #D9D9D9;
-    color: #000000;
+	background: linear-gradient(to right, #2273ff, #025ad5);
+    color: #ffffff;
     padding: 5px 10px 5px 10px;
-    border-radius: 5px;
+    border-radius: var(--bttn-brdr-rds);
     border: none;
     cursor: pointer;
+}
+
+.inputPack > select {
+	width: 50%;
+}
+
+.inputPack > select:focus {
+	width: 50%;
 }
